@@ -59,8 +59,6 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
-	        
 				<li><a href="/archives/index.html">归档</a></li>
 	        
 				<li><a href="/categories">分类</a></li>
@@ -125,8 +123,6 @@
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -147,13 +143,11 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 25%"><a href="/">主页</a></li>
+					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
 		        
-					<li style="width: 25%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+					<li style="width: 33.333333333333336%"><a href="/archives/index.html">归档</a></li>
 		        
-					<li style="width: 25%"><a href="/archives/index.html">归档</a></li>
-		        
-					<li style="width: 25%"><a href="/categories">分类</a></li>
+					<li style="width: 33.333333333333336%"><a href="/categories">分类</a></li>
 		        
 				</ul>
 			</nav>
@@ -170,37 +164,28 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-strategy-pattern" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-observer-pattern" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/14/strategy-pattern/">23种设计模式之策略模式</a>
+      <a class="article-title" href="/2019/12/17/observer-pattern/">23种设计模式之观察者模式</a>
     </h1>
   
 
         
-        <a href="/2019/12/14/strategy-pattern/" class="archive-article-date">
-  	<time datetime="2019-12-14T03:24:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-14</time>
+        <a href="/2019/12/17/observer-pattern/" class="archive-article-date">
+  	<time datetime="2019-12-17T13:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-17</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>策略模式是非常常见的一种设计模式，其定义为<br><strong>策略模式定义了算法簇，并允许它们之前互相替换。策略模式让算法和使用算法的客户之前保持独立</strong></p>
-<p>从定义可以看出，策略模式包含了一套完整的算法簇，通俗的讲就是一个算法抽象类及一系列算法实现类。常见的代码结构如下所示：<br>首先是策略上下文类，该类用于和业务代码进行直接耦合，作用为选择一个算法分支。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class StrategyContext</span><br><span class="line"></span><br><span class="line">private IStrategy iStrategy;</span><br><span class="line"></span><br><span class="line">void doSomething(Obj type)&#123;</span><br><span class="line">    &#x2F;&#x2F;用于选择策略类</span><br><span class="line">    if()&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;else if()&#123;</span><br><span class="line">    </span><br><span class="line">    &#125;else&#123;</span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>其次为策略抽象类，也就是算法簇的接口。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">interface IStrategy</span><br><span class="line">&#x2F;&#x2F;算法抽象类</span><br><span class="line">void executeStrategy();</span><br></pre></td></tr></table></figure>
-<p>最后的成员为具体算法类，其实现了算法体本身(当然，通常来说算法类都会有多个)。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class Strategy implements IStrategy</span><br><span class="line"></span><br><span class="line">public void executeStrategy()&#123;</span><br><span class="line">    &#x2F;&#x2F;do something</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>上面就是策略模式的代码结构，不过到这可能就会有人问，会写是会写了，那么我什么时候去用叻？</p>
-<p>这个很简单，如果出现这个场景，那么请使用策略模式进行代码设计，场景就是：<br><strong>一个行为，在不同的业务场景下，存在执行的差异，并且业务场景还会可能增多时</strong><br>比如说你平时11点睡觉，但是你周末12点睡觉，那么针对睡觉这个行为就可以使用策略模式进行设计。这样业务代码在调用睡觉方法时，只需要传递时间就能兼容多种情况。并且，如果出现了新的情况，比如无论什么时候，只要加班，你都会1点睡觉，这个时候只需要新建一个策略类即可，不用阅读及修改其他代码。</p>
-
+        <p><strong>观察者模式</strong>是一种对于一对多关系的解决方案。<br>其定义为：<strong>观察者模式定义了对象之前一对多的关系，并且当一发生变化时，多能够接受到通知并自动更新</strong>。<br>从定义就可以看出，如果要用到观察者模式，那么一定需要出现一对多的关系。大家可以想想，在我们过去开发的业务场景中，有哪些符合观察者的使用场景。</p>
+        
       
 
       
@@ -213,11 +198,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
         		</li>
       		
 		</ul>
@@ -238,7 +223,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/14/strategy-pattern/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/12/17/observer-pattern/">展开全文 >></a>
         </p>
       
 
@@ -268,40 +253,28 @@
 
 
   
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-strategy-pattern" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/11/hello-world/">Hello World</a>
+      <a class="article-title" href="/2019/12/14/strategy-pattern/">23种设计模式之策略模式</a>
     </h1>
   
 
         
-        <a href="/2019/12/11/hello-world/" class="archive-article-date">
-  	<time datetime="2019-12-11T14:24:04.714Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-11</time>
+        <a href="/2019/12/14/strategy-pattern/" class="archive-article-date">
+  	<time datetime="2019-12-14T03:24:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-14</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+        <p>策略模式是非常常见的一种设计模式，其定义为<br><strong>策略模式定义了算法簇，并允许它们之前互相替换。策略模式让算法和使用算法的客户之前保持独立</strong></p>
+        
       
 
       
@@ -309,11 +282,37 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/设计模式//" class="article-tag-list-link color5">设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/11/hello-world/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/12/14/strategy-pattern/">展开全文 >></a>
         </p>
       
 
@@ -436,11 +435,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
             
             <div class="clearfix"></div>
