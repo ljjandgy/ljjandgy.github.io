@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>linux常用命令之Scp命令 | ljjandgy</title>
+  <title>23种设计模式之装饰者模式 | ljjandgy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="scp命令是linux系统常用文件传输命令，其特点为传输加密、占用系统资源小以及跨服务器传输。 scp命令格式为：scp [参数] [原路径] [目标路径]">
+  <meta name="description" content="装饰者是一种对于动态添加对象行为的解决方案。其定义为：是一种动态的将责任附加到对象上的一种设计方式。在扩展功能层面上，它比继承更具有弹性。从定义就能看出，装饰者模式能够把责任动态的附加到对象上。这样我们就能很好的对一个对象进行拓展，而不用因为拓展去反复的修改某段代码。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="linux常用命令之Scp命令">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;18&#x2F;linux-command-scp&#x2F;index.html">
+<meta property="og:title" content="23种设计模式之装饰者模式">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;22&#x2F;decorator-pattern&#x2F;index.html">
 <meta property="og:site_name" content="ljjandgy">
-<meta property="og:description" content="scp命令是linux系统常用文件传输命令，其特点为传输加密、占用系统资源小以及跨服务器传输。 scp命令格式为：scp [参数] [原路径] [目标路径]">
+<meta property="og:description" content="装饰者是一种对于动态添加对象行为的解决方案。其定义为：是一种动态的将责任附加到对象上的一种设计方式。在扩展功能层面上，它比继承更具有弹性。从定义就能看出，装饰者模式能够把责任动态的附加到对象上。这样我们就能很好的对一个对象进行拓展，而不用因为拓展去反复的修改某段代码。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2019-12-18T14:14:35.000Z">
-<meta property="article:modified_time" content="2019-12-19T12:18:57.028Z">
+<meta property="article:published_time" content="2019-12-22T03:31:43.000Z">
+<meta property="article:modified_time" content="2019-12-22T07:33:14.548Z">
 <meta property="article:author" content="ljjandgy">
-<meta property="article:tag" content="linux">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="设计模式">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="ljjandgy" type="application/atom+xml">
@@ -165,74 +166,49 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-linux-command-scp" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-decorator-pattern" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      linux常用命令之Scp命令
+      23种设计模式之装饰者模式
     </h1>
   
 
         
-        <a href="/2019/12/18/linux-command-scp/" class="archive-article-date">
-  	<time datetime="2019-12-18T14:14:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-18</time>
+        <a href="/2019/12/22/decorator-pattern/" class="archive-article-date">
+  	<time datetime="2019-12-22T03:31:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>scp命令是linux系统常用文件传输命令，其特点为传输加密、占用系统资源小以及跨服务器传输。</p>
-<p>scp命令格式为：<br><strong>scp [参数] [原路径] [目标路径]</strong></p>
+        <p><strong>装饰者</strong>是一种对于动态添加对象行为的解决方案。<br>其定义为：<strong>是一种动态的将责任附加到对象上的一种设计方式。在扩展功能层面上，它比继承更具有弹性</strong>。<br>从定义就能看出，装饰者模式能够把责任动态的附加到对象上。这样我们就能很好的对一个对象进行拓展，而不用因为拓展去反复的修改某段代码。</p>
 <a id="more"></a>
-<p>常见的参数有：</p>
-<ul>
-<li><p>-1  强制scp命令使用协议ssh1  </p>
-</li>
-<li><p>-2  强制scp命令使用协议ssh2  </p>
-</li>
-<li><p>-4  强制scp命令只使用IPv4寻址  </p>
-</li>
-<li><p>-6  强制scp命令只使用IPv6寻址  </p>
-</li>
-<li><p>-B  使用批处理模式（传输过程中不询问传输口令或短语）  </p>
-</li>
-<li><p>-C  允许压缩。（将-C标志传递给ssh，从而打开压缩功能）  </p>
-</li>
-<li><p>-p 保留原文件的修改时间，访问时间和访问权限。  </p>
-</li>
-<li><p>-q  不显示传输进度条。  </p>
-</li>
-<li><p>-r  递归复制整个目录。  </p>
-</li>
-<li><p>-v 详细方式显示输出。scp和ssh(1)会显示出整个过程的调试信息。这些信息用于调试连接，验证和配置问题。   </p>
-</li>
-<li><p>-c cipher  以cipher将数据传输进行加密，这个选项将直接传递给ssh。   </p>
-</li>
-<li><p>-F ssh_config  指定一个替代的ssh配置文件，此参数直接传递给ssh。  </p>
-</li>
-<li><p>-i identity_file  从指定文件中读取传输时使用的密钥文件，此参数直接传递给ssh。    </p>
-</li>
-<li><p>-l limit  限定用户所能使用的带宽，以Kbit/s为单位。     </p>
-</li>
-<li><p>-o ssh_option  如果习惯于使用ssh_config(5)中的参数传递方式，   </p>
-</li>
-<li><p>-P port  注意是大写的P, port是指定数据传输用到的端口号   </p>
-<ul>
-<li>-S program  指定加密传输时所使用的程序。此程序必须能够理解ssh(1)的选项。</li>
-</ul>
-<p>接下来举几个命令常用的几个例子：<br>1.复制单个文件，并沿用原来的文件名称</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp &#x2F;xxx&#x2F;xxx&#x2F;xxx root@192.168.xxx.xxx:&#x2F;xxx&#x2F;xxx&#x2F;</span><br></pre></td></tr></table></figure>
-<p>2.复制单个文件，并修改文件名称</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp &#x2F;xxx&#x2F;xxx&#x2F;xxx root@192.168.xxx.xxx:&#x2F;xxx&#x2F;xxx&#x2F;aaa</span><br></pre></td></tr></table></figure>
-<p>3.复制整个目录及其子</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -r &#x2F;xxx&#x2F;xxx&#x2F; root@192.168.xxx.xx:&#x2F;xxx&#x2F;xxx&#x2F;</span><br></pre></td></tr></table></figure>
-<p>4.复制远程文件到本地</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp root@192.168.xx.xx:&#x2F;xx&#x2F;xx&#x2F;xxx &#x2F;xx&#x2F;xxx</span><br></pre></td></tr></table></figure></li>
-</ul>
+<p>观察者模式的通用结构为：<br>1.<strong>Component（组件）</strong>，为对象和需要动态附加给对象的责任对象的公共抽象类，定义了包装好的对象对外暴露的行为。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 所有装饰器相关对象（含装饰器对象和被装饰的对象）的公共超类，超类的方法就是被装饰对象最后需要暴露的方法</span><br><span class="line"> *&#x2F;</span><br><span class="line">public interface Component &#123;</span><br><span class="line">    &#x2F;&#x2F;所有对象的公用方法</span><br><span class="line">    void methodA();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.<strong>ConcreteComponent（被装饰对象，也就是业务对象）</strong>是被添加行为的对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 被装饰对象，用于被装饰器对象包裹去动态附加行为</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class ConcreteComponent implements Component &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void methodA() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3.<strong>Decorator（装饰者对象）</strong>其为装饰者组件的超类，是所有装饰者对象的父类，定义了装饰者对象体系的公共行为。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 装饰器对象的公共父类，用于设置装饰器的公共方法</span><br><span class="line"> *&#x2F;</span><br><span class="line">public abstract class Decorator implements Component&#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void methodA() &#123;</span><br><span class="line">        &#x2F;&#x2F;书写公共代码</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;需要子类去实现的方法B</span><br><span class="line">    public abstract void methodB();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4.<strong>ConcreteDecorator（实际的被装饰对象）</strong>，也就是包含具体责任的装饰者对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class ConcreteDecoratorA extends Decorator &#123;</span><br><span class="line">    &#x2F;&#x2F;需要一个成员变量来记录被包含的被装饰对象</span><br><span class="line">    Component wrappedObj;</span><br><span class="line">    @Override</span><br><span class="line">    public void methodA()&#123;</span><br><span class="line">        super.methodA();</span><br><span class="line">        &#x2F;&#x2F;do something--对原方法的拓展</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    public void methodB() &#123;</span><br><span class="line">        &#x2F;&#x2F;do something</span><br><span class="line">    &#125;</span><br><span class="line">    public void newBehavior()&#123;</span><br><span class="line">        &#x2F;&#x2F;new behavior</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到，实际的装饰者对象<strong>既实现了原有方法，也存在新定义的方法</strong>，这样就实现了行为的拓展的新增。</p>
+<p>说了这么多，可能大家也不清楚怎么去用装饰者模式。接下来我们可以通过分析<strong>java.io包</strong>下的类，来看看装饰者模式应该怎么去实际应用。<br>整个java.io包都是基于装饰者模式实现的：<br>其中：<br>InputStream对应结构中的Component，FilterInputStream类对应结构中的Decorator，BufferedInputStream类等就对应结构中的ConcreteDecorator。那么结构中的ConcreteComponent在java.io中是如何体现的叻？</p>
+<p>其对应的就是FileInputStream、StringBufferInputStream等对象，他们都是被包装的对象。</p>
+<p>我们看FilterInputStream类，里面就包含了被包装对象的引用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public</span><br><span class="line">class FilterInputStream extends InputStream &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * The input stream to be filtered.</span><br><span class="line">     *&#x2F;</span><br><span class="line">    protected volatile InputStream in;</span><br></pre></td></tr></table></figure>
+<p>然后其所有子类都通过继承获取到了该引用，从而可以对原有对象的行为进行拓展。</p>
+<p>了解了上述组成之后，我们大可写一个<strong>自定义的装饰器</strong>去拓展流操作的行为，比如我们可以写一个把<strong>输入的字符串都转为小写字母</strong>的装饰器：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * io输入流装饰器，效果为把所有的输入字符都变成小写</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class LowerCaseInputStream extends FilterInputStream &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 首先初始化父类的组件对象</span><br><span class="line">     * @param in 输入流对象</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public LowerCaseInputStream(InputStream in)&#123;</span><br><span class="line">        super(in);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 把读取到的单个字节转换为小写（单个字符的完整字节码）</span><br><span class="line">     * @return 小写字母的ASCII码值</span><br><span class="line">     * @throws IOException</span><br><span class="line">     *&#x2F;</span><br><span class="line">    @Override</span><br><span class="line">    public int read() throws IOException&#123;</span><br><span class="line">        int c &#x3D; super.read();</span><br><span class="line">        return c&#x3D;&#x3D;-1?c:Character.toLowerCase((char)c);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 把字节数组的值转换为小写(一个数组中包含了很多个字符的字节码)</span><br><span class="line">     * @param b 字节数组</span><br><span class="line">     * @param offset 偏移量</span><br><span class="line">     * @param len 长度</span><br><span class="line">     * @return 装换后的值</span><br><span class="line">     * @throws IOException</span><br><span class="line">     *&#x2F;</span><br><span class="line">    @Override</span><br><span class="line">    public int read(byte[] b,int offset,int len) throws IOException&#123;</span><br><span class="line">        int result &#x3D; super.read(b,offset,len);</span><br><span class="line">        for (int i&#x3D;offset;i&lt;offset+result;i++)&#123;</span><br><span class="line">            &#x2F;&#x2F;每一个对象的字节码对应的就是一个字符</span><br><span class="line">            b[i] &#x3D; (byte)Character.toLowerCase((char)b[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后，我们就可以写一个test类去试试效果了，test类如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class InputTest &#123;</span><br><span class="line">    @Test</span><br><span class="line">    public void inputTest()&#123;</span><br><span class="line">        &#x2F;&#x2F;单个字符对于字节大小</span><br><span class="line">        int c;</span><br><span class="line">        &#x2F;&#x2F;相对路径的话是以项目根目录作为文件目录起点</span><br><span class="line">        try(InputStream in &#x3D; new LowerCaseInputStream(new BufferedInputStream(new FileInputStream(&quot;io.txt&quot;))))&#123;</span><br><span class="line">            &#x2F;&#x2F;还能读取到内容才输出</span><br><span class="line">            while ((c&#x3D;in.read())&gt;0)&#123;</span><br><span class="line">                System.out.print((char)c);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;catch (IOException e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在test类中，先创建了一个FileInputStream对象，用于获取文件流，然后用BufferedInputStream包装类去包装它，从而添加了缓冲区，最后我们用自己写的包装类去进行包装，使得流中字母全部变为小写。</p>
+<p>从而完成了整个装饰者模式的应用。</p>
 
       
 
@@ -246,7 +222,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
         		</li>
       		
 		</ul>
@@ -258,7 +238,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
+        			<a href="/categories/设计模式//" class="article-tag-list-link color5">设计模式</a>
         		</li>
       		
 		</ul>
@@ -313,7 +293,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/12/18/linux-command-scp/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/12/22/decorator-pattern/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -327,18 +307,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/12/22/decorator-pattern/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          23种设计模式之装饰者模式
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/12/17/observer-pattern/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">23种设计模式之观察者模式</div>
+    <a href="/2019/12/18/linux-command-scp/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">linux常用命令之Scp命令</div>
       <i class="icon-circle-right"></i>
     </a>
   
