@@ -6,16 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | ljjandgy</title>
+  <title>23种设计模式之装饰者模式 | ljjandgy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="多少红颜爱傻逼，多少傻逼不珍惜。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ljjandgy">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;archives&#x2F;index.html">
+  <meta name="description" content="工厂模式是一种关于对象创建的解决方案。常用于业务需要创建多种类型的对象时。其实，工厂模式有三种类型，分别为：简单工厂模式，普通工厂模式和抽象工厂模式，他们定义和实现各不相同。它们都是为了让客户类和生成对象的逻辑解耦，从而当创建对象逻辑或者是使用对象的逻辑方法变化时都不会互相影响。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="23种设计模式之装饰者模式">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;26&#x2F;factory-method-pattern&#x2F;index.html">
 <meta property="og:site_name" content="ljjandgy">
-<meta property="og:description" content="多少红颜爱傻逼，多少傻逼不珍惜。">
+<meta property="og:description" content="工厂模式是一种关于对象创建的解决方案。常用于业务需要创建多种类型的对象时。其实，工厂模式有三种类型，分别为：简单工厂模式，普通工厂模式和抽象工厂模式，他们定义和实现各不相同。它们都是为了让客户类和生成对象的逻辑解耦，从而当创建对象逻辑或者是使用对象的逻辑方法变化时都不会互相影响。">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-12-26T13:18:11.000Z">
+<meta property="article:modified_time" content="2019-12-26T14:20:40.133Z">
 <meta property="article:author" content="ljjandgy">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="设计模式">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="ljjandgy" type="application/atom+xml">
@@ -162,36 +166,51 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-factory-method-pattern" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      23种设计模式之装饰者模式
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/26/factory-method-pattern/" class="archive-article-date">
+
+        
+        <a href="/2019/12/26/factory-method-pattern/" class="archive-article-date">
   	<time datetime="2019-12-26T13:18:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-26</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/26/factory-method-pattern/">23种设计模式之装饰者模式</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>工厂模式</strong>是一种关于对象创建的解决方案。常用于业务需要创建多种类型的对象时。<br>其实，工厂模式有三种类型，分别为：<br>简单工厂模式，普通工厂模式和抽象工厂模式，他们定义和实现各不相同。它们都是为了让客户类和生成对象的逻辑解耦，从而当创建对象逻辑或者是使用对象的逻辑方法变化时都不会互相影响。</p>
+<a id="more"></a>
+<p>首先我们来说下简单工厂模式。虽然它别称作是工厂模式，但是其实它更像是一种编程的习惯。它就是单纯的把对象的创建单独放到了一个类中去进行，代码示例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public class SimplePizzaFactory &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 生产原始披萨</span><br><span class="line">     * @param type 客户点的披萨类型</span><br><span class="line">     * @return 原始披萨</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public Pizza createPizza(String type)&#123;</span><br><span class="line">        Pizza pizza &#x3D; null;</span><br><span class="line">        if (&quot;cheese&quot;.equals(type))&#123;</span><br><span class="line">            pizza &#x3D; new CheesePizza();</span><br><span class="line">        &#125;else if(&quot;pepperoni&quot;.equals(type))&#123;</span><br><span class="line">            pizza &#x3D; new PepperoniPizza();</span><br><span class="line">        &#125;else if(&quot;clam&quot;.equals(type))&#123;</span><br><span class="line">            pizza &#x3D; new CheesePizza();</span><br><span class="line">        &#125;else if(&quot;veggie&quot;.equals(type))&#123;</span><br><span class="line">            pizza &#x3D; new VeggiePizza();</span><br><span class="line">        &#125;</span><br><span class="line">        return pizza;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在实例中，我们有个生成披萨的方法，通过大量if else去生产对象，是不是确实很简单？所以才说简单工厂模式与其说是一种开发模式更像是一种编码习惯。<br>简单工厂模式好处是<strong>把生产对象的代码和适用对象的逻辑分离开了，这样当我们需要创建新的对象时，就更容易知道在哪写新代码，也不会影响使用对象的代码</strong>。缺点是代码结构还是不够清晰，分支很多，维护起来还是不方便。</p>
+<hr>
+<p>接下来让我们看看普通工厂模式。相对于上面的简单工厂模式，普通工厂模式终于有了设计的感觉了，<br>定义为<strong>定义了一个创建对象的接口，但由子类去决定实例化的类是哪一个。工厂方法让类把实例化推迟到子类</strong><br>其代码示例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public abstract class PizzaStore &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 点单</span><br><span class="line">     * @param type 披萨类型</span><br><span class="line">     * @return 生成完成的披萨</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public Pizza orderPizza(String type)&#123;</span><br><span class="line">        &#x2F;&#x2F;利用自己类中的工厂方法创建对象</span><br><span class="line">        Pizza pizza &#x3D; createPizza(type);</span><br><span class="line">        if (pizza &#x3D;&#x3D; null)&#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line">        pizza.prepare();</span><br><span class="line">        pizza.bake();</span><br><span class="line">        pizza.cut();</span><br><span class="line">        pizza.box();</span><br><span class="line">        return pizza;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">    &#x2F;**</span><br><span class="line">     * 工厂方法，用于生成对象，如果类型较多时，可以把生产对象的过程放到子类中进行</span><br><span class="line">     * @param type</span><br><span class="line">     * @return</span><br><span class="line">     *&#x2F;</span><br><span class="line">    abstract Pizza createPizza(String type);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">上述是抽象的创建者类，它是一个披萨商店。它依赖了抽象的pizza对象，但是它不关心具体披萨对象是怎么来的，因为其会由具体的工厂类去创建。</span><br><span class="line">&#x2F;**</span><br><span class="line"> * 具体工厂类，生成产品的具体逻辑都放到工厂类中封装起来</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class ChicagoStylePizzaStore extends PizzaStore &#123;</span><br><span class="line">    @Override</span><br><span class="line">    Pizza createPizza(String type) &#123;</span><br><span class="line">        if (&quot;cheese&quot;.equals(type))&#123;</span><br><span class="line">            return new ChicagoStyleCheesePizza();</span><br><span class="line">        &#125;else if(&quot;pepperoni&quot;.equals(type))&#123;</span><br><span class="line">            return new ChicagoPepperoniPizza();</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F;没有符合的类型就返回null</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述代码包含了普通工厂模式的两个组成：<br>1.创建者类。也就是提供创建对象的抽象方法的类。<br>2.具体工厂类。也就是真正包含创建对象（new对象）的方法的类，所有实例化对象的逻辑都在具体工厂类中。<br>还有两个个组成在代码中没有体现，分别为抽象产品类和具体产品类，用于对生产的产品进行定义，分别对应Pizza类和ChicagoStyleCheesePizza类。<br>从代码可以看到，普通工厂模式把创建对象的操作延迟到了子类中，这样做的好处在于如果我们需要新的类型的业务对象时，我们只需要创建一个新的类即可，不用阅读和修改原有代码。</p>
+<hr>
+<p>最后我们再来看看抽象工厂方法模式。相对普通方法模式，抽象工厂方法模式定义了多个对象生成的接口，所以它可以生产出多个类型的对象。<br>定义为<strong>提供一个接口，用于创建相关或依赖对象的家族，而不需要明确指定具体的类（产品类）</strong><br>其代码示例如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * @ClassName PizzaIngredientFactory</span><br><span class="line"> * @Description 原料工厂接口，用于生产产品族（一系列的产品）</span><br><span class="line"> * @Author ljj</span><br><span class="line"> * @Version V2.0.0</span><br><span class="line"> * @Date 2019-09-02 20:44:41</span><br><span class="line"> *&#x2F;</span><br><span class="line">public interface PizzaIngredientFactory &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 创建面团原料</span><br><span class="line">     * @return 面团</span><br><span class="line">     *&#x2F;</span><br><span class="line">    Dough createDough();</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 创建酱汁</span><br><span class="line">     * @return 酱汁</span><br><span class="line">     *&#x2F;</span><br><span class="line">    Sauce createSauce();</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 创建起司对象</span><br><span class="line">     * @return 起司</span><br><span class="line">     *&#x2F;</span><br><span class="line">    Cheese createCheese();</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 创建蔬菜</span><br><span class="line">     * @return 蔬菜集合</span><br><span class="line">     *&#x2F;</span><br><span class="line">    List&lt;Veggies&gt; createVeggies();</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 创建腊肠对象</span><br><span class="line">     * @return 意式腊肠</span><br><span class="line">     *&#x2F;</span><br><span class="line">    Pepperoni createPepperoni();</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 创建蛤蜊</span><br><span class="line">     * @return 蛤蜊对象</span><br><span class="line">     *&#x2F;</span><br><span class="line">    Clam createClam();</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * @ClassName ChicagoPizzaIngredientFactory</span><br><span class="line"> * @Description 芝加哥原料工厂类</span><br><span class="line"> * @Author ljj</span><br><span class="line"> * @Version V2.0.0</span><br><span class="line"> * @Date 2019-09-02 21:17:21</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class ChicagoPizzaIngredientFactory implements PizzaIngredientFactory &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public Dough createDough() &#123;</span><br><span class="line">        &#x2F;&#x2F;芝加哥披萨店用的是厚壳面团</span><br><span class="line">        return new ThickCrustDough();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Sauce createSauce() &#123;</span><br><span class="line">        &#x2F;&#x2F;梅子番茄酱汁</span><br><span class="line">        return new PlumTomatoSauce();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Cheese createCheese() &#123;</span><br><span class="line">        return new MozzarellaCheese();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public List&lt;Veggies&gt; createVeggies() &#123;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Pepperoni createPepperoni() &#123;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Clam createClam() &#123;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述代码体现了抽象工厂方法模式的两个组成，分别为：<br>1.抽象创建者接口。也就是定义工厂能够有哪些对象生产行为的接口<br>2.具体创建者类。具体去生成对象的类<br>和普通方法模式一样，抽象产品类和产品类代码都没有体现。</p>
+<p>抽象工厂方法模式的好处在于客户在使用时不用知道工厂生产出来的产品类型是什么，它通过抽象工厂获取到的是一个生产产品的工厂，而不是具体的产品。</p>
+<p>相当于抽象工厂方法模式和普通工厂方法模式应用场景是不一样的，一个用于需要生产大量单个对象的场景，一个用于一个对象有多种类型的场景。</p>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -207,7 +226,7 @@
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -220,274 +239,104 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/12/26/factory-method-pattern/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/25/linux-command-find/" class="archive-article-date">
-  	<time datetime="2019-12-25T14:48:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-25</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/12/25/linux-command-find/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">linux常用命令之find命令</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/25/linux-command-find/">linux常用命令之find命令</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/22/decorator-pattern/" class="archive-article-date">
-  	<time datetime="2019-12-22T03:31:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/22/decorator-pattern/">23种设计模式之装饰者模式</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/设计模式//" class="article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/18/linux-command-scp/" class="archive-article-date">
-  	<time datetime="2019-12-18T14:14:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/18/linux-command-scp/">linux常用命令之Scp命令</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/17/observer-pattern/" class="archive-article-date">
-  	<time datetime="2019-12-17T13:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/17/observer-pattern/">23种设计模式之观察者模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/设计模式//" class="article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/14/strategy-pattern/" class="archive-article-date">
-  	<time datetime="2019-12-14T03:24:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/14/strategy-pattern/">23种设计模式之策略模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/设计模式//" class="article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -512,8 +361,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
