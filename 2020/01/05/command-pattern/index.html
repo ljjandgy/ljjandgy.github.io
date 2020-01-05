@@ -6,16 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>ljjandgy</title>
+  <title>23种设计模式之命令模式 | ljjandgy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="多少红颜爱傻逼，多少傻逼不珍惜。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ljjandgy">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;index.html">
+  <meta name="description" content="命令模式是一种对行为（命令）进行重复利用的解决方案。其定义为：将”请求”封装成对象，以便使用不同的请求、队列或者日志来参数化其他对象。从定义中就能看出，命令模式会把命令（对象行为）封装成对象。这样就能让使用命令本身很容易被重复使用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="23种设计模式之命令模式">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;05&#x2F;command-pattern&#x2F;index.html">
 <meta property="og:site_name" content="ljjandgy">
-<meta property="og:description" content="多少红颜爱傻逼，多少傻逼不珍惜。">
+<meta property="og:description" content="命令模式是一种对行为（命令）进行重复利用的解决方案。其定义为：将”请求”封装成对象，以便使用不同的请求、队列或者日志来参数化其他对象。从定义中就能看出，命令模式会把命令（对象行为）封装成对象。这样就能让使用命令本身很容易被重复使用。">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-01-05T07:44:22.000Z">
+<meta property="article:modified_time" content="2020-01-05T08:29:59.812Z">
 <meta property="article:author" content="ljjandgy">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="设计模式">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="ljjandgy" type="application/atom+xml">
@@ -162,188 +166,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-linux-command-ps" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-command-pattern" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/05/linux-command-ps/">linux常用命令之Ps命令</a>
-    </h1>
-  
-
-        
-        <a href="/2020/01/05/linux-command-ps/" class="archive-article-date">
-  	<time datetime="2020-01-05T09:18:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>ps命令是<strong>Process Status</strong>的缩写。ps命令用来列出系统中当前运行的那些进程。值得注意的是ps命令列出的是当前那些进程的<strong>快照</strong>，就是执行ps命令的那个时刻的那些进程，查询出来的内容并不能动态变化。</p>
-<p>ps命令格式为：<br><strong>ps [参数]</strong></p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/05/linux-command-ps/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-linux-command-less" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/05/linux-command-less/">linux常用命令之Less命令</a>
-    </h1>
-  
-
-        
-        <a href="/2020/01/05/linux-command-less/" class="archive-article-date">
-  	<time datetime="2020-01-05T08:32:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>less命令与其说是命令，不如说是一个强大的linux文件查看工具，能够很方法的对文件进行查阅。</p>
-<p>less命令格式为：<br><strong>less [参数]  [文件路径]</strong></p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/05/linux-command-less/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-command-pattern" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/05/command-pattern/">23种设计模式之命令模式</a>
+    <h1 class="article-title" itemprop="name">
+      23种设计模式之命令模式
     </h1>
   
 
@@ -357,7 +187,25 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><strong>命令模式</strong>是一种对行为（命令）进行重复利用的解决方案。<br>其定义为：<strong>将”请求”封装成对象，以便使用不同的请求、队列或者日志来参数化其他对象</strong>。<br>从定义中就能看出，命令模式会把命令（对象行为）封装成对象。这样就能让使用命令本身很容易被重复使用。</p>
-        
+<a id="more"></a>
+<p>命令模式的通用结构为：<br>1.<strong>Client（客户）</strong>，用于生成命令对象，也就是命令的发起人。比如餐馆的客人。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 客户类，其实也就是我们所说的业务类</span><br><span class="line"> *&#x2F;</span><br><span class="line">public Class Client &#123;</span><br><span class="line">        @Test</span><br><span class="line">        public void test()&#123;</span><br><span class="line">            Command command &#x3D; new Command();</span><br><span class="line">            &#x2F;&#x2F;do something</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.<strong>Command（命令对象）</strong> 其封装了执行者具体的行为。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 命令对象接口，所有命令对象的公共接口，其execute方法能触发receiver的动作，但是是有Invoker来触发</span><br><span class="line"> *&#x2F;</span><br><span class="line">public interface Command &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 拥有执行命令的方法，其触发的是实际命令的具体操作</span><br><span class="line">     *&#x2F;</span><br><span class="line">    void execute();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 电灯关闭命令</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class LightOffCommand implements Command &#123;</span><br><span class="line">    private Light light;</span><br><span class="line"></span><br><span class="line">    public LightOffCommand(Light light)&#123;</span><br><span class="line">        this.light &#x3D; light;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void execute() &#123;</span><br><span class="line">        light.off();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 开灯命令，用于触发开灯操作</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class LightOnCommand  implements Command&#123;</span><br><span class="line">    private Light light;</span><br><span class="line"></span><br><span class="line">    public LightOnCommand(Light light)&#123;</span><br><span class="line">        this.light &#x3D; light;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void execute() &#123;</span><br><span class="line">        light.on();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3.<strong>Invoker（命令调用者对象）</strong> 其会存储命令，客户类使用Invoker对象触发命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * Invoker对象，持有命令对象，并负责触发命令（执行命令的execute（）方法）</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class SimpleRemoteControl &#123;</span><br><span class="line">    private Command slot;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 把命令放到插槽中，以便触发命令操作</span><br><span class="line">     * @param command</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public void setCommand(Command command)&#123;</span><br><span class="line">        slot &#x3D; command;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 当插槽对应按钮被按下时，命令就会触发</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public void buttonWasPressed()&#123;</span><br><span class="line">        slot.execute();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4.<strong>Receiver（命令接收对象）</strong>，最终执行命令的对象，命令对象相当于是对receiver对象的方法进行单独封装。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 模拟现实中的电灯，具备基本的开关功能，是命令真正的执行者</span><br><span class="line"> *&#x2F;</span><br><span class="line">public interface Light &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 打开电灯的方法</span><br><span class="line">     *&#x2F;</span><br><span class="line">    void on();</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 关闭电灯的方法</span><br><span class="line">     *&#x2F;</span><br><span class="line">    void off();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>一下子出来这么多对象，可能确实不好理解其中的关系，接下来我们可以再通过一个用遥控器控制等的实际例子来理解下命令模式各组成直接的关系。</p>
+<p>想要用遥控器控制灯，首先我们需要一个遥控器，也就是组成中的Invoker对象，因为遥控器其实只是代我们去执行命令。<br>然后控制灯的操作，比如开灯，关灯就是具体的命令对象。在现实生活中，它们一开始就被装进了遥控器中，试想一下，如果没有厂家的预装，我们是不是需要手动的录入命令？<br>最后真正的控制灯了，比如我们按下开灯按钮，此时就会向灯发出开灯命令，然后由灯，也就是receiver对象真正的去执行命令。也可以说是操作的命令本身对应的就是灯的行为。</p>
+<p>那么，谁是客户端？当然是操作遥控器的你咯。接下来我们可以简单的写一下客户端对象的代码，也就是你去开/关灯需要哪些步骤：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 操作遥控器</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class RemoteControlTest &#123;</span><br><span class="line">    @Test</span><br><span class="line">         public void test()&#123;</span><br><span class="line">             &#x2F;&#x2F;实例化Invoker，就是先搞个遥控器</span><br><span class="line">             SimpleRemoteControl remote &#x3D; new SimpleRemoteControl();</span><br><span class="line">             &#x2F;&#x2F;实例化receiver，就是需要有个遥控器能够操作的灯</span><br><span class="line">             Light light &#x3D; new IncandescentLight();</span><br><span class="line">             &#x2F;&#x2F;实例化command，就是把命令和遥控器按钮进行绑定，如果商家没有做这件事，那么就需要用户自己搞了</span><br><span class="line">             LightOnCommand lightOnCommand &#x3D; new LightOnCommand(light);</span><br><span class="line">     </span><br><span class="line">             remote.setCommand(lightOnCommand);</span><br><span class="line">             &#x2F;&#x2F;&#x2F;按下按钮，触发命令，然后由命令触发灯的具体操作，在本例中就是触发开灯这个动作</span><br><span class="line">             remote.buttonWasPressed();</span><br><span class="line">         &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>看完这个例子，可能有的人就会问了，为啥命令模式要把关系搞的这么复杂？直接客户去调用目标对象的方法不就好了？不就直接实现效果了。</p>
+<p>确实，client直接调用receiver的方法就能直接实现目的了，但是这样的话client和receiver就<strong>强耦合</strong>了，每个client类在使用receiver方法是都需要写同样的重复代码，并且在不修改原有代码的情况下也很难去拓展。<br>但是一旦加上了command对象和Invoker对象会怎样叻？<br>首先是命令也就是调用行为能够复用，其次是因为把client和receiver对象解耦合了，当receiver对象出现了修改，我们应该只需要修改command类就能同步修改所有client的调用，而不用一个类一个类的去修改。<br>而且Invoker对象可以充当一个队列，让命令执行延迟，从而形成命令流。这些都是<strong>直接调用</strong>所不能实现的。</p>
+
       
 
       
@@ -394,16 +242,84 @@
 
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/05/command-pattern/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/01/05/command-pattern/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2020/01/05/linux-command-less/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          linux常用命令之Less命令
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/12/28/singleton-pattern/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">23种设计模式之单例模式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -423,626 +339,14 @@
 
 
 
-
   
-    <article id="post-singleton-pattern" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/28/singleton-pattern/">23种设计模式之单例模式</a>
-    </h1>
   
 
-        
-        <a href="/2019/12/28/singleton-pattern/" class="archive-article-date">
-  	<time datetime="2019-12-27T17:29:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>单例模式</strong>是一种创建全局公用的对象的解决方案。<br>其定义为：<strong>确保一个类在全局只有一个实例，并提供一个全局访问点</strong>。<br>从定义就能看出，单例模式作用就是保证对象只存在一个实例，并且还需要提供对象的访问方式（获取对象引用）。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/设计模式//" class="article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/28/singleton-pattern/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-factory-method-pattern" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/26/factory-method-pattern/">23种设计模式之工厂模式</a>
-    </h1>
   
 
-        
-        <a href="/2019/12/26/factory-method-pattern/" class="archive-article-date">
-  	<time datetime="2019-12-26T13:18:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>工厂模式</strong>是一种关于对象创建的解决方案。常用于业务需要创建多种类型的对象时。<br>其实，工厂模式有三种类型，分别为：<br>简单工厂模式，普通工厂模式和抽象工厂模式，他们定义和实现各不相同。它们都是为了让客户类和生成对象的逻辑解耦，从而当创建对象逻辑或者是使用对象的逻辑方法变化时都不会互相影响。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/设计模式//" class="article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/26/factory-method-pattern/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-linux-command-find" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/25/linux-command-find/">linux常用命令之find命令</a>
-    </h1>
   
 
-        
-        <a href="/2019/12/25/linux-command-find/" class="archive-article-date">
-  	<time datetime="2019-12-25T14:48:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>find命令是一个常用的文件查找命令，能够帮助我们快速的找到文件的具体位置。</p>
-<p>find命令格式为：<br><strong>find [-H] [-L] [-P] [-D debugopts] [-Olevel] [path…] [expression]</strong></p>
-<p>虽说通用格式很复杂，但是我们在实际工作中常用的格式很简单，为：<br><strong>find [path…] [expression]</strong></p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/25/linux-command-find/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-decorator-pattern" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/22/decorator-pattern/">23种设计模式之装饰者模式</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/22/decorator-pattern/" class="archive-article-date">
-  	<time datetime="2019-12-22T03:31:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>装饰者</strong>是一种对于动态添加对象行为的解决方案。<br>其定义为：<strong>是一种动态的将责任附加到对象上的一种设计方式。在扩展功能层面上，它比继承更具有弹性</strong>。<br>从定义就能看出，装饰者模式能够把责任动态的附加到对象上。这样我们就能很好的对一个对象进行拓展，而不用因为拓展去反复的修改某段代码。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/设计模式//" class="article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/22/decorator-pattern/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-linux-command-scp" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/18/linux-command-scp/">linux常用命令之Scp命令</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/18/linux-command-scp/" class="archive-article-date">
-  	<time datetime="2019-12-18T14:14:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>scp命令是linux系统常用文件传输命令，其特点为传输加密、占用系统资源小以及跨服务器传输。</p>
-<p>scp命令格式为：<br><strong>scp [参数] [原路径] [目标路径]</strong></p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/18/linux-command-scp/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-observer-pattern" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/17/observer-pattern/">23种设计模式之观察者模式</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/17/observer-pattern/" class="archive-article-date">
-  	<time datetime="2019-12-17T13:12:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>观察者模式</strong>是一种对于一对多关系的解决方案。<br>其定义为：<strong>观察者模式定义了对象之前一对多的关系，并且当一发生变化时，多能够接受到通知并自动更新</strong>。<br>从定义就可以看出，如果要用到观察者模式，那么一定需要出现一对多的关系。大家可以想想，在我们过去开发的业务场景中，有哪些符合观察者的使用场景。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/设计模式//" class="article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/17/observer-pattern/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-strategy-pattern" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/14/strategy-pattern/">23种设计模式之策略模式</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/14/strategy-pattern/" class="archive-article-date">
-  	<time datetime="2019-12-14T03:24:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>策略模式是非常常见的一种设计模式，其定义为<br><strong>策略模式定义了算法簇，并允许它们之前互相替换。策略模式让算法和使用算法的客户之前保持独立</strong></p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/设计模式//" class="article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/14/strategy-pattern/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
 
 
@@ -1067,8 +371,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
