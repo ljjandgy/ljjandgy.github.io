@@ -6,16 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2020 | ljjandgy</title>
+  <title>linux常用命令之ls命令 | ljjandgy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="多少红颜爱傻逼，多少傻逼不珍惜。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ljjandgy">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;archives&#x2F;2020&#x2F;index.html">
+  <meta name="description" content="ls可以说是linux系统中最常用的命令了。它是list的缩写，用于查看当前目录包含的文件信息。 ls命令格式为：ls [选项] [目录名]">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux常用命令之ls命令">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;12&#x2F;linux-command-ls&#x2F;index.html">
 <meta property="og:site_name" content="ljjandgy">
-<meta property="og:description" content="多少红颜爱傻逼，多少傻逼不珍惜。">
+<meta property="og:description" content="ls可以说是linux系统中最常用的命令了。它是list的缩写，用于查看当前目录包含的文件信息。 ls命令格式为：ls [选项] [目录名]">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-01-12T12:34:22.000Z">
+<meta property="article:modified_time" content="2020-01-12T12:51:14.457Z">
 <meta property="article:author" content="ljjandgy">
+<meta property="article:tag" content="linux">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="ljjandgy" type="application/atom+xml">
@@ -162,85 +165,113 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-linux-command-ls" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/01/12/linux-command-cd/" class="archive-article-date">
-  	<time datetime="2020-01-12T12:56:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-12</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/12/linux-command-cd/">linux常用命令之cd命令</a>
+    <h1 class="article-title" itemprop="name">
+      linux常用命令之ls命令
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/01/12/linux-command-ls/" class="archive-article-date">
+        
+        <a href="/2020/01/12/linux-command-ls/" class="archive-article-date">
   	<time datetime="2020-01-12T12:34:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-12</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/12/linux-command-ls/">linux常用命令之ls命令</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>ls可以说是linux系统中最常用的命令了。它是list的缩写，用于查看当前目录包含的文件信息。</p>
+<p>ls命令格式为：<br><strong>ls [选项] [目录名]</strong></p>
+<a id="more"></a>
+<p>3.参数详解</p>
+<ul>
+<li><p>-a, –all 列出目录下的所有文件，包括以 . 开头的隐含文件</p>
+</li>
+<li><p>-A 同-a，但不列出“.”(表示当前目录)和“..”(表示当前目录的父目录)。</p>
+</li>
+<li><p>-c  配合 -lt：根据 ctime 排序及显示 ctime (文件状态最后更改的时间)配合 -l：显示 ctime 但根据名称排序否则：根据 ctime 排序</p>
+</li>
+<li><p>-C 每栏由上至下列出项目</p>
+</li>
+<li><p>–color[=WHEN] 控制是否使用色彩分辨文件。WHEN 可以是’never’、’always’或’auto’其中之一</p>
+</li>
+<li><p>-d, –directory 将目录象文件一样显示，而不是显示其下的文件。</p>
+</li>
+<li><p>-D, –dired 产生适合 Emacs 的 dired 模式使用的结果</p>
+</li>
+<li><p>-f 对输出的文件不进行排序，-aU 选项生效，-lst 选项失效</p>
+</li>
+<li><p>-g 类似 -l,但不列出所有者</p>
+</li>
+<li><p>-G, –no-group 不列出任何有关组的信息</p>
+</li>
+<li><p>-h, –human-readable 以容易理解的格式列出文件大小 (例如 1K 234M 2G)</p>
+</li>
+</ul>
+<p>-–si 类似 -h,但文件大小取 1000 的次方而不是 1024</p>
+<ul>
+<li>-H, –dereference-command-line 使用命令列中的符号链接指示的真正目的地</li>
+</ul>
+<p>-–indicator-style=方式 指定在每个项目名称后加上指示符号&lt;方式&gt;：none (默认)，classify (-F)，file-type (-p)</p>
+<ul>
+<li><p>-i, –inode 印出每个文件的 inode 号</p>
+</li>
+<li><p>-I, –ignore=样式 不印出任何符合 shell 万用字符&lt;样式&gt;的项目</p>
+</li>
+<li><p>-k 即 –block-size=1K,以 k 字节的形式表示文件的大小。</p>
+</li>
+<li><p>-l 除了文件名之外，还将文件的权限、所有者、文件大小等信息详细列出来。</p>
+</li>
+<li><p>-L, –dereference 当显示符号链接的文件信息时，显示符号链接所指示的对象而并非符号链接本身的信息</p>
+</li>
+<li><p>-m 所有项目以逗号分隔，并填满整行行宽</p>
+</li>
+<li><p>-o 类似 -l,显示文件的除组信息外的详细信息。   </p>
+</li>
+<li><p>-r, –reverse 依相反次序排列</p>
+</li>
+<li><p>-R, –recursive 同时列出所有子目录层</p>
+</li>
+<li><p>-s, –size 以块大小为单位列出所有文件的大小</p>
+</li>
+<li><p>-S 根据文件大小排序</p>
+</li>
+<li><p>–sort=WORD 以下是可选用的 WORD 和它们代表的相应选项：<br>   extension -X status -c<br>   none -U time -t<br>   size -S atime -u<br>   time -t access -u<br>   version -v use -u</p>
+</li>
+<li><p>-t 以文件修改时间排序</p>
+</li>
+<li><p>-u 配合 -lt:显示访问时间而且依访问时间排序<br>  配合 -l:显示访问时间但根据名称排序<br>  否则：根据访问时间排序</p>
+</li>
+<li><p>-U 不进行排序;依文件系统原有的次序列出项目</p>
+</li>
+<li><p>-v 根据版本进行排序</p>
+</li>
+<li><p>-w, –width=COLS 自行指定屏幕宽度而不使用目前的数值</p>
+</li>
+<li><p>-x 逐行列出项目而不是逐栏列出</p>
+</li>
+<li><p>-X 根据扩展名排序</p>
+</li>
+<li><p>-1 每行只列出一个文件</p>
+</li>
+<li><p>–help 显示此帮助信息并离开</p>
+</li>
+<li><p>–version 显示版本信息并离开</p>
+</li>
+</ul>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -252,7 +283,7 @@
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -265,217 +296,113 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/01/12/linux-command-ls/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/01/12/linux-command-cp/" class="archive-article-date">
-  	<time datetime="2020-01-12T12:20:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-12</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2020/01/12/linux-command-cd/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          linux常用命令之cd命令
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/01/12/linux-command-cp/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">linux常用命令之cp命令</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/12/linux-command-cp/">linux常用命令之cp命令</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/01/05/linux-command-ps/" class="archive-article-date">
-  	<time datetime="2020-01-05T09:18:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/05/linux-command-ps/">linux常用命令之ps命令</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/01/05/linux-command-less/" class="archive-article-date">
-  	<time datetime="2020-01-05T08:32:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/05/linux-command-less/">linux常用命令之less命令</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/01/05/command-pattern/" class="archive-article-date">
-  	<time datetime="2020-01-05T07:44:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/05/command-pattern/">23种设计模式之命令模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/设计模式//" class="article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -500,8 +427,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
