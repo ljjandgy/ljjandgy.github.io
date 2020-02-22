@@ -16,7 +16,7 @@
 <meta property="og:description" content="awk是一种编程语言，用于在linux&#x2F;unix下对文本和数据进行处理。其数据来源可以是一个或多个文件，也可以是标准输入流，甚至是其他命令的输出值。它支持用户自定义函数和动态正则表达式等先进功能，是linux&#x2F;unix下的一个强大编程工具。它可以直接在命令行中使用，但更常见的是作为脚本来使用。 awk命令格式为：1.命令行运行awk [OPTION] [script] …var&#x3D;value2.脚本">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-02-20T05:02:22.000Z">
-<meta property="article:modified_time" content="2020-02-20T14:45:38.812Z">
+<meta property="article:modified_time" content="2020-02-22T10:53:35.657Z">
 <meta property="article:author" content="ljjandgy">
 <meta property="article:tag" content="linux">
 <meta name="twitter:card" content="summary">
@@ -203,65 +203,399 @@
 <li>-f scripfile 从脚本文件中读取awk命令</li>
 <li>-m[fr] val 对val值设置内在限制，-mf选项限制分配给val的最大块数目；-mr选项限制记录的最大数目。这两个功能是Bell实验室版awk的扩展功能，在标准awk中不适用。</li>
 </ul>
-<h3 id="脚本结构"><a href="#脚本结构" class="headerlink" title="脚本结构"></a>脚本结构</h3><p>awk命令最核心的就是脚本，其脚本主要由两部分组成：<br>1.模式<br>模式可以是以下任意一个：</p>
+<h3 id="脚本结构"><a href="#脚本结构" class="headerlink" title="脚本结构"></a>脚本结构</h3><p><strong>awk命令最核心的就是脚本</strong>，其脚本主要由两部分组成：<br>1.模式<br>模式可以是以下任意一个：</p>
 <ul>
 <li>/正则表达式/：使用通配符的扩展集。</li>
 <li>关系表达式：使用运算符进行操作，可以是字符串或数字的比较测试。</li>
 <li>模式匹配表达式：用运算符<del>（匹配）和!</del>（不匹配）。</li>
 <li>BEGIN语句块、pattern语句块、END语句块：参见awk的工作原理</li>
 </ul>
-<p>2.操作</p>
-<p>###注意事项<br>###补充</p>
-<blockquote>
-<p>vi编辑器命令</p>
-<blockquote>
+<p>2.操作<br>操作由一个或多个命令、函数、表达式组成，之间由换行符或分号隔开，并位于大括号内，主要部分是：</p>
 <ul>
-<li>Ctrl+u：向文件首翻半屏；</li>
-<li>Ctrl+d：向文件尾翻半屏；</li>
-<li>Ctrl+f：向文件尾翻一屏；</li>
-<li>Ctrl+b：向文件首翻一屏；</li>
-<li>Esc：从编辑模式切换到命令模式；</li>
-<li>ZZ：命令模式下保存当前文件所做的修改后退出vi；</li>
-<li>:行号：光标跳转到指定行的行首；</li>
-<li>:$：光标跳转到最后一行的行首；</li>
-<li>x或X：删除一个字符，x删除光标后的，而X删除光标前的；</li>
-<li>D：删除从当前光标到光标所在行尾的全部字符；</li>
-<li>dd：删除光标行正行内容；</li>
-<li>ndd：删除当前行及其后n-1行；</li>
-<li>nyy：将当前行及其下n行的内容保存到寄存器？中，其中？为一个字母，n为一个数字；</li>
-<li>p：粘贴文本操作，用于将缓存区的内容粘贴到当前光标所在位置的下方；</li>
-<li>P：粘贴文本操作，用于将缓存区的内容粘贴到当前光标所在位置的上方；</li>
-<li>/字符串：文本查找操作，用于从当前光标所在位置开始向文件尾部查找指定字符串的内容，查找的字符串会被加亮显示；</li>
-<li>？字符串：文本查找操作，用于从当前光标所在位置开始向文件头部查找指定字符串的内容，查找的字符串会被加亮显示；</li>
-<li>a，bs/F/T：替换文本操作，用于在第a行到第b行之间，将F字符串换成T字符串。其中，“s/”表示进行替换操作；</li>
-<li>a：在当前字符后添加文本；</li>
-<li>A：在行末添加文本；</li>
-<li>i：在当前字符前插入文本；</li>
-<li>I：在行首插入文本；</li>
-<li>o：在当前行后面插入一空行；</li>
-<li>O：在当前行前面插入一空行；</li>
-<li>:wq：在命令模式下，执行存盘退出操作；</li>
-<li>:w：在命令模式下，执行存盘操作；</li>
-<li>:w！：在命令模式下，执行强制存盘操作；</li>
-<li>:q：在命令模式下，执行退出vi操作；</li>
-<li>:q！：在命令模式下，执行强制退出vi操作；</li>
-<li>:e文件名：在命令模式下，打开并编辑指定名称的文件；</li>
-<li>:n：在命令模式下，如果同时打开多个文件，则继续编辑下一个文件；</li>
-<li>:f：在命令模式下，用于显示当前的文件名、光标所在行的行号以及显示比例；</li>
-<li>:set&gt;number：在命令模式下，用于在最左端显示行号；</li>
-<li>:set&gt;nonumber：在命令模式下，用于在最左端不显示行号；</li>
+<li>变量或数组赋值</li>
+<li>输出命令</li>
+<li>内置函数</li>
+<li>控制流语句</li>
 </ul>
+<h3 id="脚本实例"><a href="#脚本实例" class="headerlink" title="脚本实例"></a>脚本实例</h3><p>一个awk脚本通常由：BEGIN语句块、能够使用模式匹配的通用语句块、END语句块3部分组成，这三个部分是可选的。<br>一个完整的awk脚本如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk &#39;BEGIN&#123; print &quot;start&quot; &#125; pattern&#123; commands &#125; END&#123; print &quot;end&quot; &#125;&#39; file</span><br></pre></td></tr></table></figure>
+<p>值得注意的是，awk的脚本整体一般都是用’包含的，”一般用于包含脚本中的文本内容。</p>
+<ul>
+<li><p>BEGIN语句块 在awk开始从输入流中读取行 之前 被执行，这是一个可选的语句块，比如变量初始化、打印输出表格的表头等语句通常可以写在BEGIN语句块中。</p>
+</li>
+<li><p>END语句块 在awk从输入流中读取完所有的行 之后 即被执行，比如打印所有行的分析结果这类信息汇总都是在END语句块中完成，它也是一个可选语句块。</p>
+</li>
+<li><p>pattern语句块 中的通用命令是最重要的部分，它也是可选的。如果没有提供pattern语句块，则默认执行{ print }，即打印每一个读取到的行，awk读取的每一行都会执行该语句块。</p>
+</li>
+</ul>
+<h3 id="常用实例"><a href="#常用实例" class="headerlink" title="常用实例"></a>常用实例</h3><p>1.从文件中读取内容，并输出当前行数，行的字段数，行的内容，已经前2个字段</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk &#39;&#123;print &quot;line number:&quot;NR &quot;,field number:&quot;NF &quot;line msg:&quot;$0 &quot;,field1:&quot;$1 &quot;,field2:&quot;$2&#125;&#39; file</span><br></pre></td></tr></table></figure>
+<p>2.使用外部变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1.使用-v参数</span><br><span class="line">echo | awk -v VARIABLE&#x3D;aaa &#39;&#123; print VARIABLE &#125;&#39;</span><br><span class="line">2.把参数放到最后面</span><br><span class="line">echo | awk &#39;&#123;print var&#125;&#39; var&#x3D;bbbb  </span><br><span class="line">3.把文件当做输入流时</span><br><span class="line">awk &#39;&#123;print var&#125;&#39; var&#x3D;bbbb  file</span><br></pre></td></tr></table></figure>
+<p>3.利用awk命令进行计算</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk &#39;BEGIN&#123;a&#x3D;&quot;b&quot;;print a++,++a&#125;&#39;</span><br></pre></td></tr></table></figure>
+<p>4.正则匹配的使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk &#39;BEGIN&#123;test&#x3D;&quot;abcd&quot;;if(test ~ &#x2F;^[a-z]+&#x2F;)&#123;print &quot;ok&quot;&#125;&#125;&#39;</span><br></pre></td></tr></table></figure>
+<p>5.数组应用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">###数组游标从1开始的</span><br><span class="line">awk &#39;BEGIN&#123;info&#x3D;&quot;it is a test&quot;;lens&#x3D;split(info,tA,&quot; &quot;);print length(tA),lens;&#125;&#39;</span><br><span class="line">sed -n &#39;2i\a b c d&#39; scptest.txt | awk &#39;&#123;len&#x3D;split($0,arr,&quot; &quot;);print(len);for(i&#x3D;1;i&lt;&#x3D;len;i++)&#123;print arr[i]&#125;&#125;&#39;</span><br></pre></td></tr></table></figure>
+<p>6.格式化输出文本（类似于java的String.format方法）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk &#39;BEGIN&#123;n1&#x3D;124.113;n2&#x3D;-1.224;n3&#x3D;1.2345; printf(&quot;%.2f,%.2u,%.2g,%X,%on&quot;,n1,n2,n3,n1,n1);&#125;&#39;</span><br></pre></td></tr></table></figure>
+<p>7.打开外部文件，用完后关闭</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk &#39;BEGIN&#123;while(&quot;cat &#x2F;etc&#x2F;passwd&quot;|getline)&#123;print $0;&#125;;close(&quot;&#x2F;etc&#x2F;passwd&quot;);&#125;&#39;</span><br></pre></td></tr></table></figure>
+<p>###注意事项</p>
+<ul>
+<li>patter语句块自带循环功能，循环次数为输入流（文件也会被转换为输入流）的行数</li>
+<li>所有用作算术运算符进行操作，操作数自动转为数值，所有非数值都变为0</li>
+</ul>
+<p>###补充</p>
+<blockquote>
+<p>awk命令执行原理</p>
+<blockquote>
+<p>第一步：执行begin语句块中的内容<br>第二步：从文件或者是标准输入中获取一行内容，然后执行通用语句块的内容。这个过程会在标准输入/文件被读取完后结束<br>第三步：执行end语句块中的内容</p>
 </blockquote>
 </blockquote>
 <blockquote>
-<p>vi编辑器的三种工作模式</p>
+<p>awk内置变量</p>
 <blockquote>
-<p>命令模式</p>
+<p><strong>$n</strong>  当前记录的第n个字段，比如n为1表示第一个字段，n为2表示第二个字段。<br>  <strong>$0</strong>  这个变量包含执行过程中当前行的文本内容。<br> [N]  <strong>ARGC</strong>  命令行参数的数目。<br> [G]  <strong>ARGIND</strong>  命令行中当前文件的位置（从0开始算）。<br> [N]  <strong>ARGV</strong>  包含命令行参数的数组。<br> [G]  <strong>CONVFMT</strong>  数字转换格式（默认值为%.6g）。<br> [P]  <strong>ENVIRON</strong>  环境变量关联数组。<br> [N]  <strong>ERRNO</strong>  最后一个系统错误的描述。<br> [G]  <strong>FIELDWIDTHS</strong>  字段宽度列表（用空格键分隔）。<br> [A]  <strong>FILENAME</strong>  当前输入文件的名。<br> [P]  <strong>FNR</strong>  同NR，但相对于当前文件。<br> [A]  <strong>FS</strong>  字段分隔符（默认是任何空格）。<br> [G]  <strong>IGNORECASE</strong>  如果为真，则进行忽略大小写的匹配。<br> [A]  <strong>NF</strong>  表示字段数，在执行过程中对应于当前的字段数（空格为定界符）。<br> [A]  <strong>NR</strong>  表示记录数，在执行过程中对应于当前的行号。<br> [A]  <strong>OFMT</strong>  数字的输出格式（默认值是%.6g）。<br> [A]  <strong>OFS</strong>  输出字段分隔符（默认值是一个空格）。<br> [A]  <strong>ORS</strong>  输出记录分隔符（默认值是一个换行符）。<br> [A]  <strong>RS</strong>  记录分隔符（默认是一个换行符）。<br> [N]  <strong>RSTART</strong>  由match函数所匹配的字符串的第一个位置。<br> [N]  <strong>RLENGTH</strong>  由match函数所匹配的字符串的长度。<br> [N]  <strong>SUBSEP</strong>  数组下标分隔符（默认值是34）。</p>
+</blockquote>
+</blockquote>
 <blockquote>
-<p>使用vi命令一开始进入的就是命令模式，命令模式下所有的输入都会被视为命令，比如i为输入命令，a为附加命令<br>输入模式<br>输入模式是通过命令模式进入的。当我们在命令模式下输入a,i,o,c等命令时，vi编辑器就会进入输入模式，此时我们可以对文本进行修改<br>底线模式<br>在命令模式下输入:就进入了底线模式，在该模式下输入q:即可退出vi命令</p>
+<p>awk算术运算符</p>
 </blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">运算符</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">+ -</td>
+<td align="center">加，减</td>
+</tr>
+<tr>
+<td align="center">* / &amp;</td>
+<td align="center">乘，除与求余</td>
+</tr>
+<tr>
+<td align="center">+ - !</td>
+<td align="center">一元加，减和逻辑非</td>
+</tr>
+<tr>
+<td align="center">^ ***</td>
+<td align="center">求幂</td>
+</tr>
+<tr>
+<td align="center">++ –</td>
+<td align="center">增加或减少，作为前缀或后缀</td>
+</tr>
+<tr>
+<td align="center">= += -= = /= %= ^= *=</td>
+<td align="center">赋值语句</td>
+</tr>
+<tr>
+<td align="center">~ !~</td>
+<td align="center">匹配正则表达式和不匹配正则表达式</td>
+</tr>
+<tr>
+<td align="center">&lt; &lt;= &gt; &gt;= != ==</td>
+<td align="center">关系运算符</td>
+</tr>
+<tr>
+<td align="center">$</td>
+<td align="center">字段引用</td>
+</tr>
+<tr>
+<td align="center">空格</td>
+<td align="center">字符串连接字符</td>
+</tr>
+<tr>
+<td align="center">?:</td>
+<td align="center">三目表达式</td>
+</tr>
+<tr>
+<td align="center">in</td>
+<td align="center">数组是否包含变量值</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>内置函数</p>
 </blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">格式</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">atan2( y, x )</td>
+<td align="center">返回 y/x 的反正切。</td>
+</tr>
+<tr>
+<td align="center">cos( x )</td>
+<td align="center">返回 x 的余弦；x 是弧度。</td>
+</tr>
+<tr>
+<td align="center">sin( x )</td>
+<td align="center">返回 x 的正弦；x 是弧度。</td>
+</tr>
+<tr>
+<td align="center">exp( x )</td>
+<td align="center">返回 x 幂函数。</td>
+</tr>
+<tr>
+<td align="center">log( x )</td>
+<td align="center">返回 x 的自然对数。</td>
+</tr>
+<tr>
+<td align="center">sqrt( x )</td>
+<td align="center">返回 x 平方根。</td>
+</tr>
+<tr>
+<td align="center">int( x )</td>
+<td align="center">返回 x 的截断至整数的值。</td>
+</tr>
+<tr>
+<td align="center">rand( )</td>
+<td align="center">返回任意数字 n，其中 0 &lt;= n &lt; 1。</td>
+</tr>
+<tr>
+<td align="center">srand( [expr] )</td>
+<td align="center">将 rand 函数的种子值设置为 Expr 参数的值，或如果省略 Expr 参数则使用某天的时间。返回先前的种子值。</td>
+</tr>
+<tr>
+<td align="center">gsub( Ere, Repl, [ In ] )</td>
+<td align="center">除了正则表达式所有具体值被替代这点，它和 sub 函数完全一样地执行。</td>
+</tr>
+<tr>
+<td align="center">sub( Ere, Repl, [ In ] )</td>
+<td align="center">用 Repl 参数指定的字符串替换 In 参数指定的字符串中的由 Ere 参数指定的扩展正则表达式的第一个具体值。sub 函数返回替换的数量。出现在 Repl 参数指定的字符串中的 &amp;（和符号）由 In 参数指定的与 Ere 参数的指定的扩展正则表达式匹配的字符串替换。如果未指定 In 参数，缺省值是整个记录（$0 记录变量）。</td>
+</tr>
+<tr>
+<td align="center">index( String1, String2 )</td>
+<td align="center">在由 String1 参数指定的字符串（其中有出现 String2 指定的参数）中，返回位置，从 1 开始编号。如果 String2 参数不在 String1 参数中出现，则返回 0（零）。</td>
+</tr>
+<tr>
+<td align="center">length [(String)]</td>
+<td align="center">返回 String 参数指定的字符串的长度（字符形式）。如果未给出 String 参数，则返回整个记录的长度（$0 记录变量）。</td>
+</tr>
+<tr>
+<td align="center">blength [(String)]</td>
+<td align="center">返回 String 参数指定的字符串的长度（以字节为单位）。如果未给出 String 参数，则返回整个记录的长度（$0 记录变量）。</td>
+</tr>
+<tr>
+<td align="center">substr( String, M, [ N ] )</td>
+<td align="center">返回具有 N 参数指定的字符数量子串。子串从 String 参数指定的字符串取得，其字符以 M 参数指定的位置开始。M 参数指定为将 String 参数中的第一个字符作为编号 1。如果未指定 N 参数，则子串的长度将是 M 参数指定的位置到 String 参数的末尾 的长度。</td>
+</tr>
+<tr>
+<td align="center">match( String, Ere )</td>
+<td align="center">在 String 参数指定的字符串（Ere 参数指定的扩展正则表达式出现在其中）中返回位置（字符形式），从 1 开始编号，或如果 Ere 参数不出现，则返回 0（零）。RSTART 特殊变量设置为返回值。RLENGTH 特殊变量设置为匹配的字符串的长度，或如果未找到任何匹配，则设置为 -1（负一）。</td>
+</tr>
+<tr>
+<td align="center">split( String, A, [Ere] )</td>
+<td align="center">将 String 参数指定的参数分割为数组元素 A[1], A[2], . . ., A[n]，并返回 n 变量的值。此分隔可以通过 Ere 参数指定的扩展正则表达式进行，或用当前字段分隔符（FS 特殊变量）来进行（如果没有给出 Ere 参数）。除非上下文指明特定的元素还应具有一个数字值，否则 A 数组中的元素用字符串值来创建。</td>
+</tr>
+<tr>
+<td align="center">tolower( String )</td>
+<td align="center">返回 String 参数指定的字符串，字符串中每个大写字符将更改为小写。大写和小写的映射由当前语言环境的 LC_CTYPE 范畴定义。</td>
+</tr>
+<tr>
+<td align="center">toupper( String )</td>
+<td align="center">返回 String 参数指定的字符串，字符串中每个小写字符将更改为大写。大写和小写的映射由当前语言环境的 LC_CTYPE 范畴定义。</td>
+</tr>
+<tr>
+<td align="center">sprintf(Format, Expr, Expr, . . . )</td>
+<td align="center">根据 Format 参数指定的 printf 子例程格式字符串来格式化 Expr 参数指定的表达式并返回最后生成的字符串。</td>
+</tr>
+<tr>
+<td align="center">close( Expression )</td>
+<td align="center">用同一个带字符串值的 Expression 参数来关闭由 print 或 printf 语句打开的或调用 getline 函数打开的文件或管道。如果文件或管道成功关闭，则返回 0；其它情况下返回非零值。如果打算写一个文件，并稍后在同一个程序中读取文件，则 close 语句是必需的。</td>
+</tr>
+<tr>
+<td align="center">system(command )</td>
+<td align="center">执行 Command 参数指定的命令，并返回退出状态。等同于 system 子例程。</td>
+</tr>
+<tr>
+<td align="center">Expression</td>
+<td align="center">getline [ Variable ]    从来自 Expression 参数指定的命令的输出中通过管道传送的流中读取一个输入记录，并将该记录的值指定给 Variable 参数指定的变量。如果当前未打开将 Expression 参数的值作为其命令名称的流，则创建流。创建的流等同于调用 popen 子例程，此时 Command 参数取 Expression 参数的值且 Mode 参数设置为一个是 r 的值。只要流保留打开且 Expression 参数求得同一个字符串，则对 getline 函数的每次后续调用读取另一个记录。如果未指定 Variable 参数，则 $0 记录变量和 NF 特殊变量设置为从流读取的记录。</td>
+</tr>
+<tr>
+<td align="center">getline [ Variable ]</td>
+<td align="center">Expression    从 Expression 参数指定的文件读取输入的下一个记录，并将 Variable 参数指定的变量设置为该记录的值。只要流保留打开且 Expression 参数对同一个字符串求值，则对 getline 函数的每次后续调用读取另一个记录。如果未指定 Variable 参数，则 $0 记录变量和 NF 特殊变量设置为从流读取的记录。</td>
+</tr>
+<tr>
+<td align="center">getline [ Variable ]</td>
+<td align="center">将 Variable 参数指定的变量设置为从当前输入文件读取的下一个输入记录。如果未指定 Variable 参数，则 $0 记录变量设置为该记录的值，还将设置 NF、NR 和 FNR 特殊变量。</td>
+</tr>
+<tr>
+<td align="center">mktime( YYYY MM dd HH MM ss[ DST])</td>
+<td align="center">生成时间格式</td>
+</tr>
+<tr>
+<td align="center">strftime([format [, timestamp]])</td>
+<td align="center">格式化时间输出，将时间戳转为时间字符串具体格式，见下表。</td>
+</tr>
+<tr>
+<td align="center">systime()</td>
+<td align="center">得到时间戳，返回从1970年1月1日开始到当前时间(不计闰年)的整秒数</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>printf参数描述</p>
 </blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">格式</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">%d</td>
+<td align="center">十进制有符号整数</td>
+</tr>
+<tr>
+<td align="center">%u</td>
+<td align="center">十进制无符号整数</td>
+</tr>
+<tr>
+<td align="center">%f</td>
+<td align="center">浮点数</td>
+</tr>
+<tr>
+<td align="center">%s</td>
+<td align="center">字符串</td>
+</tr>
+<tr>
+<td align="center">%c</td>
+<td align="center">单个字符</td>
+</tr>
+<tr>
+<td align="center">%p</td>
+<td align="center">指针的值</td>
+</tr>
+<tr>
+<td align="center">%e</td>
+<td align="center">指数形式的浮点数</td>
+</tr>
+<tr>
+<td align="center">%x    %X</td>
+<td align="center">无符号以十六进制表示的整数</td>
+</tr>
+<tr>
+<td align="center">%o</td>
+<td align="center">无符号以八进制表示的整数</td>
+</tr>
+<tr>
+<td align="center">%g</td>
+<td align="center">自动选择合适的表示法</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>时间函数对于时间格式说明</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">格式</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">%a</td>
+<td align="center">星期几的缩写(Sun)</td>
+</tr>
+<tr>
+<td align="center">%A</td>
+<td align="center">星期几的完整写法(Sunday)</td>
+</tr>
+<tr>
+<td align="center">%b</td>
+<td align="center">月名的缩写(Oct)</td>
+</tr>
+<tr>
+<td align="center">%B</td>
+<td align="center">月名的完整写法(October)</td>
+</tr>
+<tr>
+<td align="center">%c</td>
+<td align="center">本地日期和时间</td>
+</tr>
+<tr>
+<td align="center">%d</td>
+<td align="center">十进制日期</td>
+</tr>
+<tr>
+<td align="center">%D</td>
+<td align="center">日期 08/20/99</td>
+</tr>
+<tr>
+<td align="center">%e</td>
+<td align="center">日期，如果只有一位会补上一个空格</td>
+</tr>
+<tr>
+<td align="center">%H</td>
+<td align="center">用十进制表示24小时格式的小时</td>
+</tr>
+<tr>
+<td align="center">%I</td>
+<td align="center">用十进制表示12小时格式的小时</td>
+</tr>
+<tr>
+<td align="center">%j</td>
+<td align="center">从1月1日起一年中的第几天</td>
+</tr>
+<tr>
+<td align="center">%m</td>
+<td align="center">十进制表示的月份</td>
+</tr>
+<tr>
+<td align="center">%M</td>
+<td align="center">十进制表示的分钟</td>
+</tr>
+<tr>
+<td align="center">%p</td>
+<td align="center">12小时表示法(AM/PM)</td>
+</tr>
+<tr>
+<td align="center">%S</td>
+<td align="center">十进制表示的秒</td>
+</tr>
+<tr>
+<td align="center">%U</td>
+<td align="center">十进制表示的一年中的第几个星期(星期天作为一个星期的开始)</td>
+</tr>
+<tr>
+<td align="center">%w</td>
+<td align="center">十进制表示的星期几(星期天是0)</td>
+</tr>
+<tr>
+<td align="center">%W</td>
+<td align="center">十进制表示的一年中的第几个星期(星期一作为一个星期的开始)</td>
+</tr>
+<tr>
+<td align="center">%x</td>
+<td align="center">重新设置本地日期(08/20/99)</td>
+</tr>
+<tr>
+<td align="center">%X</td>
+<td align="center">重新设置本地时间(12:00:00)</td>
+</tr>
+<tr>
+<td align="center">%y</td>
+<td align="center">两位数字表示的年(99)</td>
+</tr>
+<tr>
+<td align="center">%Y</td>
+<td align="center">当前月份</td>
+</tr>
+<tr>
+<td align="center">%%</td>
+<td align="center">百分号(%)</td>
+</tr>
+</tbody></table>
 
       
 
