@@ -164,6 +164,414 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-tools-idea-debug" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/25/tools-idea-debug/">tools-idea-debug</a>
+    </h1>
+  
+
+        
+        <a href="/2020/02/25/tools-idea-debug/" class="archive-article-date">
+  	<time datetime="2020-02-25T14:06:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>本次我们来研究下idea的debug（调试）功能。</strong><br>idea的调试功能很强大，它允许我们定义多种类型断点：<strong>行断点、条件断点、异常断点、字段断点、方法断点。</strong><br>其次，它还提供大量方便我们debug的操作和插件。学会了使用idea的debug，能让我们的调试效率明显提高。</p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">开发工具</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">idea</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/idea//" class="article-tag-list-link color5">idea</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/02/25/tools-idea-debug/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-git-commnad" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/24/git-commnad/">git-commnad</a>
+    </h1>
+  
+
+        
+        <a href="/2020/02/24/git-commnad/" class="archive-article-date">
+  	<time datetime="2020-02-24T14:11:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文主要介绍下git常用命令</p>
+<table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">选项</th>
+<th align="center">作用</th>
+<th align="center">常用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">git merge</td>
+<td align="center">-abort</td>
+<td align="center">把一个分支合并到另外一个分支</td>
+<td align="center">不同类型分支间合并使用</td>
+</tr>
+<tr>
+<td align="center">git rebase</td>
+<td align="center">-abort</td>
+<td align="center">合并分支，并且会生成新的版本基线，这样合并在git树上不会出现合并线</td>
+<td align="center">同类型分支合并使用，保持git节点树的干净</td>
+</tr>
+<tr>
+<td align="center">git reset</td>
+<td align="center"></td>
+<td align="center">版本回退，reset到哪个节点，那么版本基线就会回到哪个节点</td>
+<td align="center">当提交的代码有问题，或者需要功能回退时使用</td>
+</tr>
+<tr>
+<td align="center">git checkout –file</td>
+<td align="center"></td>
+<td align="center">撤销单个文件的修改(还原成远端代码)</td>
+<td align="center">文件修改内容有误时使用，值得注意的是如果代码已经commit了，则需要先reset才能取消修改</td>
+</tr>
+<tr>
+<td align="center">git rm</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">删除本地文件</td>
+</tr>
+<tr>
+<td align="center">git add</td>
+<td align="center"></td>
+<td align="center">把文件添加进缓存区</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">git commit</td>
+<td align="center"></td>
+<td align="center">提交文件到本地分支</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">git push</td>
+<td align="center"></td>
+<td align="center">往远程分支推送代码</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">git pull</td>
+<td align="center"></td>
+<td align="center">从远程分支拉取代码，并且和本地代码合并</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">git fetch</td>
+<td align="center"></td>
+<td align="center">从远处分支拉取代码，但是进行任何操作</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">git branch</td>
+<td align="center"></td>
+<td align="center">查看本地分支</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">git checkout branchName</td>
+<td align="center"></td>
+<td align="center">切换到某个分支</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">git log</td>
+<td align="center"></td>
+<td align="center">查看git提交记录</td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><blockquote>
+<p>merge和rebase的区别</p>
+<blockquote>
+<p>虽然最终的作用都是合并分支间的代码，但是实现过程却是不一样的。<br>rebase在合并时会把当前分支的commit放到rebase分支的后面，然后两个分支的节点树会合并成一条线。<br>merge则是在合并时把两个分支的commit合并到一起形成新的commit提交，在节点树上会有合并线，并且会多出一个merge节点。</p>
+</blockquote>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/git//" class="article-tag-list-link color4">git</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/02/24/git-commnad/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-maven-pom" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/24/maven-pom/">maven-pom</a>
+    </h1>
+  
+
+        
+        <a href="/2020/02/24/maven-pom/" class="archive-article-date">
+  	<time datetime="2020-02-24T13:21:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="什么是pom"><a href="#什么是pom" class="headerlink" title="什么是pom"></a>什么是pom</h3><p>POM( Project Object Model，项目对象模型 ) 是 Maven 工程的<strong>基本工作单元</strong>，是一个XML文件，包含了项目的基本信息，用于描述项目如何构建，声明项目依赖，等等。<br>执行任务或目标时，Maven 会在当前目录中查找 POM。它读取 POM，获取所需的配置信息，然后执行目标。</p>
+<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><blockquote>
+<p>制定maven的配置信息，可以制定配置信息如下所示：</p>
+<blockquote>
+<p>项目依赖<br>插件<br>执行目标<br>项目构建 profile<br>项目版本<br>项目开发者列表<br>相关邮件列表信息</p>
+</blockquote>
+</blockquote>
+<h3 id="pom的必要构成"><a href="#pom的必要构成" class="headerlink" title="pom的必要构成"></a>pom的必要构成</h3><table>
+<thead>
+<tr>
+<th align="center">节点</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">project</td>
+<td align="center">工程的根标签。</td>
+</tr>
+<tr>
+<td align="center">modelVersion</td>
+<td align="center">模型版本需要设置为 4.0。</td>
+</tr>
+<tr>
+<td align="center">groupId</td>
+<td align="center">这是工程组的标识。它在一个组织或者项目中通常是唯一的。例如，一个银行组织 com.companyname.project-group 拥有所有的和银行相关的项目。</td>
+</tr>
+<tr>
+<td align="center">artifactId</td>
+<td align="center">这是工程的标识。它通常是工程的名称。例如，消费者银行。groupId 和 artifactId 一起定义了 artifact 在仓库中的位置。</td>
+</tr>
+<tr>
+<td align="center">version</td>
+<td align="center">这是工程的版本号。在 artifact 的仓库中，它用来区分不同的版本。例如：com.company.bank:consumer-banking:1.0 com.company.bank:consumer-banking:1.1</td>
+</tr>
+<tr>
+<td align="center">只有拥有了上述内容的pom才能正常使用。</td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<h3 id="父pom"><a href="#父pom" class="headerlink" title="父pom"></a>父pom</h3><p>所有的pom都会有父pom，如果没有使用parent标签显示的自定父pom，则会使用base pom（maven默认的基础pom）作为pom的父pom。</p>
+<p>当前pom可以从父pom获取熟悉、依赖、插件等，这样就不用重复的在pom书写了。</p>
+<p>值得注意的是，使用命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn help:effective-pom</span><br></pre></td></tr></table></figure>
+<p>可以查看当前pom所有生效的父pom，并下载相应的插件和jar包。</p>
+<h3 id="pom文件详解"><a href="#pom文件详解" class="headerlink" title="pom文件详解"></a>pom文件详解</h3><table>
+<thead>
+<tr>
+<th align="center">标签名称</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><scope></td>
+<td align="center">限定依赖生效的范围，如test则是执行test代码的时候jar才能使用</td>
+</tr>
+</tbody></table>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">maven</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/maven//" class="article-tag-list-link color1">maven</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/02/24/maven-pom/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-linux-command-crontab" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -336,92 +744,6 @@
 
 
   
-    <article id="post-linux-command-ssh" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/22/linux-command-ssh/">linux常用命令之ssh命令</a>
-    </h1>
-  
-
-        
-        <a href="/2020/02/22/linux-command-ssh/" class="archive-article-date">
-  	<time datetime="2020-02-22T15:06:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong><em>ssh是openssh套件中的客户端连接工具。</em></strong> </p>
-<h3 id="telnet命令格式为："><a href="#telnet命令格式为：" class="headerlink" title="telnet命令格式为："></a>telnet命令格式为：</h3><p><strong>ssh […OPTION] [IP] [COMMAND]</strong></p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/22/linux-command-ssh/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-linux-command-systemctl" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -479,6 +801,92 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/02/22/linux-command-systemctl/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-linux-command-ssh" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/22/linux-command-ssh/">linux常用命令之ssh命令</a>
+    </h1>
+  
+
+        
+        <a href="/2020/02/22/linux-command-ssh/" class="archive-article-date">
+  	<time datetime="2020-02-22T15:06:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong><em>ssh是openssh套件中的客户端连接工具。</em></strong> </p>
+<h3 id="telnet命令格式为："><a href="#telnet命令格式为：" class="headerlink" title="telnet命令格式为："></a>telnet命令格式为：</h3><p><strong>ssh […OPTION] [IP] [COMMAND]</strong></p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/02/22/linux-command-ssh/">展开全文 >></a>
         </p>
       
 
@@ -766,264 +1174,6 @@
 
 
   
-    <article id="post-linux-command-tail" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/21/linux-command-tail/">linux常用命令之tail命令</a>
-    </h1>
-  
-
-        
-        <a href="/2020/02/21/linux-command-tail/" class="archive-article-date">
-  	<time datetime="2020-02-21T07:38:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong><em>tail是用于显示文本末尾n行数据。</em></strong>和head命令效果相反。</p>
-<h3 id="tail命令格式为："><a href="#tail命令格式为：" class="headerlink" title="tail命令格式为："></a>tail命令格式为：</h3><p><strong>tail […OPTION] [FILE]</strong></p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/21/linux-command-tail/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-linux-command-head" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/20/linux-command-head/">linux常用命令之head命令</a>
-    </h1>
-  
-
-        
-        <a href="/2020/02/20/linux-command-head/" class="archive-article-date">
-  	<time datetime="2020-02-20T15:06:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong><em>head是用于显示文件开头部分内容的命令。</em></strong></p>
-<h3 id="head命令格式为："><a href="#head命令格式为：" class="headerlink" title="head命令格式为："></a>head命令格式为：</h3><p><strong>head […OPTION] […FILE]</strong></p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/20/linux-command-head/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-linux-command-telnet" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/20/linux-command-telnet/">linux常用命令之telnet命令</a>
-    </h1>
-  
-
-        
-        <a href="/2020/02/20/linux-command-telnet/" class="archive-article-date">
-  	<time datetime="2020-02-20T15:06:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong><em>telnet是用于登陆及管理主机的命令。</em></strong> 当然其也常被用作检测端口是否正常的命令。</p>
-<h3 id="telnet命令格式为："><a href="#telnet命令格式为：" class="headerlink" title="telnet命令格式为："></a>telnet命令格式为：</h3><p><strong>telnet […OPTION] [IP] [PORT]</strong></p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/20/linux-command-telnet/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1133,7 +1283,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">开发工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">idea</a>
               </li>
             
             <div class="clearfix"></div>
