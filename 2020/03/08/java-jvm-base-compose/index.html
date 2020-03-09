@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>java虚拟机基础 | ljjandgy</title>
+  <title>java虚拟机基础组成 | ljjandgy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="jvm(java Virtual Machine)是java环境运行的基础，现在就让我们走进jvm的世界，去了解java的根本吧。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java虚拟机基础">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;03&#x2F;08&#x2F;java-jvm-base&#x2F;index.html">
+<meta property="og:title" content="java虚拟机基础组成">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;03&#x2F;08&#x2F;java-jvm-base-compose&#x2F;index.html">
 <meta property="og:site_name" content="ljjandgy">
 <meta property="og:description" content="jvm(java Virtual Machine)是java环境运行的基础，现在就让我们走进jvm的世界，去了解java的根本吧。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-03-08T13:43:16.000Z">
-<meta property="article:modified_time" content="2020-03-09T13:24:19.745Z">
+<meta property="article:modified_time" content="2020-03-09T14:35:57.522Z">
 <meta property="article:author" content="ljjandgy">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="jvm">
@@ -166,19 +166,19 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-java-jvm-base" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-java-jvm-base-compose" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      java虚拟机基础
+      java虚拟机基础组成
     </h1>
   
 
         
-        <a href="/2020/03/08/java-jvm-base/" class="archive-article-date">
+        <a href="/2020/03/08/java-jvm-base-compose/" class="archive-article-date">
   	<time datetime="2020-03-08T13:43:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-08</time>
 </a>
         
@@ -219,11 +219,22 @@
 <blockquote>
 <p>堆（java堆）</p>
 </blockquote>
-<p>堆通常是jvm中最吃内存的一个区域。堆是所有线程共享的一个内存区域，随着虚拟机的启动而创建，其作用为<strong>存储对象实例</strong>。几乎所有的对象都会在堆上分配内存（随着技术革新，也不是那么绝对了）。<br>堆是java垃圾收集器管理的主要区域（毕竟内存占比最大）。<br>根据虚拟机标准，堆可以处于物理上不连续的但逻辑上连续的存储空间。具体大小可以根据jvm参数去设置（-Xmx和-Xms）。</p>
+<p>堆通常是jvm中最吃内存的一个区域。堆是<strong>所有线程共享的一个内存区域</strong>，随着虚拟机的启动而创建，其作用为<strong>存储对象实例</strong>。几乎所有的对象都会在堆上分配内存（随着技术革新，也不是那么绝对了）。<br>堆是java垃圾收集器管理的主要区域（毕竟内存占比最大）。由于现在常见的垃圾收集器都采用<strong>分代收集算法</strong>进行垃圾回收，所以堆又可以分为<strong>老年代和新生代</strong>。<br>根据虚拟机标准，堆可以处于物理上不连续的但逻辑上连续的存储空间。具体大小可以根据jvm参数去设置（-Xmx和-Xms）。</p>
 <p>堆只会出现OutOfMemoryError，当堆中内存不够新实例对象的内存分配，并且堆也无法再扩展时，就会报错。</p>
 <blockquote>
 <p>方法区</p>
 </blockquote>
+<p>方法去和堆一样，是<strong>所有线程共享的内存区域</strong>。用于存储已经被虚拟机加载的<strong>类信息、常量、静态变量、即时编译器编码</strong>后的数据等信息。<br>对于HotSpot虚拟机来说，方法区又被称为<strong>永久代</strong>，也就是其中的对象实例不易被回收。不过，永久代这种东西以后会慢慢消失。<br>方法区和堆一样，也不用存在于物理上连续的存储空间中，不过这个区域可以不设置垃圾收集。虽说方法去别称为永久代，但是其实也是存在GC行为的。<br>方法去的GC主要针对的是<strong>常量池的回收</strong>和<strong>类型的卸载</strong>，不过回收效果一般很差就是了。</p>
+<p>方法去只会出现OutOfMemoryError，出现于内存不够分配新的空间且不能拓展时。</p>
+<blockquote>
+<p>运行时常量池</p>
+</blockquote>
+<p>运行时常量池（Runtime Constant Pool）是方法区的一部分，用于存储虚拟机中加载的class文件的常量池信息。<br>每个class文件除了包含类的版本，字段，方法，接口等描述信息外，还包含常量池信息。常量池中存储了编译器生成的字面量和符号引用。这部分内容将在类加载后放到运行时常量池中。<br>运行时常量池除了包含类预加载的常量信息外，还允许<strong>动态添加常量</strong>信息。</p>
+<p>运行时常量池在无法向方法区申请到足够的内存时也会抛出OutOfMemoryError。</p>
+<blockquote>
+<p>直接内存</p>
+</blockquote>
+<p>直接内存其实<strong>不属于运行时数据区域</strong>，不过它与运行时数据区域息息相关。<br>它是<strong>一种堆外内存，用于NIO操作，由存在于堆中的DirectByteBuffer对象作为该区域的引用去操作这个区域内的数据</strong>。<br>因为这个内存不存在于虚拟机中，所以设置的参数不会影响到它，不过因为它的存在，会导致java服务占用的内存比设置的虚拟机最大内存更大，从而导致总内存可能大于物理内存，从而出现OutOfMemoryError。</p>
 
       
 
@@ -308,7 +319,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/03/08/java-jvm-base/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/03/08/java-jvm-base-compose/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -454,10 +465,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
@@ -466,11 +473,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">jackson</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">java8</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">jackson</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -482,15 +493,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
              
               <li class="article-tag-list-item">
