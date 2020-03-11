@@ -6,16 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: idea | ljjandgy</title>
+  <title>java虚拟机之对象访问 | ljjandgy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="多少红颜爱傻逼，多少傻逼不珍惜。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ljjandgy">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;tags&#x2F;idea&#x2F;index.html">
+  <meta name="description" content="在java中对象访问是很频繁的一种操作，这次让我们看看对象访问在虚拟机中是怎么操作的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java虚拟机之对象访问">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;03&#x2F;08&#x2F;java-jvm-visit-object&#x2F;index.html">
 <meta property="og:site_name" content="ljjandgy">
-<meta property="og:description" content="多少红颜爱傻逼，多少傻逼不珍惜。">
+<meta property="og:description" content="在java中对象访问是很频繁的一种操作，这次让我们看看对象访问在虚拟机中是怎么操作的。">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-03-08T13:43:16.000Z">
+<meta property="article:modified_time" content="2020-03-10T13:02:26.140Z">
 <meta property="article:author" content="ljjandgy">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="jvm">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="ljjandgy" type="application/atom+xml">
@@ -162,77 +166,195 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-java-jvm-visit-object" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/02/25/tools-idea-debug/" class="archive-article-date">
-  	<time datetime="2020-02-25T14:06:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-25</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/25/tools-idea-debug/">如何在idea中优雅的调试</a>
+    <h1 class="article-title" itemprop="name">
+      java虚拟机之对象访问
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2020/03/08/java-jvm-visit-object/" class="archive-article-date">
+  	<time datetime="2020-03-08T13:43:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-08</time>
+</a>
+
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在java中对象访问是很频繁的一种操作，这次让我们看看对象访问在虚拟机中是怎么操作的。</p>
+<a id="more"></a>
+<p>java程序中最常见的对象访问方式为new一个对象：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Object obj &#x3D; new Object();</span><br></pre></td></tr></table></figure>
+<p>就这么简单的一串代码，却涉及到了虚拟机三个运行时数据区域：</p>
+<ul>
+<li>虚拟机栈</li>
+<li>java堆</li>
+<li>方法区<br>其中，虚拟机栈对应的是Object obj这部分代码，代码会在<strong>虚拟机栈的本地变量表中生成一个reference类型的对象</strong>，用于引用对象。<br>而new Object()这部分代码则会影响到java堆和方法区。因为new操作会在<strong>java堆中开辟一块内存存储obj对象的所有实例化信息（对象各个实例字段的值）</strong>。<br>然后，除此之外，java堆中的信息<strong>还需要包含一个记录类型数据的地址信息</strong>。因为<strong>类型数据（类的信息，比如对象类型，父类，接口，方法等）是存储在方法区的</strong>，所有需要存储一个地址以找到对象的类型信息。</li>
+</ul>
+<h4 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h4><blockquote>
+<p>reference对象的类型</p>
+</blockquote>
+<p>由于虚拟机标准中没有对reference对象类型的明确定义，所有各种虚拟机的reference对象的类型各异。主流的两种类型是：</p>
+<ul>
+<li>句柄</li>
+<li>直接引用<br>其中句柄会在<strong>java堆中划出一块内存作为句柄池</strong>，用于<strong>记录对象的实例信息地址和类型数据的具体地址</strong>。reference对象<strong>只记录句柄信息</strong>。此时，<strong>对象实例信息还是保存在堆的实例池</strong>中。<br>而HotSpot虚拟机使用的<strong>直接引用reference对象则是直接存储对象地址</strong>，然后对象地址中包含了<strong>对象实例信息和类型地址信息</strong>。</li>
+</ul>
+<p>使用句柄去实现reference对象的好处在于对象被移动时（发生GC时）<strong>不需要去修改reference对象的信息</strong>，而只需要修改句柄中存储的的对象地址即可。<br>而直接引用的好处在于<strong>访问速度更快</strong>，因为没有句柄这个中间对象，所以减少了一次指针定位的时间开销，如果对象访问量很大，这个减少的开销就会很可观。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">开发工具</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">idea</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jvm</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/idea//" class="article-tag-list-link color5">idea</a>
+        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/03/08/java-jvm-visit-object/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2020/03/08/java-jvm-base-compose/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          java虚拟机之运行时数据区域
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2020/03/05/java-java8-stream/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">java8之stream</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -265,9 +387,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
