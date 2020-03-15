@@ -16,7 +16,7 @@
 <meta property="og:description" content="steam是java8出现的java新成员，它能以声明性方式操作集合。它具有以下特点：  声明性（直接说明要完成什么） 可复合（表达式可以连在一起使用） 可并行（可以快捷的开启多线程）现在来让我们一起学习java.stream吧">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-03-05T14:10:15.000Z">
-<meta property="article:modified_time" content="2020-03-08T14:08:15.668Z">
+<meta property="article:modified_time" content="2020-03-13T12:04:37.293Z">
 <meta property="article:author" content="ljjandgy">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="java8">
@@ -230,6 +230,30 @@
 <p>值得注意的是，stream中查找和匹配的操作都用到了<strong>短路求值</strong>。也就是说一旦满足了要求就返回结果，和&amp;&amp;、||效果类似。</p>
 <h4 id="归约"><a href="#归约" class="headerlink" title="归约"></a>归约</h4><p>stream的归约操作就是把流整合到一起，返回一个合并的结果。<br>stream中的一个常见的归约方法就是reduce：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;求和</span><br><span class="line">List&lt;Integer&gt; list &#x3D; Arrays.asList(1,2,3,4,5,6,7,8);</span><br><span class="line">int count &#x3D; list.stream().reduce(0,(a,b)-&gt;a+b);</span><br><span class="line">System.out.println(count);</span><br><span class="line">&#x2F;&#x2F;求乘积</span><br><span class="line">count &#x3D; list.stream().reduce(1,(a,b)-&gt;a*b);</span><br><span class="line">System.out.println(count);</span><br><span class="line">&#x2F;&#x2F;求最大值</span><br><span class="line">Optional&lt;Integer&gt; max &#x3D; list.stream().reduce(Integer::max);</span><br><span class="line">max.ifPresent(System.out::println);</span><br><span class="line">&#x2F;&#x2F;求最小值</span><br><span class="line">Optional&lt;Integer&gt; min &#x3D; list.stream().reduce(Integer::min);</span><br><span class="line">min.ifPresent(System.out::println);</span><br></pre></td></tr></table></figure>
+
+<h4 id="数值流"><a href="#数值流" class="headerlink" title="数值流"></a>数值流</h4><p>java8提供了三种类型的数值流(stream的特化类型)，专门用于流的计算：</p>
+<ul>
+<li>IntStream</li>
+<li>DoubleStream</li>
+<li>LongStream</li>
+</ul>
+<p>数值流去计算流中的值可以不用反复去进行包装类的装箱和拆箱，从而减少了流遍历时资源的消耗：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">        List&lt;Integer&gt; integerList &#x3D; Arrays.asList(1,2,34,5,6);</span><br><span class="line">        int count1 &#x3D; integerList.stream().mapToInt(i-&gt;i).sum();</span><br><span class="line">        List&lt;Double&gt; doubleList &#x3D; Arrays.asList(2.556,2.77,2.987412);</span><br><span class="line">        double count2 &#x3D; doubleList.stream().mapToDouble(d-&gt;d).sum();</span><br><span class="line">        List&lt;Long&gt; longList &#x3D; Arrays.asList(100000000000000L,1000000000000000000L,2000002123123131L);</span><br><span class="line">        long count3 &#x3D; longList.stream().mapToLong(l-&gt;l).sum();</span><br><span class="line">        System.out.println(count1);</span><br><span class="line">        System.out.println(count2);</span><br><span class="line">        System.out.println(count3);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>如果你想要把数字类型重新装箱，只需要调用stream.boxed()方法即可：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">IntStream intStream &#x3D; integerList.stream().mapToInt(i-&gt;i);</span><br><span class="line">Stream&lt;Integer&gt; integerStream &#x3D; intStream.boxed();</span><br></pre></td></tr></table></figure>
+
+<p>数字流中的IntStream和LongStream提供了数字范围的静态方法可以用于快速的生成一个范围内的所有数字：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IntStream rangeStream &#x3D; IntStream.range(1,100);</span><br></pre></td></tr></table></figure>
+<p>上面的代码就可以生成1到100的整型流。</p>
+<h4 id="构建流"><a href="#构建流" class="headerlink" title="构建流"></a>构建流</h4><p>流构建的方法其实有很多，不仅仅是根据集合去构建：<br>1.通过值去构建流</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Stream&lt;String&gt; stringStream &#x3D; Stream.of(&quot;aaa&quot;,&quot;bbb&quot;,&quot;cccc&quot;);</span><br></pre></td></tr></table></figure>
+<p>2.通过数组构建流</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String aaa &#x3D; &quot;aa,b,c,d,e,d,e,e,t,r,e,w&quot;;</span><br><span class="line">Stream&lt;String&gt; stringStream &#x3D; Arrays.stream(aaa.split(&quot;,&quot;));</span><br></pre></td></tr></table></figure>
+<p>3.通过文件生成流</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">long word &#x3D; 0;</span><br><span class="line">&#x2F;&#x2F;通过Files.lines把文件的每一行都转换成流</span><br><span class="line">try(Stream&lt;String&gt; stringStream &#x3D; Files.lines(Paths.get(&quot;D:\\dictionary.txt&quot;), Charset.defaultCharset()))&#123;</span><br><span class="line">   word &#x3D; stringStream.flatMap(line-&gt;Arrays.stream(line.split(&quot; &quot;))).distinct().count();</span><br><span class="line">   System.out.println(word);</span><br><span class="line">&#125;catch (IOException e)&#123;</span><br><span class="line">   e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4.通过函数创建流（创建无限流）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;通过iterate函数生成无限流,seed是初始值，lambda表达式入参是上一个元素，返回值是当前元素</span><br><span class="line">Stream.iterate(0,n-&gt;n+2).limit(20).forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;通过generate函数生成无限流</span><br><span class="line">Stream.generate(Math::random).limit(20).forEach(System.out::println);</span><br></pre></td></tr></table></figure>
 
 
 <h4 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h4><blockquote>

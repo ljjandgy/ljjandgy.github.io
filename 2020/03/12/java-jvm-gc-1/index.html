@@ -6,16 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2020 | ljjandgy</title>
+  <title>java虚拟机之怎么判断对象是否已“死” | ljjandgy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="多少红颜爱傻逼，多少傻逼不珍惜。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ljjandgy">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;archives&#x2F;2020&#x2F;page&#x2F;3&#x2F;index.html">
+  <meta name="description" content="人们常说，java和C艹之间只隔着内存动态分配和垃圾收集技术。其中垃圾收集也是jvm的核心功能，不过在了解垃圾收集（Garbage Collection，GC）之前，我们需要先了解如果判断“谁”是垃圾，也就是哪些对象需要回收。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java虚拟机之怎么判断对象是否已“死”">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;03&#x2F;12&#x2F;java-jvm-gc-1&#x2F;index.html">
 <meta property="og:site_name" content="ljjandgy">
-<meta property="og:description" content="多少红颜爱傻逼，多少傻逼不珍惜。">
+<meta property="og:description" content="人们常说，java和C艹之间只隔着内存动态分配和垃圾收集技术。其中垃圾收集也是jvm的核心功能，不过在了解垃圾收集（Garbage Collection，GC）之前，我们需要先了解如果判断“谁”是垃圾，也就是哪些对象需要回收。">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-03-12T14:20:58.000Z">
+<meta property="article:modified_time" content="2020-03-15T08:58:49.493Z">
 <meta property="article:author" content="ljjandgy">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="jvm">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="ljjandgy" type="application/atom+xml">
@@ -162,535 +166,221 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-java-jvm-gc-1" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      java虚拟机之怎么判断对象是否已“死”
+    </h1>
+  
+
+        
+        
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2020/03/12/java-jvm-gc-1/" class="archive-article-date">
+  	<time datetime="2020-03-12T14:20:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-12</time>
+</a>
+
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>人们常说，java和C艹之间只隔着<strong>内存动态分配和垃圾收集</strong>技术。<br>其中垃圾收集也是jvm的核心功能，不过在了解垃圾收集（Garbage Collection，GC）之前，我们需要先了解如果<strong>判断“谁”是垃圾</strong>，也就是<strong>哪些对象需要回收</strong>。</p>
+<a id="more"></a>
+<h4 id="引用计数算法（Reference-Counting）"><a href="#引用计数算法（Reference-Counting）" class="headerlink" title="引用计数算法（Reference Counting）"></a>引用计数算法（Reference Counting）</h4><p>应用计数算法在垃圾收集领域，是一种很常见的判断对象是否可收集的算法。<br>算法基本思路为：</p>
+<blockquote>
+<p>给对象添加一个引用计数器，一旦有地方引用了该对象，计数器就+1。如果引用失效，那么计数器就-1.如果引用计数器的值为0，就表示该对象可回收。</p>
+</blockquote>
+<p>这个算法很简单，但是主流的java虚拟机中都没有使用这个方式去判断对象是否可回收。因为这种方法很难去<strong>处理对象循环依赖</strong>的问题。比如下面这种情况：<br>A类依赖B，B类依赖A，这样的话即使A，B除了对方不再有其他的引用，引用计数算法也会认为对象不可回收。但是实际上对象已经没有作用了。<br>不过，我们最常用的HotSpot虚拟机不是用的这个算法去判断对象是否可回收。</p>
+<h4 id="可达性分析算法（Reachability-Analysis）"><a href="#可达性分析算法（Reachability-Analysis）" class="headerlink" title="可达性分析算法（Reachability Analysis）"></a>可达性分析算法（Reachability Analysis）</h4><p>主流的商用语音（Java，C#等）主要都是采用可达性分析算法去判断对象是否存活。<br>算法基本思路为：</p>
+<blockquote>
+<p>通过<strong>一系列</strong>称为GC“GC Roots”的根节点对象作为起点，然后从这些根节点向下搜索，搜索走过的路径称为引用链（Reference Chain），当<strong>一个对象的根对象和其没有任何一个引用链相连</strong>（也就是从根对象到对象不可达），就认为该对象是可以回收的。</p>
+</blockquote>
+<p><strong>在这个算法中，即使对象之间是互相引用的，但是只要没有和根节点相连，那么对象都是被判断为已“死”的</strong>。</p>
+<p>在Java中，存在以下几种根对象（GC Roots）：</p>
+<ul>
+<li>虚拟机栈（栈帧中的本地变量表）中引用的对象</li>
+<li>方法区中类静态属性所引用的对象</li>
+<li>方法区中常量引用的对象</li>
+<li>本地方法栈中本地方法引用的对象</li>
+</ul>
+<h4 id="方法区的回收"><a href="#方法区的回收" class="headerlink" title="方法区的回收"></a>方法区的回收</h4><p>虽然方法区常常被称为永久代，但是其中也是存在垃圾回收的。</p>
+<p>方法去中垃圾回收主要分为两个部分：</p>
+<ul>
+<li>废弃常量（常量的回收）</li>
+<li>无用的类</li>
+</ul>
+<p>关于废弃常量的判断和对象是否可回收相似，也是判断常量是否还有引用。如果常量没有给被引用，则在发生GC时就会被回收。<br>相对于常量的回收，类的回收就要复杂很多，一般认为满足以下条件的类<strong>可以被回收</strong>：</p>
+<ul>
+<li>类对应的所有实例都被回收了，也就是堆中没有类的实例了。</li>
+<li>加载该类的ClassLoader已经被回收了</li>
+<li>类对象无法在任何地方被反射访问时<br>当然，满足条件的类<strong>只是可以被回收，也不是说一定会被回收</strong>。</li>
+</ul>
+<p>针对方法区，HotSpot<strong>提供了-Xboclassgc</strong>参数进行控制是否回收class。还可以通过以下命令查看类加载和卸载信息：</p>
+<ul>
+<li>verbose:class</li>
+<li>-XX:+TraceClassLoading</li>
+<li>-XX:+TraceClassUnLoading（需要虚拟机支持FastDebug）</li>
+</ul>
+<h4 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h4><blockquote>
+<p>java中的引用</p>
+</blockquote>
+<p>在Java创建之初(java1.2之前)，引用的定义很简单，就是如果一个<strong>reference类型的数据中存储的一个存储地址信息，那么这个对象就是一个引用</strong>。<br>不过因为上述定义无法描述一些场景，所以Java1.2以后引用类型变得丰富了，分为以下几种：</p>
+<ul>
+<li>强引用（Strong Reference）</li>
+<li>软引用（Soft Reference）</li>
+<li>弱引用（Weak Reference）：</li>
+<li>虚引用/幻象引用（Phantom Reference）：</li>
+</ul>
+<p>其中，<font color="red">强引用</font><strong>指的是类似于使用构造方法创建出来的引用，只有对象存在强引用，那么对象将不会被回收</strong>。<br><font color="red">软引用</font>主要用于描述<strong>有用但不必需的对象</strong>，也就是和根节点相连，但是被回收之后也不会出现错误。对于这类对象，<strong>在内存将要溢出时会尝试收集一次，如果收集后内存还是不够，才会提示抛出OOM错误</strong>。软引用可以通过<strong>SoftReference类</strong>来实现。<br><font color="red">弱引用</font>用于描述<strong>不是必需的对象</strong>。只有弱引用关联的对象只能活到下次GC，<strong>当发生GC时，无论内存是否足够，该对象都会被回收</strong>。弱引用可以通过<strong>WeakReference类</strong>实现。<br><font color="red">虚引用</font>是最弱的引用，虚引用设置之后效果为当对象被回收是系统会提供一个通知，其余和没有引用效果一样。虚引用可以通过<strong>PhantomReference类</strong>实现。</p>
+<blockquote>
+<p>对象自救</p>
+</blockquote>
+<p>上面我们了解到了，HotSpot虚拟机是通过可达性分析算法判断对象是否可回收的。不过<strong>一个对象是否需要回收至少需要两次标记，也就是至少需要两次判断没有引用路径才会被回收</strong>。这就给了对象自救的机会。<br>那么对象怎么自救叻？我们可以看下面自救的实例代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 通过finalize方法逃脱gc测试</span><br><span class="line"> * 不过通过finalize逃脱gc的机会只有一次，也就是说一个类只会被JVM调用一次finalize方法</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class FinalizeEscapeGc &#123;</span><br><span class="line">    &#x2F;&#x2F;类静态变量，可以作为根节点</span><br><span class="line">    public static FinalizeEscapeGc SAVE_HOOK &#x3D; null;</span><br><span class="line"></span><br><span class="line">    public void isAlive()&#123;</span><br><span class="line">        System.out.println(&quot;is alive&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    public void finalize() throws Throwable&#123;</span><br><span class="line">        super.finalize();</span><br><span class="line">        System.out.println(&quot;finalize is execute&quot;);</span><br><span class="line">        FinalizeEscapeGc.SAVE_HOOK &#x3D; this;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws Exception&#123;</span><br><span class="line">        SAVE_HOOK &#x3D; new FinalizeEscapeGc();</span><br><span class="line"></span><br><span class="line">        SAVE_HOOK &#x3D; null;</span><br><span class="line">        System.gc();</span><br><span class="line"></span><br><span class="line">        Thread.sleep(5000);</span><br><span class="line">        &#x2F;&#x2F;等待500毫秒等待finalize方法的自动调用</span><br><span class="line">        if (SAVE_HOOK!&#x3D;null)&#123;</span><br><span class="line">            SAVE_HOOK.isAlive();</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            System.out.println(&quot;i am dead&quot;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述代码展示了如何通过finalize()方法自救。其实当一个对象被第一次被标记为可回收时，虚拟机会对这部分对象进行一次筛选。<br>筛选重写了finalize()和没有被执行过finalize()的类进入F-Queue队列中，处于队列中的类会被一个<strong>虚拟机自动创建的，低优先级的Finalizer线程调用finalize()方法</strong>。<br>如果一个对象想要自救，就需要<strong>在调用finalize方法时给自己加上强引用</strong>即可。</p>
+<p><font color="red">虽然通过finalize方法可以自救，但是不推荐使用finalize方法，因为其运行代价高昂并且无法保证对象执行顺序</font></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/02/20/linux-command-telnet/" class="archive-article-date">
-  	<time datetime="2020-02-20T15:06:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-20</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/20/linux-command-telnet/">linux常用命令之telnet命令</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jvm</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
+        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/03/12/java-jvm-gc-1/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/02/18/linux-command-chmod/" class="archive-article-date">
-  	<time datetime="2020-02-18T12:34:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-18</time>
-</a>
 
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2020/03/10/java-jvm-oom/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">java虚拟机之OOM实战</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/18/linux-command-chmod/">linux常用命令之chmod命令</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/02/18/linux-command-vi/" class="archive-article-date">
-  	<time datetime="2020-02-18T12:06:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-18</time>
-</a>
 
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/18/linux-command-vi/">linux常用命令之vi命令</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/02/16/linux-command-nl/" class="archive-article-date">
-  	<time datetime="2020-02-16T14:26:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-16</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/16/linux-command-nl/">linux常用命令之nl命令</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/02/16/linux-command-cat/" class="archive-article-date">
-  	<time datetime="2020-02-16T14:15:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-16</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/16/linux-command-cat/">linux常用命令之cat命令</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/02/16/linux-command-touch/" class="archive-article-date">
-  	<time datetime="2020-02-16T14:14:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-16</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/16/linux-command-touch/">linux常用命令之touch命令</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/02/16/linux-command-mv/" class="archive-article-date">
-  	<time datetime="2020-02-16T04:50:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-16</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/16/linux-command-mv/">linux常用命令之mv命令</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/02/16/linux-command-rmdir/" class="archive-article-date">
-  	<time datetime="2020-02-16T04:50:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-16</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/16/linux-command-rmdir/">linux常用命令之rmdir命令</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/02/16/linux-command-pwd/" class="archive-article-date">
-  	<time datetime="2020-02-16T04:20:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-16</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/16/linux-command-pwd/">linux常用命令之pwd命令</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/01/19/linux-command-rm/" class="archive-article-date">
-  	<time datetime="2020-01-19T09:26:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-19</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/19/linux-command-rm/">linux常用命令之rm命令</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2020/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/archives/2020/">1</a><a class="page-number" href="/archives/2020/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/2020/page/4/">4</a><a class="extend next" rel="next" href="/archives/2020/page/4/">Next &amp;raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -724,8 +414,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
