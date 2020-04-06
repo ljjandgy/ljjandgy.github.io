@@ -6,13 +6,13 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>java虚拟机之垃圾收集器 | ljjandgy</title>
+  <title>java虚拟机之垃圾收集器 | Ricardo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="之前我们说到了常见的收集算法有标记-收集算法,复制算法，标记-整理算法。不过，算法终究只是理论，而收集器才是算法真正的具体实践（基于算法去实际收集的组成）。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java虚拟机之垃圾收集器">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;03&#x2F;18&#x2F;java-jvm-collectors&#x2F;index.html">
-<meta property="og:site_name" content="ljjandgy">
+<meta property="og:site_name" content="Ricardo">
 <meta property="og:description" content="之前我们说到了常见的收集算法有标记-收集算法,复制算法，标记-整理算法。不过，算法终究只是理论，而收集器才是算法真正的具体实践（基于算法去实际收集的组成）。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;03&#x2F;18&#x2F;java-jvm-collectors&#x2F;collectors.png">
@@ -24,13 +24,13 @@
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;03&#x2F;18&#x2F;java-jvm-collectors&#x2F;g1.png">
 <meta property="article:published_time" content="2020-03-18T13:07:30.000Z">
 <meta property="article:modified_time" content="2020-03-24T14:04:30.151Z">
-<meta property="article:author" content="ljjandgy">
+<meta property="article:author" content="Ricardo">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="jvm">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;03&#x2F;18&#x2F;java-jvm-collectors&#x2F;collectors.png">
   
-    <link rel="alternative" href="/atom.xml" title="ljjandgy" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="Ricardo" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -60,10 +60,10 @@
 			<img src="/assets/img/head.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">ljjandgy</a></h1>
+		  <h1 class="header-author"><a href="/">Ricardo</a></h1>
 		</hgroup>
 		
-		<p class="header-subtitle">多少红颜爱傻逼，多少傻逼不珍惜。</p>
+		<p class="header-subtitle">该跑起来了。</p>
 		
 
 		<nav class="header-menu">
@@ -122,10 +122,10 @@
 				<img src="/assets/img/head.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">ljjandgy</h1>
+			  <h1 class="header-author js-header-author">Ricardo</h1>
 			</hgroup>
 			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>多少红颜爱傻逼，多少傻逼不珍惜。<i class="icon icon-quo-right"></i></p>
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>该跑起来了。<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -421,7 +421,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2020 ljjandgy
+    		&copy; 2020 Ricardo
     	</div>
     </div>
   </div>
@@ -528,15 +528,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">并发编程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">jackson</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">java8</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">stream</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -552,15 +552,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">stream</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">shell</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -577,6 +577,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">idea</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
             
             <div class="clearfix"></div>

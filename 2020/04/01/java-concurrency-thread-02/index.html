@@ -6,22 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>linux常用命令之crontab命令 | ljjandgy</title>
+  <title>java并发编程之线程生命周期及start方法解析 | Ricardo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="crontab是管理系统和用户需要周期性执行的任务的命令当安装完成操作系统后，默认会安装此服务工具，并且会自动启动crond进程，crond进程每分钟会定期检查是否有要执行的任务，如果有要执行的任务，则自动执行该任务。 telnet命令格式为：crontab […OPTION] [URL]">
+  <meta name="description" content="线程生命周期主要有以下几种状态：  New Runnable Blocked Running Terminated">
 <meta property="og:type" content="article">
-<meta property="og:title" content="linux常用命令之crontab命令">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;23&#x2F;linux-command-crontab&#x2F;index.html">
-<meta property="og:site_name" content="ljjandgy">
-<meta property="og:description" content="crontab是管理系统和用户需要周期性执行的任务的命令当安装完成操作系统后，默认会安装此服务工具，并且会自动启动crond进程，crond进程每分钟会定期检查是否有要执行的任务，如果有要执行的任务，则自动执行该任务。 telnet命令格式为：crontab […OPTION] [URL]">
+<meta property="og:title" content="java并发编程之线程生命周期及start方法解析">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;04&#x2F;01&#x2F;java-concurrency-thread-02&#x2F;index.html">
+<meta property="og:site_name" content="Ricardo">
+<meta property="og:description" content="线程生命周期主要有以下几种状态：  New Runnable Blocked Running Terminated">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-02-23T10:06:22.000Z">
-<meta property="article:modified_time" content="2020-02-23T10:56:19.003Z">
-<meta property="article:author" content="ljjandgy">
-<meta property="article:tag" content="linux">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;04&#x2F;01&#x2F;java-concurrency-thread-02&#x2F;thread-flow.png">
+<meta property="article:published_time" content="2020-04-01T13:17:59.000Z">
+<meta property="article:modified_time" content="2020-04-06T04:05:00.095Z">
+<meta property="article:author" content="Ricardo">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="并发编程">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;04&#x2F;01&#x2F;java-concurrency-thread-02&#x2F;thread-flow.png">
   
-    <link rel="alternative" href="/atom.xml" title="ljjandgy" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="Ricardo" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -51,10 +54,10 @@
 			<img src="/assets/img/head.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">ljjandgy</a></h1>
+		  <h1 class="header-author"><a href="/">Ricardo</a></h1>
 		</hgroup>
 		
-		<p class="header-subtitle">多少红颜爱傻逼，多少傻逼不珍惜。</p>
+		<p class="header-subtitle">该跑起来了。</p>
 		
 
 		<nav class="header-menu">
@@ -113,10 +116,10 @@
 				<img src="/assets/img/head.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">ljjandgy</h1>
+			  <h1 class="header-author js-header-author">Ricardo</h1>
 			</hgroup>
 			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>多少红颜爱傻逼，多少傻逼不珍惜。<i class="icon icon-quo-right"></i></p>
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>该跑起来了。<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -165,14 +168,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-linux-command-crontab" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-java-concurrency-thread-02" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      linux常用命令之crontab命令
+      java并发编程之线程生命周期及start方法解析
     </h1>
   
 
@@ -183,8 +186,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2020/02/23/linux-command-crontab/" class="archive-article-date">
-  	<time datetime="2020-02-23T10:06:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-23</time>
+<a href="/2020/04/01/java-concurrency-thread-02/" class="archive-article-date">
+  	<time datetime="2020-04-01T13:17:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-01</time>
 </a>
 
         
@@ -192,34 +195,28 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong><em>crontab是管理系统和用户需要周期性执行的任务的命令</em></strong><br>当安装完成操作系统后，默认会安装此服务工具，并且会自动启动crond进程，crond进程每分钟会定期检查是否有要执行的任务，如果有要执行的任务，则自动执行该任务。</p>
-<h3 id="telnet命令格式为："><a href="#telnet命令格式为：" class="headerlink" title="telnet命令格式为："></a>telnet命令格式为：</h3><p><strong>crontab […OPTION] [URL]</strong></p>
-<a id="more"></a>
-<h3 id="主要作用"><a href="#主要作用" class="headerlink" title="主要作用"></a>主要作用</h3><ul>
-<li>下载和上传文件</li>
-</ul>
-<h3 id="参数详解"><a href="#参数详解" class="headerlink" title="参数详解"></a>参数详解</h3><ul>
-<li>crontab文件：指定包含待执行任务的crontab文件。</li>
-</ul>
-<h3 id="选项详解"><a href="#选项详解" class="headerlink" title="选项详解"></a>选项详解</h3><ul>
-<li>-e：编辑该用户的计时器设置（相当于是直接对用户的crontab文件使用vi命令）；</li>
-<li>-l：列出该用户的计时器设置；</li>
-<li>-r：删除该用户的计时器设置；</li>
-<li>-u&lt;用户名称&gt;：指定要设定计时器的用户名称。</li>
-</ul>
-<h3 id="常用实例"><a href="#常用实例" class="headerlink" title="常用实例"></a>常用实例</h3><p>1.crontab服务操作</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#启动</span><br><span class="line">systemctl start crontab</span><br><span class="line">#关闭</span><br><span class="line">systemctl stop crontab</span><br><span class="line">#重新启动</span><br><span class="line">systemctl restart crontab</span><br><span class="line">#重新加载配置</span><br><span class="line">systemctl reload crontab</span><br></pre></td></tr></table></figure>
-<p>2.修改cron表达式配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crontab -e</span><br></pre></td></tr></table></figure>
-<p>3.查看当前定时任务</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">corntab -l</span><br></pre></td></tr></table></figure>
+        <p>线程生命周期主要有以下几种状态：</p>
+<ul>
+<li>New</li>
+<li>Runnable</li>
+<li>Blocked</li>
+<li>Running</li>
+<li>Terminated<a id="more"></a>
 
-<h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><blockquote>
-<p>crontab表达式文件详解</p>
-<blockquote>
-<p>[cron表达式] [commnad]</p>
-</blockquote>
-</blockquote>
+</li>
+</ul>
+<h4 id="生命周期分析"><a href="#生命周期分析" class="headerlink" title="生命周期分析"></a>生命周期分析</h4><p>New：线程刚被创建时的状态。java中线程刚被new出来，就是这个状态。<br>Runnable：可以被cpu调度的线程就处于这个状态。java中，调用了start方法的线程就是处于这个状态。<br>Blocked：简单来说就是被阻塞的线程的状态。但是这个状态包含很多种情况，常见的有：</p>
+<ul>
+<li>争抢锁</li>
+<li>线程被wait/join，此时的状态也可以叫做<strong>WAITING</strong></li>
+<li>线程sleep</li>
+<li>被调用wait/join的定时版本，此时状态也可称作<strong>TIMED_WAIT</strong><br>Running：线程被CPU调度时的状态。<br>Terminated：线程运行完毕或者线程被中断后的状态,比如抛出异常或调用stop方法。<br>具体流转图如下所示：<br><img src="thread-flow.png" alt="线程生命周期图"></li>
+</ul>
+<h4 id="start-方法分析"><a href="#start-方法分析" class="headerlink" title="start()方法分析"></a>start()方法分析</h4><p>上面讲生命周期时有说过，线程调用start方法后才会从<strong>NEW</strong>状态装换为<strong>RUNNABLE</strong>状态。那么现在让我们先一起来看看start方法具体内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line">     * Causes this thread to begin execution; the Java Virtual Machine</span><br><span class="line">     * calls the &lt;code&gt;run&lt;&#x2F;code&gt; method of this thread.</span><br><span class="line">     * &lt;p&gt;</span><br><span class="line">     * The result is that two threads are running concurrently: the</span><br><span class="line">     * current thread (which returns from the call to the</span><br><span class="line">     * &lt;code&gt;start&lt;&#x2F;code&gt; method) and the other thread (which executes its</span><br><span class="line">     * &lt;code&gt;run&lt;&#x2F;code&gt; method).</span><br><span class="line">     * &lt;p&gt;</span><br><span class="line">     * It is never legal to start a thread more than once.</span><br><span class="line">     * In particular, a thread may not be restarted once it has completed</span><br><span class="line">     * execution.</span><br><span class="line">     *</span><br><span class="line">     * @exception  IllegalThreadStateException  if the thread was already</span><br><span class="line">     *               started.</span><br><span class="line">     * @see        #run()</span><br><span class="line">     * @see        #stop()</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public synchronized void start() &#123;</span><br><span class="line">        &#x2F;**</span><br><span class="line">         * This method is not invoked for the main method thread or &quot;system&quot;</span><br><span class="line">         * group threads created&#x2F;set up by the VM. Any new functionality added</span><br><span class="line">         * to this method in the future may have to also be added to the VM.</span><br><span class="line">         *</span><br><span class="line">         * A zero status value corresponds to state &quot;NEW&quot;.</span><br><span class="line">         *&#x2F;</span><br><span class="line">        if (threadStatus !&#x3D; 0)</span><br><span class="line">            throw new IllegalThreadStateException();</span><br><span class="line"></span><br><span class="line">        &#x2F;* Notify the group that this thread is about to be started</span><br><span class="line">         * so that it can be added to the group&#39;s list of threads</span><br><span class="line">         * and the group&#39;s unstarted count can be decremented. *&#x2F;</span><br><span class="line">        group.add(this);</span><br><span class="line"></span><br><span class="line">        boolean started &#x3D; false;</span><br><span class="line">        try &#123;</span><br><span class="line">            start0();</span><br><span class="line">            started &#x3D; true;</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            try &#123;</span><br><span class="line">                if (!started) &#123;</span><br><span class="line">                    group.threadStartFailed(this);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; catch (Throwable ignore) &#123;</span><br><span class="line">                &#x2F;* do nothing. If start0 threw a Throwable then</span><br><span class="line">                  it will be passed up the call stack *&#x2F;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到，代码一开始，就判断threadStatus是否不等于0，等于0就抛出异常。这就是为啥一个线程启动两次会报错的原因。<strong>因为调用start后，threadStatus将变得不等于0。</strong></p>
+<p>接下来就是线程启动的代码了，<strong>其中start0()方法是一个本地方法，用于创建线程并让线程执行（回调）run()方法。</strong></p>
+<p><strong>Thread类在进行此处的设计时其实使用了模板方法模式，其中start方法就是模板方法，而run方法就是允许用户自定义的方法。</strong></p>
 
       
 
@@ -233,7 +230,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">并发编程</a>
         		</li>
       		
 		</ul>
@@ -245,7 +246,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
+        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
         		</li>
       		
 		</ul>
@@ -300,7 +301,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/02/23/linux-command-crontab/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/04/01/java-concurrency-thread-02/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -314,18 +315,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/02/24/maven-pom/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/04/01/java-concurrency-thread-03/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          maven之pom文件
+          java并发编程之利用多线程实现一个银行叫号系统
         
       </div>
     </a>
   
   
-    <a href="/2020/02/23/linux-command-curl/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">linux常用命令之curl命令</div>
+    <a href="/2020/03/31/java-concurrency-thread-create-base-01/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">java并发编程之创建线程的基本方式</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -368,7 +369,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2020 ljjandgy
+    		&copy; 2020 Ricardo
     	</div>
     </div>
   </div>
@@ -475,15 +476,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">并发编程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">jackson</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">java8</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">stream</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -499,15 +500,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">stream</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">shell</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -524,6 +525,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">idea</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
             
             <div class="clearfix"></div>

@@ -6,23 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>linux工具之Crontab | ljjandgy</title>
+  <title>linux工具之Crontab | Ricardo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Crontab是cron table的缩写，它是cron（linux内置线程）的作业列表。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux工具之Crontab">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;03&#x2F;29&#x2F;linux-tools-corntab&#x2F;index.html">
-<meta property="og:site_name" content="ljjandgy">
+<meta property="og:site_name" content="Ricardo">
 <meta property="og:description" content="Crontab是cron table的缩写，它是cron（linux内置线程）的作业列表。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-03-29T13:40:46.000Z">
-<meta property="article:modified_time" content="2020-03-29T15:11:37.416Z">
-<meta property="article:author" content="ljjandgy">
+<meta property="article:modified_time" content="2020-03-30T13:31:17.821Z">
+<meta property="article:author" content="Ricardo">
 <meta property="article:tag" content="linux">
 <meta property="article:tag" content="工具">
 <meta name="twitter:card" content="summary">
   
-    <link rel="alternative" href="/atom.xml" title="ljjandgy" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="Ricardo" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -52,10 +52,10 @@
 			<img src="/assets/img/head.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">ljjandgy</a></h1>
+		  <h1 class="header-author"><a href="/">Ricardo</a></h1>
 		</hgroup>
 		
-		<p class="header-subtitle">多少红颜爱傻逼，多少傻逼不珍惜。</p>
+		<p class="header-subtitle">该跑起来了。</p>
 		
 
 		<nav class="header-menu">
@@ -114,10 +114,10 @@
 				<img src="/assets/img/head.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">ljjandgy</h1>
+			  <h1 class="header-author js-header-author">Ricardo</h1>
 			</hgroup>
 			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>多少红颜爱傻逼，多少傻逼不珍惜。<i class="icon icon-quo-right"></i></p>
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>该跑起来了。<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -211,15 +211,9 @@
 </ul>
 <h4 id="设置Crontab任务"><a href="#设置Crontab任务" class="headerlink" title="设置Crontab任务"></a>设置Crontab任务</h4><p>Crontab任务格式如下：<br>**[cron表达式] [脚本/命令] **<br>其中cron表达式具体规则如下:</p>
 <ul>
-<li><ul>
-<li>取所有数字</li>
-</ul>
-</li>
+<li>* 取所有数字</li>
 <li>/ 表示每过多少数字</li>
-<li><ul>
-<li>表示从多少到多少 1-15就是从1到15</li>
-</ul>
-</li>
+<li>- 表示从多少到多少 1-15就是从1到15</li>
 <li>, 表示散列数字，比如1,5就是1或者5<br>cron支持5个值，分别代表分钟 小时 日 月 周<br>比如每分钟的cron表达式为：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* * * * *</span><br></pre></td></tr></table></figure>
 每小时第3或者第20分钟就是：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3,20 * * * *</span><br></pre></td></tr></table></figure>
 </li>
@@ -322,6 +316,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2020/03/31/java-concurrency-thread-create-base-01/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          java并发编程之创建线程的基本方式
+        
+      </div>
+    </a>
+  
   
     <a href="/2020/03/28/java-jvm-gc-log/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">java虚拟机之gc日志阅读</div>
@@ -367,7 +370,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2020 ljjandgy
+    		&copy; 2020 Ricardo
     	</div>
     </div>
   </div>
@@ -474,15 +477,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">并发编程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">jackson</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">java8</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">stream</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -498,15 +501,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">stream</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">shell</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -523,6 +526,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">idea</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
             
             <div class="clearfix"></div>
