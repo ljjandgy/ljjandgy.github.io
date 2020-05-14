@@ -16,7 +16,7 @@
 <meta property="og:description" content="steam是java8出现的java新成员，它能以声明性方式操作集合。它具有以下特点：  声明性（直接说明要完成什么） 可复合（表达式可以连在一起使用） 可并行（可以快捷的开启多线程）现在来让我们一起学习java.stream吧">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-03-05T14:10:15.000Z">
-<meta property="article:modified_time" content="2020-03-13T12:04:37.293Z">
+<meta property="article:modified_time" content="2020-05-14T14:04:10.083Z">
 <meta property="article:author" content="Ricardo">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="java8">
@@ -213,7 +213,7 @@
 <li>中间（Intermediate）操作流（定义对流的具体执行的操作，采用构建器模式设计，每一步都返回stream对象）</li>
 <li>终端（Terminal）操作（真实的去执行流的操作，并生成结果）</li>
 </ul>
-<h4 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h4><p>stream的映射就是获取单个流对象的某个信息。<br>常用于映射的方法有map和flatMap。其中flatMap可以把多个流扁平化为一个流：</p>
+<h4 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h4><p>stream的映射就是获取单个流对象的某个信息。<br>常用于映射的方法有map和flatMap。其中flatMap可以把多个流扁平化为一个流（必须返回对象流，不能返回数值流）：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;flatMap 把多个流扁平化为一个流,常用于合并流</span><br><span class="line">String[] arrayOfWords &#x3D; &#123;&quot;Goodbye&quot;, &quot;World&quot;&#125;;</span><br><span class="line">Stream&lt;String&gt; streamOfwords &#x3D; Arrays.stream(arrayOfWords);</span><br><span class="line">List&lt;String&gt; charList &#x3D;  streamOfwords.map(word-&gt;word.split(&quot;&quot;))</span><br><span class="line">                .flatMap(Arrays::stream).distinct()</span><br><span class="line">                .collect(Collectors.toList());</span><br></pre></td></tr></table></figure>
 <p>上面的代码就可以获取数组中所有的字符。</p>
 <h4 id="查找和匹配"><a href="#查找和匹配" class="headerlink" title="查找和匹配"></a>查找和匹配</h4><p>stream中提供大量的用于查找和匹配的方法，比如：</p>
@@ -515,6 +515,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">数据库中间件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">shardingSphere</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
@@ -524,6 +536,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">java基础</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -539,6 +555,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">stream</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">jvm</a>
               </li>
              
@@ -551,15 +571,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">stream</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">shell</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">maven</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -571,15 +583,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">shell</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">开发工具</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">idea</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
             
             <div class="clearfix"></div>
