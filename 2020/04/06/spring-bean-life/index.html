@@ -15,14 +15,14 @@
 <meta property="og:site_name" content="Ricardo">
 <meta property="og:description" content="spring作为一个bean容器，bean在其中可以说是一个举足轻重的地位。所以今天我们一起来分析下bean的生命周期。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;04&#x2F;06&#x2F;spring-bean-life&#x2F;spring-bean-life&#x2F;spring-create.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;04&#x2F;06&#x2F;spring-bean-life&#x2F;spring-create.png">
 <meta property="article:published_time" content="2020-04-06T14:24:16.000Z">
-<meta property="article:modified_time" content="2020-04-28T14:56:18.571Z">
+<meta property="article:modified_time" content="2020-05-20T14:15:45.690Z">
 <meta property="article:author" content="Ricardo">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="spring">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;04&#x2F;06&#x2F;spring-bean-life&#x2F;spring-bean-life&#x2F;spring-create.png">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;04&#x2F;06&#x2F;spring-bean-life&#x2F;spring-create.png">
   
     <link rel="alternative" href="/atom.xml" title="Ricardo" type="application/atom+xml">
   
@@ -207,7 +207,7 @@
 <li>如果实现了 InitializingBean 接口，则会调用 afterPropertiesSet 方法</li>
 <li>调用 Bean 自身定义的 init 方法</li>
 <li>调用 BeanPostProcessor 的后置初始化方法 postProcessAfterInitialization</li>
-<li>创建过程完毕<br>具体流程如下所示：<br><img src="spring-bean-life/spring-create.png" alt="spring bean创建流程"></li>
+<li>创建过程完毕<br>具体流程如下所示：<br><img src="spring-create.png" alt="spring bean创建流程"></li>
 </ul>
 <h4 id="销毁bean"><a href="#销毁bean" class="headerlink" title="销毁bean"></a>销毁bean</h4><p>相对于创建bean，销毁bean就要简单很多了。销毁过程为先调用DisposableBean 的 destroy 方法然后调用Bean 自身定制的 destroy 方法</p>
 
@@ -457,15 +457,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">数据库中间件</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">shardingSphere</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -513,7 +513,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">shell</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -525,15 +533,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">shell</a>
+                <a href="javascript:void(0)" class="js-tag color4">Ioc</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ioc</a>
               </li>
              
               <li class="article-tag-list-item">
