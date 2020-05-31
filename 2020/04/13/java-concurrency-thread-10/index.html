@@ -16,7 +16,7 @@
 <meta property="og:description" content="在Thread的API中，提供了几个和中断线程相关的方法，那么这些方法具体是怎么用的叻？">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-04-13T13:54:22.000Z">
-<meta property="article:modified_time" content="2020-04-13T14:26:50.074Z">
+<meta property="article:modified_time" content="2020-05-30T15:39:27.688Z">
 <meta property="article:author" content="Ricardo">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="并发编程">
@@ -205,7 +205,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public boolean isInterrupted() &#123;</span><br><span class="line">        return isInterrupted(false);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public static boolean interrupted() &#123;</span><br><span class="line">        return currentThread().isInterrupted(true);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>可以看到，其中一个方法是静态的。那么静态的方法是在什么场景下用的叻？</p>
-<p>很简单，<strong>静态方法其实是用于在Runnable中获取中断状态</strong>。<br>因为Runnable中没法调用非静态方法来获取状态，所以专门设计了一个静态方法来在Runnable获取中断状态。</p>
+<p>很简单，<strong>静态方法其实是用于在Runnable中获取中断状态</strong>。<br>因为Runnable中没法调用非静态方法来获取状态，所以专门设计了一个静态方法来在Runnable获取中断状态。<br>不过，这个方法会<strong>重置线程的中断状态，但是Thread类的方法不会重置</strong>。</p>
 <h4 id="Blocked状态下的中断"><a href="#Blocked状态下的中断" class="headerlink" title="Blocked状态下的中断"></a>Blocked状态下的中断</h4><p>针对Thread的interrupt()方法，阅读官方API文档可知，当被中断的线程处于Blocked状态时，线程将抛出InterruptedException异常。<br>我们以一个sleep的例子来证明下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Thread t1 &#x3D; new Thread()&#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void run() &#123;</span><br><span class="line">        while (true)&#123;</span><br><span class="line">            try &#123;</span><br><span class="line">                sleep(100);</span><br><span class="line">            &#125; catch (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">                System.out.println(&quot;我die了&quot;);</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">t1.start();</span><br><span class="line">System.out.println(t1.isInterrupted());</span><br><span class="line">t1.interrupt();</span><br><span class="line">System.out.println(t1.isInterrupted());</span><br></pre></td></tr></table></figure>
 <p>运行代码我们就会发现，一旦t1线程<strong>被interrupt，那么线程就会进入catch代码块，跳出循环</strong>。这就证明官方文档确实没有欺骗我们。<br>当线程在Block的状态下被interrupt，确实会抛出一个InterruptedException。</p>
@@ -457,6 +457,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
@@ -469,11 +477,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+                <a href="javascript:void(0)" class="js-tag color2">java基础</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -481,19 +485,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">java基础</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">并发编程</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">jackson</a>
+                <a href="javascript:void(0)" class="js-tag color1">java8</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">java8</a>
+                <a href="javascript:void(0)" class="js-tag color3">jackson</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -537,11 +537,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ioc</a>
+                <a href="javascript:void(0)" class="js-tag color4">ioc</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ioc</a>
+                <a href="javascript:void(0)" class="js-tag color4">Ioc</a>
               </li>
              
               <li class="article-tag-list-item">

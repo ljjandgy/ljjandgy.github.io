@@ -6,24 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>java8流之收集器简介 | Ricardo</title>
+  <title>数据结构基础之单链表 | Ricardo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="之前有讲到，流分为两种操作：  中间操作 终端操作其中中间操作可以链接起来，它们只会将一个流转换为另一个流，并不会消耗流。终端操作的话会直接触发流操作，耗光流并产生一个结果。其具体操作时间可以通过优化流来减少。之前已经介绍了常用的中间操作，现在一起来研究终端操作。">
+  <meta name="description" content="单链表（linked list）是一种基础的数据结构，其特点如下：  以节点的方式来存储数据 每个节点包含两个域，一个是数据域，用于存储节点元素信息，另一个是next域，用于存储下一个节点的地址信息 节点与节点之间存储地址是不连续的（数组是连续的）">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java8流之收集器简介">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;03&#x2F;17&#x2F;java-java8-stream-collectors&#x2F;index.html">
+<meta property="og:title" content="数据结构基础之单链表">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;05&#x2F;20&#x2F;data-structure-base-4&#x2F;index.html">
 <meta property="og:site_name" content="Ricardo">
-<meta property="og:description" content="之前有讲到，流分为两种操作：  中间操作 终端操作其中中间操作可以链接起来，它们只会将一个流转换为另一个流，并不会消耗流。终端操作的话会直接触发流操作，耗光流并产生一个结果。其具体操作时间可以通过优化流来减少。之前已经介绍了常用的中间操作，现在一起来研究终端操作。">
+<meta property="og:description" content="单链表（linked list）是一种基础的数据结构，其特点如下：  以节点的方式来存储数据 每个节点包含两个域，一个是数据域，用于存储节点元素信息，另一个是next域，用于存储下一个节点的地址信息 节点与节点之间存储地址是不连续的（数组是连续的）">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;03&#x2F;17&#x2F;java-java8-stream-collectors&#x2F;collect.png">
-<meta property="article:published_time" content="2020-03-17T04:14:15.000Z">
-<meta property="article:modified_time" content="2020-03-17T14:08:45.772Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;05&#x2F;20&#x2F;data-structure-base-4&#x2F;head-linked-list.png">
+<meta property="article:published_time" content="2020-05-20T14:31:36.000Z">
+<meta property="article:modified_time" content="2020-05-31T15:23:56.845Z">
 <meta property="article:author" content="Ricardo">
-<meta property="article:tag" content="java">
-<meta property="article:tag" content="java8">
-<meta property="article:tag" content="stream">
+<meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;03&#x2F;17&#x2F;java-java8-stream-collectors&#x2F;collect.png">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;05&#x2F;20&#x2F;data-structure-base-4&#x2F;head-linked-list.png">
   
     <link rel="alternative" href="/atom.xml" title="Ricardo" type="application/atom+xml">
   
@@ -169,14 +167,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-java-java8-stream-collectors" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-data-structure-base-4" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      java8流之收集器简介
+      数据结构基础之单链表
     </h1>
   
 
@@ -187,8 +185,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2020/03/17/java-java8-stream-collectors/" class="archive-article-date">
-  	<time datetime="2020-03-17T04:14:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-17</time>
+<a href="/2020/05/20/data-structure-base-4/" class="archive-article-date">
+  	<time datetime="2020-05-20T14:31:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-20</time>
 </a>
 
         
@@ -196,23 +194,33 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>之前有讲到，流分为<strong>两种操作</strong>：</p>
+        <p><strong>单链表（linked list）是一种基础的数据结构</strong>，其特点如下：</p>
 <ul>
-<li>中间操作</li>
-<li>终端操作<br>其中中间操作<strong>可以链接起来，它们只会将一个流转换为另一个流，并不会消耗流</strong>。<br>终端操作的话会<strong>直接触发流操作，耗光流并产生一个结果</strong>。其具体操作时间可以通过优化流来减少。<br>之前已经介绍了常用的中间操作，现在一起来研究终端操作。<a id="more"></a>
-
+<li>以节点的方式来存储数据</li>
+<li>每个节点包含两个域，一个是数据域，用于存储节点元素信息，另一个是next域，用于存储下一个节点的地址信息</li>
+<li>节点与节点之间存储地址是不连续的（数组是连续的）<a id="more"></a>
+链表主要有两种，分别是<strong>带头结点的链表和不带头结点的链表</strong>，比如下图就是带头结点的单链表的结构<br><img src="head-linked-list.png" alt="带头结点的"></li>
+</ul>
+<p><strong>通常来说，链表的头结点是不存放任何数据的，其作用只是用于表示链表的头</strong>。</p>
+<h4 id="创建一个单链表"><a href="#创建一个单链表" class="headerlink" title="创建一个单链表"></a>创建一个单链表</h4><p>接下来，我们使用java创建一个带头结点的单链表：</p>
+<ol>
+<li><p>创建一个Node类，表示链表单个节点：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 链表单个节点</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class Node &#123;</span><br><span class="line">    private Object data;</span><br><span class="line">    private Node next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到，Node类拥有两个域，分别对应定义中的data域和next域。</p>
 </li>
-</ul>
-<h4 id="收集器"><a href="#收集器" class="headerlink" title="收集器"></a>收集器</h4><p><strong>collect方法</strong>作为常见的终端操作，它会对流进行<strong>归约操作</strong>，把流汇总成一个对象。<br>collect方法能够接受一个<strong>收集器（Collectors接口的实现类）</strong>，最终<strong>把流汇总成什么对象是由收集器确定的</strong>。<br>具体操作流程如下：<br><img src="collect.png" alt="收集器操作流程"></p>
-<p>在Collectors接口中为我们预定了大量收集器，我只需要调用静态方法即可直接获得，比如最常见的Collectors.toList()：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public static &lt;T&gt;</span><br><span class="line">    Collector&lt;T, ?, List&lt;T&gt;&gt; toList() &#123;</span><br><span class="line">        return new CollectorImpl&lt;&gt;((Supplier&lt;List&lt;T&gt;&gt;) ArrayList::new, List::add,</span><br><span class="line">                                   (left, right) -&gt; &#123; left.addAll(right); return left; &#125;,</span><br><span class="line">                                   CH_ID);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>从代码可以看出，该方法返回了一个把流对象转换为集合的收集器对象。</p>
-<p>Collectors接口提供的预定义收集器主要提供三种功能：</p>
+<li><p>使用Node类创建链表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 通过把新对象都放到链表后面实现的创建</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class SingleLinkedListDemo1 &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        InitSingleLinkedList linkedList &#x3D; new InitSingleLinkedList();</span><br><span class="line">        linkedList.add(new Node(&quot;first&quot;));</span><br><span class="line">        linkedList.add(new Node(&quot;second&quot;));</span><br><span class="line">        linkedList.add(new Node(&quot;third&quot;));</span><br><span class="line">        linkedList.add(new Node(&quot;forth&quot;));</span><br><span class="line">        &#x2F;&#x2F;查看所有元素</span><br><span class="line">        linkedList.list();</span><br><span class="line">        &#x2F;&#x2F;删除最后的节点</span><br><span class="line">        linkedList.remove();</span><br><span class="line">        &#x2F;&#x2F;查看所有元素</span><br><span class="line">        linkedList.list();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class InitSingleLinkedList&#123;</span><br><span class="line">    &#x2F;&#x2F;定义头结点，头结点的数据域为空</span><br><span class="line">    private Node headNode &#x3D; new Node(&quot;&quot;);</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 添加节点</span><br><span class="line">     * @param node 需要添加的节点对象</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public void add(Node node)&#123;</span><br><span class="line">        &#x2F;&#x2F;定义指针，首先指向头结点</span><br><span class="line">        Node temp &#x3D; headNode;</span><br><span class="line">        while (true)&#123;</span><br><span class="line">            &#x2F;&#x2F;找到了链表最后就跳出循环</span><br><span class="line">            if (temp.getNext()&#x3D;&#x3D;null)&#123;</span><br><span class="line">                temp.setNext(node);</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">            temp &#x3D; temp.getNext();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 遍历链表，输出链表内容</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public void list()&#123;</span><br><span class="line">        if (headNode.getNext()&#x3D;&#x3D;null)&#123;</span><br><span class="line">            System.out.println(&quot;链表为空&quot;);</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        Node temp &#x3D; headNode;</span><br><span class="line">        while (true)&#123;</span><br><span class="line">            System.out.println(temp.toString());</span><br><span class="line">            &#x2F;&#x2F;到了队尾就跳出循环</span><br><span class="line">            if (temp.getNext()&#x3D;&#x3D;null)&#123;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">            temp &#x3D; temp.getNext();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 删除单链表最后一个节点</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public void remove()&#123;</span><br><span class="line">        if (headNode.getNext()&#x3D;&#x3D;null)&#123;</span><br><span class="line">            System.out.println(&quot;链表为空，不能删除&quot;);</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        Node temp &#x3D; headNode;</span><br><span class="line">        while (true)&#123;</span><br><span class="line">            &#x2F;&#x2F;如果本身有下一个节点，但是下一个点是最后一个节点时，就把最后一个节点的连接断开</span><br><span class="line">            if (temp.getNext()!&#x3D;null&amp;&amp;temp.getNext().getNext()&#x3D;&#x3D;null)&#123;</span><br><span class="line">                temp.setNext(null);</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">            temp &#x3D; temp.getNext();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述创建的单链表是允许用户操作链表末尾的带头节点的单链表。<br>当然，也可以创建能在特定位置进行插入或者删除的单链表，其操作其实和上面是类似。</p>
+</li>
+</ol>
+<p><strong>都是通过遍历和用户给出的限定条件（针对data域的）</strong>，以<strong>确定需要操作哪个节点</strong>，然后对节点进行操作（修改，删除/在其之前或者之后添加内容）。</p>
 <ul>
-<li>将流元素归约或汇总成一个值</li>
-<li>元素分组</li>
-<li>元素分区<br>至于具体内容，我们之后再继续研究。</li>
+<li>添加是把特点元素的next变为需要插入的元素，然后插入元素的next为特点元素的next</li>
+<li>删除是把需要删除节点的<strong>next给上一个节点即可</strong></li>
 </ul>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><blockquote>
+<p>其实单链表就是一组对象，每个对象除记录自身数据信息（data域）外（头结点data域为空），还记录了自己的下一个节点信息（next域）。</p>
+</blockquote>
 
       
 
@@ -226,15 +234,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">java8</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">stream</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
         		</li>
       		
 		</ul>
@@ -246,7 +246,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
+        			<a href="/categories/数据结构//" class="article-tag-list-link color5">数据结构</a>
         		</li>
       		
 		</ul>
@@ -301,7 +301,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/03/17/java-java8-stream-collectors/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/20/data-structure-base-4/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -315,18 +315,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/03/17/java-jvm-hotspot/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          java虚拟机之HotSpot垃圾收集前的准备工作
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/03/16/java-jvm-gc-algorithm/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">java虚拟机之垃圾收集算法</div>
+    <a href="/2020/05/19/data-structure-base-3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">数据结构基础之环形队列</div>
       <i class="icon-circle-right"></i>
     </a>
   
