@@ -17,7 +17,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;05&#x2F;20&#x2F;data-structure-base-4&#x2F;head-linked-list.png">
 <meta property="article:published_time" content="2020-05-20T14:31:36.000Z">
-<meta property="article:modified_time" content="2020-05-31T15:23:56.845Z">
+<meta property="article:modified_time" content="2020-06-21T10:18:24.174Z">
 <meta property="article:author" content="Ricardo">
 <meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
@@ -56,7 +56,7 @@
 		  <h1 class="header-author"><a href="/">Ricardo</a></h1>
 		</hgroup>
 		
-		<p class="header-subtitle">该跑起来了。</p>
+		<p class="header-subtitle">先思考，后设计，最后再动手。</p>
 		
 
 		<nav class="header-menu">
@@ -118,7 +118,7 @@
 			  <h1 class="header-author js-header-author">Ricardo</h1>
 			</hgroup>
 			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>该跑起来了。<i class="icon icon-quo-right"></i></p>
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>先思考，后设计，最后再动手。<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -202,18 +202,12 @@
 链表主要有两种，分别是<strong>带头结点的链表和不带头结点的链表</strong>，比如下图就是带头结点的单链表的结构<br><img src="head-linked-list.png" alt="带头结点的"></li>
 </ul>
 <p><strong>通常来说，链表的头结点是不存放任何数据的，其作用只是用于表示链表的头</strong>。</p>
-<h4 id="创建一个单链表"><a href="#创建一个单链表" class="headerlink" title="创建一个单链表"></a>创建一个单链表</h4><p>接下来，我们使用java创建一个带头结点的单链表：</p>
-<ol>
-<li><p>创建一个Node类，表示链表单个节点：</p>
+<h4 id="创建一个单链表"><a href="#创建一个单链表" class="headerlink" title="创建一个单链表"></a>创建一个单链表</h4><p>接下来，我们使用java创建一个带头结点的单链表：<br>1.创建一个Node类，表示链表单个节点：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 链表单个节点</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class Node &#123;</span><br><span class="line">    private Object data;</span><br><span class="line">    private Node next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>可以看到，Node类拥有两个域，分别对应定义中的data域和next域。</p>
-</li>
-<li><p>使用Node类创建链表</p>
+<p>2.使用Node类创建链表</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 通过把新对象都放到链表后面实现的创建</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class SingleLinkedListDemo1 &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        InitSingleLinkedList linkedList &#x3D; new InitSingleLinkedList();</span><br><span class="line">        linkedList.add(new Node(&quot;first&quot;));</span><br><span class="line">        linkedList.add(new Node(&quot;second&quot;));</span><br><span class="line">        linkedList.add(new Node(&quot;third&quot;));</span><br><span class="line">        linkedList.add(new Node(&quot;forth&quot;));</span><br><span class="line">        &#x2F;&#x2F;查看所有元素</span><br><span class="line">        linkedList.list();</span><br><span class="line">        &#x2F;&#x2F;删除最后的节点</span><br><span class="line">        linkedList.remove();</span><br><span class="line">        &#x2F;&#x2F;查看所有元素</span><br><span class="line">        linkedList.list();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class InitSingleLinkedList&#123;</span><br><span class="line">    &#x2F;&#x2F;定义头结点，头结点的数据域为空</span><br><span class="line">    private Node headNode &#x3D; new Node(&quot;&quot;);</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 添加节点</span><br><span class="line">     * @param node 需要添加的节点对象</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public void add(Node node)&#123;</span><br><span class="line">        &#x2F;&#x2F;定义指针，首先指向头结点</span><br><span class="line">        Node temp &#x3D; headNode;</span><br><span class="line">        while (true)&#123;</span><br><span class="line">            &#x2F;&#x2F;找到了链表最后就跳出循环</span><br><span class="line">            if (temp.getNext()&#x3D;&#x3D;null)&#123;</span><br><span class="line">                temp.setNext(node);</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">            temp &#x3D; temp.getNext();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 遍历链表，输出链表内容</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public void list()&#123;</span><br><span class="line">        if (headNode.getNext()&#x3D;&#x3D;null)&#123;</span><br><span class="line">            System.out.println(&quot;链表为空&quot;);</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        Node temp &#x3D; headNode;</span><br><span class="line">        while (true)&#123;</span><br><span class="line">            System.out.println(temp.toString());</span><br><span class="line">            &#x2F;&#x2F;到了队尾就跳出循环</span><br><span class="line">            if (temp.getNext()&#x3D;&#x3D;null)&#123;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">            temp &#x3D; temp.getNext();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 删除单链表最后一个节点</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public void remove()&#123;</span><br><span class="line">        if (headNode.getNext()&#x3D;&#x3D;null)&#123;</span><br><span class="line">            System.out.println(&quot;链表为空，不能删除&quot;);</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        Node temp &#x3D; headNode;</span><br><span class="line">        while (true)&#123;</span><br><span class="line">            &#x2F;&#x2F;如果本身有下一个节点，但是下一个点是最后一个节点时，就把最后一个节点的连接断开</span><br><span class="line">            if (temp.getNext()!&#x3D;null&amp;&amp;temp.getNext().getNext()&#x3D;&#x3D;null)&#123;</span><br><span class="line">                temp.setNext(null);</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">            temp &#x3D; temp.getNext();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上述创建的单链表是允许用户操作链表末尾的带头节点的单链表。<br>当然，也可以创建能在特定位置进行插入或者删除的单链表，其操作其实和上面是类似。</p>
-</li>
-</ol>
-<p><strong>都是通过遍历和用户给出的限定条件（针对data域的）</strong>，以<strong>确定需要操作哪个节点</strong>，然后对节点进行操作（修改，删除/在其之前或者之后添加内容）。</p>
+<p>上述创建的单链表是允许用户操作链表末尾的带头节点的单链表。<br>当然，也可以创建能在特定位置进行插入或者删除的单链表，其操作其实和上面是类似。<br><strong>都是通过遍历和用户给出的限定条件（针对data域的）</strong>，以<strong>确定需要操作哪个节点</strong>，然后对节点进行操作（修改，删除/在其之前或者之后添加内容）。</p>
 <ul>
 <li>添加是把特点元素的next变为需要插入的元素，然后插入元素的next为特点元素的next</li>
 <li>删除是把需要删除节点的<strong>next给上一个节点即可</strong></li>
@@ -314,6 +308,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2020/05/28/mysql-base-collect/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          mysql入门知识整理
+        
+      </div>
+    </a>
   
   
     <a href="/2020/05/19/data-structure-base-3/" id="article-nav-older" class="article-nav-link-wrap">
@@ -467,23 +470,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">数据库中间件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">shardingSphere</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">java基础</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color5">并发编程</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">并发编程</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -499,11 +494,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
+                <a href="javascript:void(0)" class="js-tag color2">数据库中间件</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">网络通信</a>
+                <a href="javascript:void(0)" class="js-tag color5">shardingSphere</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -511,11 +510,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">shell</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color5">网络通信</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -523,11 +518,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">mysql必知必会</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -535,11 +538,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Ioc</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ioc</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ioc</a>
+                <a href="javascript:void(0)" class="js-tag color1">shell</a>
               </li>
              
               <li class="article-tag-list-item">
