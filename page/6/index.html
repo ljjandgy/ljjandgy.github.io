@@ -164,21 +164,21 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-linux-command-curl" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-java-jvm-collectors" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/23/linux-command-curl/">linux常用命令之curl命令</a>
+      <a class="article-title" href="/2020/03/18/java-jvm-collectors/">java虚拟机之垃圾收集器</a>
     </h1>
   
 
         
         
-<a href="/2020/02/23/linux-command-curl/" class="archive-article-date">
-  	<time datetime="2020-02-23T08:06:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-23</time>
+<a href="/2020/03/18/java-jvm-collectors/" class="archive-article-date">
+  	<time datetime="2020-03-18T13:07:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-18</time>
 </a>
 
         
@@ -186,8 +186,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong><em>curl是利用URL规则在命令行下工作的文件传输工具。</em></strong><br>其原理是利用URL规则进行操作，支持文件的上传和下载，是一款综合的传输工具（虽然被习惯性的称为下载工具）<br>curl支持包括HTTP、HTTPS、ftp等众多协议，还支持POST、cookies、认证、从指定偏移处下载部分文件、用户代理字符串、限速、文件大小、进度条等特征。<br>也可以直接进行http/https请求</p>
-<h3 id="telnet命令格式为："><a href="#telnet命令格式为：" class="headerlink" title="telnet命令格式为："></a>telnet命令格式为：</h3><p><strong>curl […OPTION] [URL]</strong></p>
+        <p>之前我们说到了常见的收集算法有<strong>标记-收集算法</strong>,<strong>复制算法</strong>，<strong>标记-整理算法</strong>。<br>不过，算法终究只是理论，而收集器才是算法真正的具体实践（基于算法去实际收集的组成）。</p>
         
       
 
@@ -201,7 +200,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jvm</a>
         		</li>
       		
 		</ul>
@@ -213,7 +216,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
+        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
         		</li>
       		
 		</ul>
@@ -222,7 +225,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/23/linux-command-curl/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/03/18/java-jvm-collectors/">展开全文 >></a>
         </p>
       
 
@@ -252,21 +255,21 @@
 
 
   
-    <article id="post-linux-command-systemctl" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-java-jvm-hotspot" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/22/linux-command-systemctl/">linux常用命令之systemctl命令</a>
+      <a class="article-title" href="/2020/03/17/java-jvm-hotspot/">java虚拟机之HotSpot垃圾收集前的准备工作</a>
     </h1>
   
 
         
         
-<a href="/2020/02/22/linux-command-systemctl/" class="archive-article-date">
-  	<time datetime="2020-02-22T15:06:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-22</time>
+<a href="/2020/03/17/java-jvm-hotspot/" class="archive-article-date">
+  	<time datetime="2020-03-17T13:03:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-17</time>
 </a>
 
         
@@ -274,8 +277,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong><em>systemctl是系统服务管理器指令。</em></strong> 它实际上将 service 和 chkconfig 这两个命令组合到一起。</p>
-<h3 id="systemctl命令格式为："><a href="#systemctl命令格式为：" class="headerlink" title="systemctl命令格式为："></a>systemctl命令格式为：</h3><p><strong>systemctl [操作] [服务名]</strong></p>
+        <p>今天让我们一起来看看<strong>HotSpot虚拟机</strong>是如何开始垃圾收集（gc）流程的。</p>
         
       
 
@@ -289,7 +291,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jvm</a>
         		</li>
       		
 		</ul>
@@ -301,7 +307,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
+        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
         		</li>
       		
 		</ul>
@@ -310,7 +316,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/22/linux-command-systemctl/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/03/17/java-jvm-hotspot/">展开全文 >></a>
         </p>
       
 
@@ -340,21 +346,21 @@
 
 
   
-    <article id="post-linux-command-ssh" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-java-java8-stream-collectors" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/22/linux-command-ssh/">linux常用命令之ssh命令</a>
+      <a class="article-title" href="/2020/03/17/java-java8-stream-collectors/">java8流之收集器简介</a>
     </h1>
   
 
         
         
-<a href="/2020/02/22/linux-command-ssh/" class="archive-article-date">
-  	<time datetime="2020-02-22T15:06:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-22</time>
+<a href="/2020/03/17/java-java8-stream-collectors/" class="archive-article-date">
+  	<time datetime="2020-03-17T04:14:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-17</time>
 </a>
 
         
@@ -362,8 +368,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong><em>ssh是openssh套件中的客户端连接工具。</em></strong> </p>
-<h3 id="telnet命令格式为："><a href="#telnet命令格式为：" class="headerlink" title="telnet命令格式为："></a>telnet命令格式为：</h3><p><strong>ssh […OPTION] [IP] [COMMAND]</strong></p>
+        <p>之前有讲到，流分为<strong>两种操作</strong>：</p>
+<ul>
+<li>中间操作</li>
+<li>终端操作<br>其中中间操作<strong>可以链接起来，它们只会将一个流转换为另一个流，并不会消耗流</strong>。<br>终端操作的话会<strong>直接触发流操作，耗光流并产生一个结果</strong>。其具体操作时间可以通过优化流来减少。<br>之前已经介绍了常用的中间操作，现在一起来研究终端操作。
         
       
 
@@ -377,7 +385,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">java8</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">stream</a>
         		</li>
       		
 		</ul>
@@ -389,7 +405,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
+        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
         		</li>
       		
 		</ul>
@@ -398,7 +414,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/22/linux-command-ssh/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/03/17/java-java8-stream-collectors/">展开全文 >></a>
         </p>
       
 
@@ -428,21 +444,21 @@
 
 
   
-    <article id="post-linux-command-wget" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-java-jvm-gc-algorithm" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/22/linux-command-wget/">linux常用命令之wget命令</a>
+      <a class="article-title" href="/2020/03/16/java-jvm-gc-algorithm/">java虚拟机之垃圾收集算法</a>
     </h1>
   
 
         
         
-<a href="/2020/02/22/linux-command-wget/" class="archive-article-date">
-  	<time datetime="2020-02-22T15:06:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-22</time>
+<a href="/2020/03/16/java-jvm-gc-algorithm/" class="archive-article-date">
+  	<time datetime="2020-03-16T13:08:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-16</time>
 </a>
 
         
@@ -450,8 +466,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong><em>wget是linux系统的文件下载工具</em></strong><br>它具有稳定的特性，即使因为网络原因导致下载失败，其也会不断重试，直到文件被下载下来为止。<br>wget支持HTTP，HTTPS和FTP协议，可以使用HTTP代理。并且wget支持自动下载(后台下载)，也就是说开启wget下载文件之后，即使退出登录也没事。</p>
-<h3 id="wget命令格式为："><a href="#wget命令格式为：" class="headerlink" title="wget命令格式为："></a>wget命令格式为：</h3><p><strong>wget [OPTION] [URL地址]</strong></p>
+        <p>垃圾收集算法是垃圾回收的核心，下面就让我们一起了解下常见的几种垃圾收集算法。</p>
         
       
 
@@ -465,7 +480,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jvm</a>
         		</li>
       		
 		</ul>
@@ -477,7 +496,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
+        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
         		</li>
       		
 		</ul>
@@ -486,7 +505,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/22/linux-command-wget/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/03/16/java-jvm-gc-algorithm/">展开全文 >></a>
         </p>
       
 
@@ -516,21 +535,21 @@
 
 
   
-    <article id="post-linux-command-awk" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-java-net-base" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/22/linux-command-awk/">linux常用命令之awk命令</a>
+      <a class="article-title" href="/2020/03/15/java-net-base/">java网络通信基础</a>
     </h1>
   
 
         
         
-<a href="/2020/02/22/linux-command-awk/" class="archive-article-date">
-  	<time datetime="2020-02-22T12:02:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-22</time>
+<a href="/2020/03/15/java-net-base/" class="archive-article-date">
+  	<time datetime="2020-03-15T12:41:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-15</time>
 </a>
 
         
@@ -538,8 +557,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong><em>awk是一种编程语言，用于在linux/unix下对文本和数据进行处理。</em></strong><br>其数据来源可以是一个或多个文件，也可以是标准输入流，甚至是<strong>其他命令的输出值</strong>。<br>它支持用户自定义函数和动态正则表达式等先进功能，是linux/unix下的一个强大编程工具。<br>它可以直接在命令行中使用，但更常见的是作为脚本来使用。</p>
-<h3 id="awk命令格式为："><a href="#awk命令格式为：" class="headerlink" title="awk命令格式为："></a>awk命令格式为：</h3><p>1.命令行运行<br><strong>awk [OPTION] [script] …var=value</strong><br>2.脚本运行<br><strong>awk [OPTION] [scriptfile] …var=value</strong></p>
+        <p>网络是现代通信的基础。java作为第一个一开始就为网络应用而生的语言，其在网络方面肯定有很多应用。不过我们在学习java在网络中如何大展拳脚之前，还是先关注下网络本身吧。</p>
         
       
 
@@ -553,7 +571,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">网络通信</a>
         		</li>
       		
 		</ul>
@@ -565,7 +587,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
+        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
         		</li>
       		
 		</ul>
@@ -574,7 +596,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/22/linux-command-awk/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/03/15/java-net-base/">展开全文 >></a>
         </p>
       
 
@@ -604,21 +626,21 @@
 
 
   
-    <article id="post-linux-command-sed" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-java-jvm-gc-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/22/linux-command-sed/">linux常用命令之sed命令</a>
+      <a class="article-title" href="/2020/03/12/java-jvm-gc-1/">java虚拟机之怎么判断对象是否已“死”</a>
     </h1>
   
 
         
         
-<a href="/2020/02/22/linux-command-sed/" class="archive-article-date">
-  	<time datetime="2020-02-22T04:20:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-22</time>
+<a href="/2020/03/12/java-jvm-gc-1/" class="archive-article-date">
+  	<time datetime="2020-03-12T14:20:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-12</time>
 </a>
 
         
@@ -626,8 +648,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong><em>sed是linux提供的功能强大的流式文本处理工具。</em></strong><br>它是文本处理中非常重要的工具，能够完美的配合正则表达式使用，功能不同凡响。处理时，把当前处理的行存储在临时缓冲区中，称为“模式空间”（pattern space），接着用sed命令处理缓冲区中的内容，处理完成后，把缓冲区的内容送往屏幕。接着处理下一行，这样不断重复，直到文件末尾。文件内容并没有 改变，除非你使用重定向存储输出。Sed主要用来自动编辑一个或多个文件；简化对文件的反复操作；编写转换程序等。</p>
-<h3 id="sed命令格式为："><a href="#sed命令格式为：" class="headerlink" title="sed命令格式为："></a>sed命令格式为：</h3><p>1.命令中直接写脚本<br><strong>sed […OPTION] ‘command’ […FILE]</strong><br>2.使用文件中的脚本<br><strong>sed […OPTION] -f scriptfile […FILE]</strong> </p>
+        <p>人们常说，java和C艹之间只隔着<strong>内存动态分配和垃圾收集</strong>技术。<br>其中垃圾收集也是jvm的核心功能，不过在了解垃圾收集（Garbage Collection，GC）之前，我们需要先了解如果<strong>判断“谁”是垃圾</strong>，也就是<strong>哪些对象需要回收</strong>。</p>
         
       
 
@@ -641,7 +662,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jvm</a>
         		</li>
       		
 		</ul>
@@ -653,7 +678,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
+        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
         		</li>
       		
 		</ul>
@@ -662,7 +687,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/22/linux-command-sed/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/03/12/java-jvm-gc-1/">展开全文 >></a>
         </p>
       
 
@@ -692,21 +717,21 @@
 
 
   
-    <article id="post-linux-command-tail" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-java-jvm-oom" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/21/linux-command-tail/">linux常用命令之tail命令</a>
+      <a class="article-title" href="/2020/03/10/java-jvm-oom/">java虚拟机之OOM实战</a>
     </h1>
   
 
         
         
-<a href="/2020/02/21/linux-command-tail/" class="archive-article-date">
-  	<time datetime="2020-02-21T07:38:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-21</time>
+<a href="/2020/03/10/java-jvm-oom/" class="archive-article-date">
+  	<time datetime="2020-03-10T13:41:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-10</time>
 </a>
 
         
@@ -714,8 +739,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong><em>tail是用于显示文本末尾n行数据。</em></strong>和head命令效果相反。</p>
-<h3 id="tail命令格式为："><a href="#tail命令格式为：" class="headerlink" title="tail命令格式为："></a>tail命令格式为：</h3><p><strong>tail […OPTION] [FILE]</strong></p>
+        <p>OOM（OutOfMemory）异常在虚拟机的<strong>每个运算时数据区域都可能发生</strong>。所以，当发生OOM异常之后，如何分析异常是一个jvm使用者的必备技能。接下来我们看看各个运行时数据区域产生OOM异常时怎么去分析和处理。</p>
         
       
 
@@ -729,7 +753,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jvm</a>
         		</li>
       		
 		</ul>
@@ -741,7 +769,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
+        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
         		</li>
       		
 		</ul>
@@ -750,7 +778,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/21/linux-command-tail/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/03/10/java-jvm-oom/">展开全文 >></a>
         </p>
       
 
@@ -780,21 +808,21 @@
 
 
   
-    <article id="post-linux-command-head" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-java-jvm-base-compose" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/20/linux-command-head/">linux常用命令之head命令</a>
+      <a class="article-title" href="/2020/03/08/java-jvm-base-compose/">java虚拟机之运行时数据区域</a>
     </h1>
   
 
         
         
-<a href="/2020/02/20/linux-command-head/" class="archive-article-date">
-  	<time datetime="2020-02-20T15:06:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-20</time>
+<a href="/2020/03/08/java-jvm-base-compose/" class="archive-article-date">
+  	<time datetime="2020-03-08T13:43:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-08</time>
 </a>
 
         
@@ -802,8 +830,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong><em>head是用于显示文件开头部分内容的命令。</em></strong></p>
-<h3 id="head命令格式为："><a href="#head命令格式为：" class="headerlink" title="head命令格式为："></a>head命令格式为：</h3><p><strong>head […OPTION] […FILE]</strong></p>
+        <p>jvm(java Virtual Machine)是java环境运行的基础，现在就让我们走进jvm的世界，去了解java的根本吧。</p>
         
       
 
@@ -817,7 +844,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jvm</a>
         		</li>
       		
 		</ul>
@@ -829,7 +860,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
+        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
         		</li>
       		
 		</ul>
@@ -838,7 +869,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/20/linux-command-head/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/03/08/java-jvm-base-compose/">展开全文 >></a>
         </p>
       
 
@@ -868,21 +899,21 @@
 
 
   
-    <article id="post-linux-command-telnet" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-java-jvm-visit-object" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/20/linux-command-telnet/">linux常用命令之telnet命令</a>
+      <a class="article-title" href="/2020/03/08/java-jvm-visit-object/">java虚拟机之对象访问</a>
     </h1>
   
 
         
         
-<a href="/2020/02/20/linux-command-telnet/" class="archive-article-date">
-  	<time datetime="2020-02-20T15:06:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-20</time>
+<a href="/2020/03/08/java-jvm-visit-object/" class="archive-article-date">
+  	<time datetime="2020-03-08T13:43:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-08</time>
 </a>
 
         
@@ -890,8 +921,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong><em>telnet是用于登陆及管理主机的命令。</em></strong> 当然其也常被用作检测端口是否正常的命令。</p>
-<h3 id="telnet命令格式为："><a href="#telnet命令格式为：" class="headerlink" title="telnet命令格式为："></a>telnet命令格式为：</h3><p><strong>telnet […OPTION] [IP] [PORT]</strong></p>
+        <p>在java中对象访问是很频繁的一种操作，这次让我们看看对象访问在虚拟机中是怎么操作的。</p>
         
       
 
@@ -905,7 +935,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jvm</a>
         		</li>
       		
 		</ul>
@@ -917,7 +951,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
+        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
         		</li>
       		
 		</ul>
@@ -926,7 +960,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/20/linux-command-telnet/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/03/08/java-jvm-visit-object/">展开全文 >></a>
         </p>
       
 
@@ -956,21 +990,21 @@
 
 
   
-    <article id="post-linux-command-chmod" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-java-java8-stream" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/18/linux-command-chmod/">linux常用命令之chmod命令</a>
+      <a class="article-title" href="/2020/03/05/java-java8-stream/">java8之stream</a>
     </h1>
   
 
         
         
-<a href="/2020/02/18/linux-command-chmod/" class="archive-article-date">
-  	<time datetime="2020-02-18T12:34:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-18</time>
+<a href="/2020/03/05/java-java8-stream/" class="archive-article-date">
+  	<time datetime="2020-03-05T14:10:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-05</time>
 </a>
 
         
@@ -978,8 +1012,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong><em>chmod是用于变更目录和文件权限的命令。</em></strong></p>
-<h3 id="chmod命令格式为："><a href="#chmod命令格式为：" class="headerlink" title="chmod命令格式为："></a>chmod命令格式为：</h3><p><strong>chmod [OPTION] […MODE] […FILE]</strong></p>
+        <p>steam是<strong>java8出现的java新成员</strong>，它能以<strong>声明性方式</strong>操作集合。<br>它具有以下特点：</p>
+<ul>
+<li>声明性（直接说明要完成什么）</li>
+<li>可复合（表达式可以连在一起使用）</li>
+<li>可并行（可以快捷的开启多线程）<br>现在来让我们一起学习java.stream吧
         
       
 
@@ -993,7 +1030,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">java8</a>
         		</li>
       		
 		</ul>
@@ -1005,7 +1046,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
+        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
         		</li>
       		
 		</ul>
@@ -1014,7 +1055,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/18/linux-command-chmod/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/03/05/java-java8-stream/">展开全文 >></a>
         </p>
       
 
@@ -1046,7 +1087,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/5/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/7/">Next &amp;raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/5/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/7/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1153,6 +1194,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
@@ -1161,7 +1206,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color2">栈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1177,7 +1226,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">java8</a>
+                <a href="javascript:void(0)" class="js-tag color2">数据库中间件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">shardingSphere</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1185,15 +1238,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">java8</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">foreach</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">stream</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">数据库中间件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">shardingSphere</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1213,6 +1266,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
@@ -1221,11 +1278,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color1">shell</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1241,7 +1294,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">shell</a>
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -164,21 +164,21 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-data-structure-base-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-data-structure-base-9" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/13/data-structure-base-1/">数据结构基础之稀疏数组</a>
+      <a class="article-title" href="/2020/07/20/data-structure-base-9/">数据结构基础之前缀、中缀和后缀表达式</a>
     </h1>
   
 
         
         
-<a href="/2020/05/13/data-structure-base-1/" class="archive-article-date">
-  	<time datetime="2020-05-13T11:35:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-13</time>
+<a href="/2020/07/20/data-structure-base-9/" class="archive-article-date">
+  	<time datetime="2020-07-20T11:52:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-20</time>
 </a>
 
         
@@ -186,12 +186,466 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在了解稀疏数组之前我们先回忆下数据结构的一些基础信息：</p>
-<h4 id="线性结构和非线性结构"><a href="#线性结构和非线性结构" class="headerlink" title="线性结构和非线性结构"></a>线性结构和非线性结构</h4><p>数据结构总的来说可以分为线性结构和非线性结构。</p>
-<p>线性结构的特点是<strong>数据元素之间存在一对一的线性关系。</strong><br>线性结构有两种不同的存储结构，分别为：</p>
+        <p>今天我们来看看栈的<strong>前缀、中缀和后缀表达式</strong>。</p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">栈</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/数据结构//" class="article-tag-list-link color5">数据结构</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/20/data-structure-base-9/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-spring-core-ioc-7" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/14/spring-core-ioc-7/">spring核心Ioc之BeanFactoryPostProcessor的使用</a>
+    </h1>
+  
+
+        
+        
+<a href="/2020/07/14/spring-core-ioc-7/" class="archive-article-date">
+  	<time datetime="2020-07-14T03:10:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-14</time>
+</a>
+
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>BeanFactoryPostProcessor是spring提供的一种<strong>容器拓展机制</strong>。其运行容器使用者在容器实例化Bean之前<strong>对BeanDefinition或者是对容器进行操作</strong>。</p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ioc</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/spring//" class="article-tag-list-link color2">spring</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/14/spring-core-ioc-7/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-spring-core-ioc-6" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/10/spring-core-ioc-6/">Spring核心Ioc之FactoryBean</a>
+    </h1>
+  
+
+        
+        
+<a href="/2020/07/10/spring-core-ioc-6/" class="archive-article-date">
+  	<time datetime="2020-07-10T11:22:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-10</time>
+</a>
+
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>关于BeanFactory之前已经说了很多了，今天我们来说说一个名称和BeanFactory相似的bean<strong>FactoryBean</strong>。</p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ioc</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/spring//" class="article-tag-list-link color2">spring</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/10/spring-core-ioc-6/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-spring-core-ioc-5" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/08/spring-core-ioc-5/">Spring核心Ioc之BeanScope（生命周期）</a>
+    </h1>
+  
+
+        
+        
+<a href="/2020/07/08/spring-core-ioc-5/" class="archive-article-date">
+  	<time datetime="2020-07-08T12:15:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-08</time>
+</a>
+
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>BeanFactory除了拥有作为IoC Service Provider的职责，作为一个轻量级容器，它还有着其他一些<br>职责，其中就<strong>包括对象（Bean）的生命周期/作用域管理</strong>。</p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ioc</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/spring//" class="article-tag-list-link color2">spring</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/08/spring-core-ioc-5/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-spring-core-ioc-4" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/22/spring-core-ioc-4/">Spring核心Ioc之手动初始化容器</a>
+    </h1>
+  
+
+        
+        
+<a href="/2020/06/22/spring-core-ioc-4/" class="archive-article-date">
+  	<time datetime="2020-06-22T11:50:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-22</time>
+</a>
+
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>之前讲到BeanFactory代表了Ioc基本容器，接下来我们就来研究下如何去<strong>手动初始化容器</strong>。<br>Spring提供了三种初始化容器的方式，分别为：</p>
 <ul>
-<li>顺序存储结构</li>
-<li>链式存储结构
+<li>直接编码</li>
+<li>xml配置文件</li>
+<li>注解<br>接下来我们以<strong>直接编码</strong>为例，来描述下<strong>容器初始化</strong>的过程。
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ioc</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/spring//" class="article-tag-list-link color2">spring</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/22/spring-core-ioc-4/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-data-structure-base-8" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/18/data-structure-base-8/">数据结构基础之使用栈实现一个简单计算器</a>
+    </h1>
+  
+
+        
+        
+<a href="/2020/06/18/data-structure-base-8/" class="archive-article-date">
+  	<time datetime="2020-06-18T11:24:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-18</time>
+</a>
+
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>之前我们说到了栈应用，其中有一项就是对<strong>表达式进行求值</strong>。接下来我们就来看看如何使用栈来对表达式进行求值。</p>
         
       
 
@@ -226,7 +680,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/13/data-structure-base-1/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/18/data-structure-base-8/">展开全文 >></a>
         </p>
       
 
@@ -256,21 +710,21 @@
 
 
   
-    <article id="post-java-base-classloader" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-spring-core-ioc-3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/08/java-base-classloader/">java基础之ClassLoader</a>
+      <a class="article-title" href="/2020/06/08/spring-core-ioc-3/">spring核心Ioc之BeanFactory容器基础</a>
     </h1>
   
 
         
         
-<a href="/2020/05/08/java-base-classloader/" class="archive-article-date">
-  	<time datetime="2020-05-08T11:45:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-08</time>
+<a href="/2020/06/08/spring-core-ioc-3/" class="archive-article-date">
+  	<time datetime="2020-06-08T02:24:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-08</time>
 </a>
 
         
@@ -278,13 +732,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>ClassLoader是java一个重要的<strong>运行时系统组件</strong>，<strong>其作用是把Class加载到虚拟机中（java8之前方法区，之后元数据区）</strong>。<br>在java中，把一个类（.class的文件）加载进JVM中，通常需要以下几步：<br>1.装载：也就是查找和导入Class文件<br>2.链接：也就是执行校验、准备和解析。其中解析是可选的。其各步骤进行的操作如下：</p>
-<ul>
-<li>校验：检查Class数据完整性</li>
-<li>准备：给类的静态变量分配存储空间（方法区/元数据区）</li>
-<li>解析：把符号引用转换为直接引用</li>
-</ul>
-<p>3.初始化：对静态变量、静态代码块进行初始化操作<br>而类的加载操作是由ClassLoader及其子类负责的。</p>
+        <p>BeanFactory是基础类型的Ioc容器，其定义了<strong>Spring Ioc容器的基本特性</strong>。<br>没有特殊指定，默认采用初始化延迟策略（lazy-load），也就是只有在用户需要某个bean时才会加载，并<strong>不会进行预加载</strong>。<br>因为上述特性，所以启动是比较快的，常<strong>用于资源受限的场景</strong>。</p>
         
       
 
@@ -298,11 +746,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">java基础</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ioc</a>
         		</li>
       		
 		</ul>
@@ -314,7 +762,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
+        			<a href="/categories/spring//" class="article-tag-list-link color2">spring</a>
         		</li>
       		
 		</ul>
@@ -323,7 +771,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/08/java-base-classloader/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/08/spring-core-ioc-3/">展开全文 >></a>
         </p>
       
 
@@ -353,21 +801,21 @@
 
 
   
-    <article id="post-java-concurrency-thread-15" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-data-structure-base-7" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/06/java-concurrency-thread-15/">java并发编程之wait()和sleep()的区别</a>
+      <a class="article-title" href="/2020/06/05/data-structure-base-7/">数据结构基础之栈</a>
     </h1>
   
 
         
         
-<a href="/2020/05/06/java-concurrency-thread-15/" class="archive-article-date">
-  	<time datetime="2020-05-06T12:41:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-06</time>
+<a href="/2020/06/05/data-structure-base-7/" class="archive-article-date">
+  	<time datetime="2020-06-05T00:43:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-05</time>
 </a>
 
         
@@ -375,7 +823,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>sleep()和wait()是多线程操作时常见的两个让线程<strong>BLOCKED的方法</strong>。今天让我们来看看这两个方法的区别。</p>
+        <p>栈（stack）是一种<strong>先入后出的有序线性结构</strong>。是一种<strong>只能在一端进行操作</strong>的特殊线性表。</p>
         
       
 
@@ -389,11 +837,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">并发编程</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
         		</li>
       		
 		</ul>
@@ -405,7 +849,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
+        			<a href="/categories/数据结构//" class="article-tag-list-link color5">数据结构</a>
         		</li>
       		
 		</ul>
@@ -414,7 +858,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/06/java-concurrency-thread-15/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/05/data-structure-base-7/">展开全文 >></a>
         </p>
       
 
@@ -444,21 +888,21 @@
 
 
   
-    <article id="post-java-concurrency-thread-14" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-data-structure-base-6" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/06/java-concurrency-thread-14/">java并发编程之notifyAll()的使用</a>
+      <a class="article-title" href="/2020/06/02/data-structure-base-6/">数据结构基础之环形链表</a>
     </h1>
   
 
         
         
-<a href="/2020/05/06/java-concurrency-thread-14/" class="archive-article-date">
-  	<time datetime="2020-05-06T11:51:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-06</time>
+<a href="/2020/06/02/data-structure-base-6/" class="archive-article-date">
+  	<time datetime="2020-06-02T11:19:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-02</time>
 </a>
 
         
@@ -466,9 +910,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>今天我们来看看线程间通信的另外一个基本方法：</p>
-<ul>
-<li>notifyAll()<br>它可以唤醒锁管理的<strong>所有处于WAITING状态的线程</strong>。
+        <p>在介绍环形链表之前，我们先来了解一个金典的数学问题：约瑟夫问题。问题内容如下：</p>
+<blockquote>
+<p>假设n个小孩围城一个圈，然后从k(1&lt;=k&lt;=n)开始从1报数，一旦报道m，报m的人就出圈，直到圈中只剩最后一人。求最后出圈的顺序。</p>
+</blockquote>
         
       
 
@@ -482,11 +927,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">并发编程</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
         		</li>
       		
 		</ul>
@@ -498,7 +939,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
+        			<a href="/categories/数据结构//" class="article-tag-list-link color5">数据结构</a>
         		</li>
       		
 		</ul>
@@ -507,7 +948,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/06/java-concurrency-thread-14/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/02/data-structure-base-6/">展开全文 >></a>
         </p>
       
 
@@ -537,21 +978,21 @@
 
 
   
-    <article id="post-java-concurrency-thread-13" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-data-structure-base-5" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/28/java-concurrency-thread-13/">java并发编程之wait()和notify()的使用</a>
+      <a class="article-title" href="/2020/06/02/data-structure-base-5/">数据结构基础之双向链表</a>
     </h1>
   
 
         
         
-<a href="/2020/04/28/java-concurrency-thread-13/" class="archive-article-date">
-  	<time datetime="2020-04-28T14:55:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-28</time>
+<a href="/2020/06/02/data-structure-base-5/" class="archive-article-date">
+  	<time datetime="2020-06-02T04:34:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-02</time>
 </a>
 
         
@@ -559,10 +1000,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>今天我们来看看线程间通信的两个基本方法：</p>
-<ul>
-<li>wait()</li>
-<li>notify()<br>上述两个方法都是Object的方法，作用分别是让线程进入<strong>WAITING</strong>状态和唤醒线程。
+        <p>双向链表是单向链表的进化版本。其在单向链表的基础上<strong>多了prev域，也就是当前节点的上一个节点的信息</strong>。</p>
         
       
 
@@ -576,11 +1014,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">并发编程</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
         		</li>
       		
 		</ul>
@@ -592,7 +1026,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
+        			<a href="/categories/数据结构//" class="article-tag-list-link color5">数据结构</a>
         		</li>
       		
 		</ul>
@@ -601,462 +1035,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/28/java-concurrency-thread-13/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-java-concurrency-thread-12" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/15/java-concurrency-thread-12/">java并发编程之synchronized关键字</a>
-    </h1>
-  
-
-        
-        
-<a href="/2020/04/15/java-concurrency-thread-12/" class="archive-article-date">
-  	<time datetime="2020-04-15T14:21:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-15</time>
-</a>
-
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>synchronized</strong>是java并发编程中一个常见的关键字，其主要用于对代码加锁。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">并发编程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/15/java-concurrency-thread-12/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-java-concurrency-thread-11" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/14/java-concurrency-thread-11/">java并发编程之如何主动关闭一个线程</a>
-    </h1>
-  
-
-        
-        
-<a href="/2020/04/14/java-concurrency-thread-11/" class="archive-article-date">
-  	<time datetime="2020-04-14T14:11:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-14</time>
-</a>
-
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在实际开发过程中，肯定会遇到需要主动去关闭线程的情况。让我们用优雅和暴力两种方式来关闭线程吧。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">并发编程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/14/java-concurrency-thread-11/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-java-concurrency-thread-10" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/13/java-concurrency-thread-10/">java并发编程之interrupt一个线程</a>
-    </h1>
-  
-
-        
-        
-<a href="/2020/04/13/java-concurrency-thread-10/" class="archive-article-date">
-  	<time datetime="2020-04-13T13:54:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-13</time>
-</a>
-
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在Thread的API中，提供了几个和<strong>中断线程</strong>相关的方法，那么这些方法具体是怎么用的叻？</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">并发编程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/13/java-concurrency-thread-10/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-java-concurrency-thread-09" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/12/java-concurrency-thread-09/">java并发编程之join方法</a>
-    </h1>
-  
-
-        
-        
-<a href="/2020/04/12/java-concurrency-thread-09/" class="archive-article-date">
-  	<time datetime="2020-04-12T12:32:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-12</time>
-</a>
-
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Thread的join方法是一个阻塞线程运行的常用方法，它可以帮助我们控制线程运行顺序。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">并发编程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/12/java-concurrency-thread-09/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-java-concurrency-thread-08" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/12/java-concurrency-thread-08/">java并发编程之线程id和线程优先级</a>
-    </h1>
-  
-
-        
-        
-<a href="/2020/04/12/java-concurrency-thread-08/" class="archive-article-date">
-  	<time datetime="2020-04-12T11:58:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-12</time>
-</a>
-
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>之前说到了线程拥有自己的名称，这次我们来看看线程的id。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">并发编程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/12/java-concurrency-thread-08/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/02/data-structure-base-5/">展开全文 >></a>
         </p>
       
 
@@ -1088,7 +1067,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1195,6 +1174,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
@@ -1203,7 +1186,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color2">栈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1219,7 +1206,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">java8</a>
+                <a href="javascript:void(0)" class="js-tag color2">数据库中间件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">shardingSphere</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1227,15 +1218,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">java8</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">foreach</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">stream</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">数据库中间件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">shardingSphere</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1255,6 +1246,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
@@ -1263,11 +1258,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color1">shell</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1283,7 +1274,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">shell</a>
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
