@@ -16,7 +16,7 @@
 <meta property="og:description" content="事务是数据库系统的一种基本特性，是一组原子性的SQL操作。也就是说，事务内的语句，要么全部成功，要么全部失败。 正是因为事务，数据库才能保证数据完整性。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-08-09T14:31:48.000Z">
-<meta property="article:modified_time" content="2020-08-30T02:54:09.739Z">
+<meta property="article:modified_time" content="2020-09-20T13:23:39.297Z">
 <meta property="article:author" content="Ricardo">
 <meta property="article:tag" content="mysql">
 <meta name="twitter:card" content="summary">
@@ -199,10 +199,35 @@
 <h4 id="事务的ACID特性"><a href="#事务的ACID特性" class="headerlink" title="事务的ACID特性"></a>事务的ACID特性</h4><p>ACID是一个<strong>运行良好的事务系统必须具备的特性</strong>，其分别为：</p>
 <ol>
 <li>原子性（atomicity）：<ul>
-<li>一个事务必须被视为一个不可分割的最小工作单元，整个事务中的所有操作要么全部成功，要么全部失败。对于一个事务来说，不可能只执行其中一部分</li>
+<li>一个事务必须被视为<strong>一个不可分割的最小工作单元</strong>，整个事务中的所有操作要么全部成功，要么全部失败。<br>对于一个事务来说，不可能只执行其中一部分操作。</li>
+</ul>
+</li>
+<li>一致性（consistency）<ul>
+<li>数据库总是从一个<strong>一致性状态</strong>转换到另外个一致性状态。简单来说就是事务在没有完成时，其操作是不会保存到数据库的。</li>
+</ul>
+</li>
+<li>隔离性（isolation）<ul>
+<li>通常情况下，一个事务所做的修改在最终提交前，对其他事务是<strong>不可见</strong>的。之所以是通常，因为事务的隔离级别低的话将可见。</li>
+</ul>
+</li>
+<li>持久性（durability）<ul>
+<li>一旦事务提交，即使系统发生崩溃，事务所做的修改也会永久保存到数据库中。</li>
 </ul>
 </li>
 </ol>
+<p>事务系统的ACID特性确实为我们提供了良好的业务支撑，但是数据库为了保证这些特性而付出的<strong>额外开销也是不容小觑</strong>的。</p>
+<p>不过好在mysql本身可以灵活的设置存储引擎。如果一些表本身就不需要对事务进行支撑的话，那么建表的时候就选择非事务的存储引擎即可。</p>
+<h4 id="在mysql中使用事务"><a href="#在mysql中使用事务" class="headerlink" title="在mysql中使用事务"></a>在mysql中使用事务</h4><p>通常来说，mysql的事务都是默认自动提交的，也就是说主要不是在sql中显示的开启事务，那么<strong>每个操作都会被当做一个事务去提交</strong>。</p>
+<p><strong>针对当前连接</strong>，可以通过设置AUTOCOMMIT变量去启用或者停用是否自动提交事务。</p>
+<ol>
+<li>查看AUTOCOMMIT值<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show variables like &#39;AUTOCOMMIT&#39;;</span><br></pre></td></tr></table></figure></li>
+<li>设置AUTOCOMMIT值<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;1启用自动提交</span><br><span class="line">set AUTOCOMMIT &#x3D; 1;</span><br></pre></td></tr></table></figure>
+如果想让每个连接都不自动提交，那么需要修改mysql配置文件。</li>
+</ol>
+<p>如果自动提交关闭，那么连接中<strong>所有sql都将放到一个事务中去执行</strong>，直到手动commit或者是rollback。</p>
+<p>如果想在自动提交的设置下自定义事务的话，那么这样去手动管理事务：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">start transaction;</span><br><span class="line">sql;</span><br><span class="line">commit;</span><br></pre></td></tr></table></figure>
+<p>这样就能自定义事务的一个范围。</p>
 
       
 
@@ -446,15 +471,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -474,7 +499,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">并发编程</a>
+                <a href="javascript:void(0)" class="js-tag color2">java基础</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -482,7 +507,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">java基础</a>
+                <a href="javascript:void(0)" class="js-tag color5">并发编程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">container</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -494,6 +523,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">stream</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">foreach</a>
               </li>
              
@@ -502,15 +535,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">stream</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">网络通信</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -522,11 +551,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">maven</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
