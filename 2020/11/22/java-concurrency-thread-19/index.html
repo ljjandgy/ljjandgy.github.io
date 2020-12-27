@@ -6,20 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>java并发编程之ThreadGroup上篇 | Ricardo</title>
+  <title>java并发编程之ThreadGroup | Ricardo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="先思考，后设计，最后再动手。">
+  <meta name="description" content="之前我们在说Thread类构造方法的时候说到可以传入线程组这个属性。当时可能没有针对线程组进行展开，今天就让我们一起来看看什么是线程组吧。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java并发编程之ThreadGroup上篇">
+<meta property="og:title" content="java并发编程之ThreadGroup">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;11&#x2F;22&#x2F;java-concurrency-thread-19&#x2F;index.html">
 <meta property="og:site_name" content="Ricardo">
-<meta property="og:description" content="先思考，后设计，最后再动手。">
+<meta property="og:description" content="之前我们在说Thread类构造方法的时候说到可以传入线程组这个属性。当时可能没有针对线程组进行展开，今天就让我们一起来看看什么是线程组吧。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;11&#x2F;22&#x2F;java-concurrency-thread-19&#x2F;java-concurrency-thread-19&#x2F;initial-thread-group.jpg">
 <meta property="article:published_time" content="2020-11-22T06:00:06.000Z">
-<meta property="article:modified_time" content="2020-11-22T12:41:40.195Z">
+<meta property="article:modified_time" content="2020-12-12T14:39:22.209Z">
 <meta property="article:author" content="Ricardo">
 <meta property="article:tag" content="并发编程">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;11&#x2F;22&#x2F;java-concurrency-thread-19&#x2F;java-concurrency-thread-19&#x2F;initial-thread-group.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Ricardo" type="application/atom+xml">
   
@@ -172,7 +174,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      java并发编程之ThreadGroup上篇
+      java并发编程之ThreadGroup
     </h1>
   
 
@@ -192,7 +194,35 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>之前我们在说Thread类构造方法的时候说到可以传入线程组这个属性。当时可能没有针对线程组进行展开，今天就让我们一起来看看什么是线程组吧。<br><a id="more"></a></p>
+<h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>首先我们来看看官方的注释是什么样子的：</p>
+<blockquote>
+<p>A thread group represents a set of threads.</p>
+</blockquote>
+<p>从上述定义可以看出，所谓线程组就是<strong>一组线程的集合</strong>。</p>
+<h4 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h4><p>上面我们说到了线程组是有线程组成的，那么它能不能包含线程组？答案是肯定的，下面是官方的描述：</p>
+<blockquote>
+<p>In addition, a thread group can also include other thread groups. The thread groups form a tree in which every thread group except the initial thread group has a parent.</p>
+</blockquote>
+<p>其结构如下图所示：<br><img src="java-concurrency-thread-19/initial-thread-group.jpg" alt="线程组结构图"></p>
+<p>所以，总的来说，线程组是由<strong>子线程组及线程组合而成。</strong></p>
+<h4 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h4><p>线程组在java1.5之前使用广泛，那时JDK还没有提供线程池，所以<strong>线程组常常用于对复数的线程进行管理</strong>。比如获取活动线程数量，对活动线程进行操作等。</p>
+<h4 id="API介绍"><a href="#API介绍" class="headerlink" title="API介绍"></a>API介绍</h4><h5 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h5><ol>
+<li>创建线程组时只定义线程组名称，并使用创建线程组的线程所在的线程组作为其父线程组<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public ThreadGroup(String name) &#123;</span><br><span class="line">        this(Thread.currentThread().getThreadGroup(), name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>创建线程时同时定义父级线程组及线程组名称<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public ThreadGroup(ThreadGroup parent, String name) &#123;</span><br><span class="line">        this(checkParentAccess(parent), parent, name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h5 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h5><ol>
+<li><p>获取线程组中活动线程信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public int enumerate(Thread list[], boolean recurse) &#123;</span><br><span class="line">    checkAccess();</span><br><span class="line">    return enumerate(list, 0, recurse);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中recurse表示是否获取自线程组中的活动线程信息。通过上述方法我们就能<strong>拿到线程组的活动线程信息</strong>。</p>
+</li>
+<li><p>打断线程组中所有线程（包含子线程组）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public final void interrupt() &#123;</span><br><span class="line">    int ngroupsSnapshot;</span><br><span class="line">    ThreadGroup[] groupsSnapshot;</span><br><span class="line">    synchronized (this) &#123;</span><br><span class="line">        checkAccess();</span><br><span class="line">        for (int i &#x3D; 0 ; i &lt; nthreads ; i++) &#123;</span><br><span class="line">            threads[i].interrupt();</span><br><span class="line">        &#125;</span><br><span class="line">        ngroupsSnapshot &#x3D; ngroups;</span><br><span class="line">        if (groups !&#x3D; null) &#123;</span><br><span class="line">            groupsSnapshot &#x3D; Arrays.copyOf(groups, ngroupsSnapshot);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            groupsSnapshot &#x3D; null;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    for (int i &#x3D; 0 ; i &lt; ngroupsSnapshot ; i++) &#123;</span><br><span class="line">        groupsSnapshot[i].interrupt();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>获取线程组中活动线程信息（含子线程组）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public int activeCount() &#123;</span><br><span class="line">    int result;</span><br><span class="line">    &#x2F;&#x2F; Snapshot sub-group data so we don&#39;t hold this lock</span><br><span class="line">    &#x2F;&#x2F; while our children are computing.</span><br><span class="line">    int ngroupsSnapshot;</span><br><span class="line">    ThreadGroup[] groupsSnapshot;</span><br><span class="line">    synchronized (this) &#123;</span><br><span class="line">        if (destroyed) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        result &#x3D; nthreads;</span><br><span class="line">        ngroupsSnapshot &#x3D; ngroups;</span><br><span class="line">        if (groups !&#x3D; null) &#123;</span><br><span class="line">            groupsSnapshot &#x3D; Arrays.copyOf(groups, ngroupsSnapshot);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            groupsSnapshot &#x3D; null;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    for (int i &#x3D; 0 ; i &lt; ngroupsSnapshot ; i++) &#123;</span><br><span class="line">        result +&#x3D; groupsSnapshot[i].activeCount();</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
       
 
       
@@ -469,11 +499,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color2">栈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">栈</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -533,6 +563,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">shell</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
@@ -545,11 +579,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">shell</a>
+                <a href="javascript:void(0)" class="js-tag color5">mysql必知必会</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">mysql必知必会</a>
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -557,15 +591,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ioc</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ioc</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+                <a href="javascript:void(0)" class="js-tag color4">Ioc</a>
               </li>
              
               <li class="article-tag-list-item">

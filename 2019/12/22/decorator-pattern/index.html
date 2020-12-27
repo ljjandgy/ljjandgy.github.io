@@ -16,7 +16,7 @@
 <meta property="og:description" content="装饰者是一种对于动态添加对象行为的解决方案。其定义为：是一种动态的将责任附加到对象上的一种设计方式。在扩展功能层面上，它比继承更具有弹性。从定义就能看出，装饰者模式能够把责任动态的附加到对象上。这样我们就能很好的对一个对象进行拓展，而不用因为拓展去反复的修改某段代码。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-12-22T03:31:43.000Z">
-<meta property="article:modified_time" content="2019-12-22T07:33:14.548Z">
+<meta property="article:modified_time" content="2020-12-19T12:27:10.070Z">
 <meta property="article:author" content="Ricardo">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="设计模式">
@@ -194,7 +194,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><strong>装饰者</strong>是一种对于动态添加对象行为的解决方案。<br>其定义为：<strong>是一种动态的将责任附加到对象上的一种设计方式。在扩展功能层面上，它比继承更具有弹性</strong>。<br>从定义就能看出，装饰者模式能够把责任动态的附加到对象上。这样我们就能很好的对一个对象进行拓展，而不用因为拓展去反复的修改某段代码。<br><a id="more"></a><br>观察者模式的通用结构为：<br>1.<strong>Component（组件）</strong>，为对象和需要动态附加给对象的责任对象的公共抽象类，定义了包装好的对象对外暴露的行为。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 所有装饰器相关对象（含装饰器对象和被装饰的对象）的公共超类，超类的方法就是被装饰对象最后需要暴露的方法</span><br><span class="line"> *&#x2F;</span><br><span class="line">public interface Component &#123;</span><br><span class="line">    &#x2F;&#x2F;所有对象的公用方法</span><br><span class="line">    void methodA();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>2.<strong>ConcreteComponent（被装饰对象，也就是业务对象）</strong>是被添加行为的对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 被装饰对象，用于被装饰器对象包裹去动态附加行为</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class ConcreteComponent implements Component &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void methodA() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>3.<strong>Decorator（装饰者对象）</strong>其为装饰者组件的超类，是所有装饰者对象的父类，定义了装饰者对象体系的公共行为。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 装饰器对象的公共父类，用于设置装饰器的公共方法</span><br><span class="line"> *&#x2F;</span><br><span class="line">public abstract class Decorator implements Component&#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void methodA() &#123;</span><br><span class="line">        &#x2F;&#x2F;书写公共代码</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;需要子类去实现的方法B</span><br><span class="line">    public abstract void methodB();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>4.<strong>ConcreteDecorator（实际的被装饰对象）</strong>，也就是包含具体责任的装饰者对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class ConcreteDecoratorA extends Decorator &#123;</span><br><span class="line">    &#x2F;&#x2F;需要一个成员变量来记录被包含的被装饰对象</span><br><span class="line">    Component wrappedObj;</span><br><span class="line">    @Override</span><br><span class="line">    public void methodA()&#123;</span><br><span class="line">        super.methodA();</span><br><span class="line">        &#x2F;&#x2F;do something--对原方法的拓展</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    public void methodB() &#123;</span><br><span class="line">        &#x2F;&#x2F;do something</span><br><span class="line">    &#125;</span><br><span class="line">    public void newBehavior()&#123;</span><br><span class="line">        &#x2F;&#x2F;new behavior</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>可以看到，实际的装饰者对象<strong>既实现了原有方法，也存在新定义的方法</strong>，这样就实现了行为的拓展的新增。</p>
+<p>3.<strong>Decorator（装饰者对象）</strong>其为装饰者组件的超类，是所有装饰者对象的父类，定义了装饰者对象体系的公共行为。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 装饰器对象的公共父类，用于设置装饰器的公共方法</span><br><span class="line"> *&#x2F;</span><br><span class="line">public abstract class Decorator implements Component&#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void methodA() &#123;</span><br><span class="line">        &#x2F;&#x2F;书写公共代码</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;需要子类去实现的方法B</span><br><span class="line">    public abstract void methodB();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>4.<strong>ConcreteDecorator（实际的装饰对象）</strong>，也就是包含具体责任的装饰者对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class ConcreteDecoratorA extends Decorator &#123;</span><br><span class="line">    &#x2F;&#x2F;需要一个成员变量来记录被包含的被装饰对象</span><br><span class="line">    Component wrappedObj;</span><br><span class="line">    @Override</span><br><span class="line">    public void methodA()&#123;</span><br><span class="line">        super.methodA();</span><br><span class="line">        &#x2F;&#x2F;do something--对原方法的拓展</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    public void methodB() &#123;</span><br><span class="line">        &#x2F;&#x2F;do something</span><br><span class="line">    &#125;</span><br><span class="line">    public void newBehavior()&#123;</span><br><span class="line">        &#x2F;&#x2F;new behavior</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>可以看到，实际的装饰者对象<strong>既实现了原有方法，也存在新定义的方法</strong>，这样就实现了行为的拓展的新增。</p>
 <p>说了这么多，可能大家也不清楚怎么去用装饰者模式。接下来我们可以通过分析<strong>java.io包</strong>下的类，来看看装饰者模式应该怎么去实际应用。<br>整个java.io包都是基于装饰者模式实现的：<br>其中：<br>InputStream对应结构中的Component，FilterInputStream类对应结构中的Decorator，BufferedInputStream类等就对应结构中的ConcreteDecorator。那么结构中的ConcreteComponent在java.io中是如何体现的叻？</p>
 <p>其对应的就是FileInputStream、StringBufferInputStream等对象，他们都是被包装的对象。</p>
 <p>我们看FilterInputStream类，里面就包含了被包装对象的引用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public</span><br><span class="line">class FilterInputStream extends InputStream &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * The input stream to be filtered.</span><br><span class="line">     *&#x2F;</span><br><span class="line">    protected volatile InputStream in;</span><br></pre></td></tr></table></figure><br>然后其所有子类都通过继承获取到了该引用，从而可以对原有对象的行为进行拓展。</p>
@@ -481,11 +481,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color2">栈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">栈</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -545,6 +545,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">shell</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
@@ -557,11 +561,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">shell</a>
+                <a href="javascript:void(0)" class="js-tag color5">mysql必知必会</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">mysql必知必会</a>
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -569,15 +573,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ioc</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ioc</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+                <a href="javascript:void(0)" class="js-tag color4">Ioc</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -16,7 +16,7 @@
 <meta property="og:description" content="适配器模式是一种类型转换的解决方案。其定义为：将一个类的接口，转换成客户所希望的另外个接口，最后使得原本接口不兼容的类可以合作无间的一种编码方式。从定义中就能看出，适配器模式会进行接口类型的转换，从而让新老代码能够无缝兼容。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-01-19T06:39:22.000Z">
-<meta property="article:modified_time" content="2020-01-19T13:29:38.258Z">
+<meta property="article:modified_time" content="2020-12-12T14:39:11.191Z">
 <meta property="article:author" content="Ricardo">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="设计模式">
@@ -195,7 +195,7 @@
       
         <p><strong>适配器模式</strong>是一种类型转换的解决方案。<br>其定义为：<strong>将一个类的接口，转换成客户所希望的另外个接口，最后使得原本接口不兼容的类可以合作无间的一种编码方式</strong>。<br>从定义中就能看出，适配器模式会进行接口类型的转换，从而让新老代码能够无缝兼容。<br><a id="more"></a><br>适配器模式分为类适配器和对象适配器（接口适配器），不过因为类适配器需要用到多继承，所以针对java来说只能使用对象适配器。所以本次也是针对对象适配器进行介绍。</p>
 <p>对象适配器通用结构为：<br>1.<strong>Client（客户）</strong>：相当于业务类，其持有目标接口，可以直接调用目标接口方法，至于谁去执行，就由适配器去决定了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 客户类，需要使用适配器的目标类</span><br><span class="line"> * 其是根据目标接口来实现的，其相当于我们日常开发中的开发者身份或者是我们常说的业务类（非封装）部分</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class Client&#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 其持有目标接口的对象，并能触发目标接口的方法，但是最后由谁去执行这个方法，就是由适配器觉得的</span><br><span class="line">     * ----感觉为策略模式的升级版（多接口版本），或者说是拥有了策略模式context类的接口（可以使用多个context类）</span><br><span class="line">     *&#x2F;</span><br><span class="line">    private Target target;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>2.<strong>Target（目标接口）</strong>：为适配器抽象接口，也就是需要被适配对象伪装的类型。其会被客户直接使用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 目标接口，也就是适配器需要让被适配对象转换成的类型（也就是客户类所持有的类型）</span><br><span class="line"> *&#x2F;</span><br><span class="line">public interface Target &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 请求方法</span><br><span class="line">     *&#x2F;</span><br><span class="line">    void request();</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>3.<strong>Adapter（适配器）</strong>：为客户的被适配对象的中转站，其持有被适配对象的抽象，可以直接调用被适配对象的方法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 适配器，相当于是客户的代理人（这一点很像命令模式的Invoker），但是实际进行的操作却像命令模式中的command对象（调用实际的方法）</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class Adapter implements Target &#123;</span><br><span class="line">    &#x2F;&#x2F;持有被适配对象（被迫营业的对象）的抽象</span><br><span class="line">    private IAdaptee adaptee;</span><br><span class="line">    public Adapter(IAdaptee adaptee)&#123;</span><br><span class="line">        this.adaptee &#x3D; adaptee;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void request() &#123;</span><br><span class="line">        &#x2F;&#x2F;实际上调用的是被适配者的方法（类似于客户给公司提需求，公司让你实现，你就是被适配对象）</span><br><span class="line">        adaptee.request();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>4.<strong>Adaptee（被适配对象）</strong>：最苦逼的对象，是最终干活的存在，其被适配器指挥去装成各种类型去触发自己行为。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 被适配对象接口</span><br><span class="line"> *&#x2F;</span><br><span class="line">public interface IAdaptee &#123;</span><br><span class="line">    void request();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class Adaptee implements IAdaptee &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void request() &#123;</span><br><span class="line">        &#x2F;&#x2F;do something</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>适用场景<br>1.需要让老代码和新代码统一实现时，就需要把<strong>老代码伪装成新代码</strong>（枚举器和迭代器类型）<br>2.当一个行为需要多个类去实现时，我们可以使用适配器做转换，把多个类的行为<strong>整合到适配器中</strong>，保证接口的统一（动态添加行为，实现的效果类似于装饰器模式）</p>
-<p>补充：<br><strong>装饰器模式和适配器模式</strong>对比<br>1.装饰器模式一般用于<strong>动态添加行为和责任</strong>，而适配器模式常用于<strong>接口类型装换和多个类去集成为一个接口</strong>。<br>2.都可以用于包装对象，只不过装饰器模式不会进行类型装换，每个装饰器的基类都是一样的，但是适配器不一样，适配器<strong>一旦出现，必定伴随着接口类型的转换</strong><br>总的来说，适配器和装饰器从代码层面来看有点相似，但其设计理念和设计到的设计原则是不大相同的。</p>
+<p>补充：<br><strong>装饰器模式和适配器模式</strong>对比<br>1.装饰器模式一般用于<strong>动态添加行为和责任</strong>，而适配器模式常用于<strong>接口类型装换和多个类去集成为一个接口</strong>。<br>2.都可以用于包装对象，只不过装饰器模式不会进行类型转换，每个装饰器的基类都是一样的，但是适配器不一样，适配器<strong>一旦出现，必定伴随着接口类型的转换</strong><br>总的来说，适配器和装饰器从代码层面来看有点相似，但其设计理念和设计到的设计原则是不大相同的。</p>
 
       
 
@@ -477,11 +477,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color2">栈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">栈</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -541,6 +541,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">shell</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
@@ -553,11 +557,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">shell</a>
+                <a href="javascript:void(0)" class="js-tag color5">mysql必知必会</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">mysql必知必会</a>
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -565,15 +569,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ioc</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ioc</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+                <a href="javascript:void(0)" class="js-tag color4">Ioc</a>
               </li>
              
               <li class="article-tag-list-item">
