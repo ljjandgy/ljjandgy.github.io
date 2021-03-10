@@ -8,19 +8,21 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>java并发编程之synchronized关键字 | Ricardo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="synchronized是java并发编程中一个常见的关键字，其主要用于对代码加锁。">
+  <meta name="description" content="synchronized是java并发编程中一个常见的关键字，其主要用于保证线程安全。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java并发编程之synchronized关键字">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;04&#x2F;15&#x2F;java-concurrency-thread-12&#x2F;index.html">
 <meta property="og:site_name" content="Ricardo">
-<meta property="og:description" content="synchronized是java并发编程中一个常见的关键字，其主要用于对代码加锁。">
+<meta property="og:description" content="synchronized是java并发编程中一个常见的关键字，其主要用于保证线程安全。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;04&#x2F;15&#x2F;java-concurrency-thread-12&#x2F;java-concurrency-thread-12&#x2F;obj-in-jvm.jpg">
 <meta property="article:published_time" content="2020-04-15T14:21:42.000Z">
-<meta property="article:modified_time" content="2020-05-14T14:04:10.081Z">
+<meta property="article:modified_time" content="2021-02-05T15:01:03.677Z">
 <meta property="article:author" content="Ricardo">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="并发编程">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;04&#x2F;15&#x2F;java-concurrency-thread-12&#x2F;java-concurrency-thread-12&#x2F;obj-in-jvm.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Ricardo" type="application/atom+xml">
   
@@ -55,7 +57,7 @@
 		  <h1 class="header-author"><a href="/">Ricardo</a></h1>
 		</hgroup>
 		
-		<p class="header-subtitle">先思考，后设计，最后再动手。</p>
+		<p class="header-subtitle">勿在浮沙筑高台</p>
 		
 
 		<nav class="header-menu">
@@ -109,7 +111,7 @@
 			  <h1 class="header-author js-header-author">Ricardo</h1>
 			</hgroup>
 			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>先思考，后设计，最后再动手。<i class="icon icon-quo-right"></i></p>
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>勿在浮沙筑高台<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -181,7 +183,45 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>synchronized</strong>是java并发编程中一个常见的关键字，其主要用于对代码加锁。<br><a id="more"></a></p>
+        <p><strong>synchronized</strong>是java并发编程中一个常见的关键字，其主要用于保证<strong>线程安全</strong>。<br><a id="more"></a></p>
+<p>看到这，可能就会有人问了，什么是线程安全啊？</p>
+<p>这个话题需要单独开一章进行讨论，这里就不做具体的展开。</p>
+<p>其实简单来说，<strong>线程安全就是在并发环境下使操作能达到预期结果</strong>。</p>
+<p>比如下面这个代码就是线程不安全的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class ThisLockDemo implements Runnable &#123;</span><br><span class="line">    public static int num &#x3D; 0;</span><br><span class="line">    @Override</span><br><span class="line">    public void run() &#123;</span><br><span class="line">        for (int i&#x3D;0;i&lt;1000000;i++)&#123;</span><br><span class="line">            increase();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    private void increase()&#123;</span><br><span class="line">        num++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>为什么它是线程不安全的叻？因为num++这个操作不是<strong>原子性</strong>的。<strong>num++其实分为了两个原子性的操作分别是</strong>：</p>
+<ul>
+<li>获取num的值</li>
+<li>为num的值加一<br>但是这两个操作合起来是没有保证原子性。就可能导致在你获取的时候，其他线程已经把值给修改了，最终导致+1无效。比如我们用以下代码来进行简单的验证：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) throws InterruptedException &#123;</span><br><span class="line">    ThisLockDemo thisLockDemo &#x3D; new ThisLockDemo();</span><br><span class="line">    Thread t1 &#x3D; new Thread(thisLockDemo);</span><br><span class="line">    Thread t2 &#x3D; new Thread(thisLockDemo);</span><br><span class="line">    t1.start();</span><br><span class="line">    t2.start();</span><br><span class="line">    t1.join();</span><br><span class="line">    t2.join();</span><br><span class="line">    System.out.println(ThisLockDemo.num);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+我们新建了两个Thread去对num进行操作。因为调用了两次添加方法，所以，<strong>理想情况下，num的值应该是2000000</strong>。<br>但是运行代码我们就会发现，真实的值是小于2000000的。这就是因为线程不安全导致的。</li>
+</ul>
+<p>那么，我们如何去保证线程安全叻？这个时候就可以让我们的<strong>synchronized</strong>关键字出马了。</p>
+<h4 id="synchronized修饰实例方法"><a href="#synchronized修饰实例方法" class="headerlink" title="synchronized修饰实例方法"></a>synchronized修饰实例方法</h4><p>比如我们给increase()方法加上<strong>synchronized</strong>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">private synchronized void increase()&#123;</span><br><span class="line">        num++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>此时，我们再运行上面的main方法，就会发现num值就是2000000了。也就是<strong>达到了线程安全</strong>的目的。</p>
+<p>上面我们演示了synchronized修饰实例方法的情况，其实它还可以用于修饰<strong>代码块</strong>和<strong>静态方法</strong>。<br>如果是用synchronized修饰实例方法，相当于是对实例对象本身进行了加锁。这样线程<strong>想要进入该方法就需要先获取到实例对象的锁</strong>才行。<br>如果是修饰代码块，则需要我们自定义加锁的对象。这种情况下想要进入代码块的话就需要<strong>获取到加锁对象的锁</strong>才行。<br>比如下面的代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Object obj &#x3D; new Object();</span><br><span class="line">synchronized(obj)&#123;</span><br><span class="line">    &#x2F;&#x2F;dosomething</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="synchronized分析"><a href="#synchronized分析" class="headerlink" title="synchronized分析"></a>synchronized分析</h4><p><strong>synchronized关键字是通过monitor对象实现锁的</strong>。并且，它是在<strong>JVM内部</strong>实现的锁。所以我们在JDK中并不可能发现其身影。</p>
+<p>然后就会有人问了，啥是monitor？</p>
+<p>所谓monitor，就是jvm实现synchronized锁的关键。我们可以通过反编译（javap）加上了synchronized关键字的代码发现，在其展示出来内容中，会有monitorenter/monitorexit指令。<br>分别表示<strong>获取monitor对象及退出（释放）monitor对象</strong>。<br>由于JVM要求同一时间只能有一个线程能获取到monitor对象，当线程获取monitor的时候发现已经有其他线程占用了，就会等待释放。由此实现了同步。</p>
+<p>既然我们需要用对象关联的monitor来实现锁，那么这个monitor对象是保存在什么地方的叻？我们可以通过了解对象在堆里面是怎么构成的来解决这个问题：<br><img src="java-concurrency-thread-12/obj-in-jvm.jpg" alt="对象在jvm的构成"></p>
+<p>从上图可以看出，每个对象头上都保存了monitor对象的地址信息。以此来让对象能够直接对monitor对象进行操作从而实现同步。</p>
+<p>在Oracle版本的虚拟机（HotSpot）中，monitor对象都是ObjectMonitor对象来实现的。其是一个C++的文件，数据结构如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">ObjectMonitor() &#123;</span><br><span class="line">    _header       &#x3D; NULL;</span><br><span class="line">    _count        &#x3D; 0; &#x2F;&#x2F;记录个数</span><br><span class="line">    _waiters      &#x3D; 0,</span><br><span class="line">    _recursions   &#x3D; 0;</span><br><span class="line">    _object       &#x3D; NULL;</span><br><span class="line">    _owner        &#x3D; NULL;&#x2F;&#x2F;锁的拥有者</span><br><span class="line">    _WaitSet      &#x3D; NULL; &#x2F;&#x2F;处于wait状态的线程，会被加入到_WaitSet</span><br><span class="line">    _WaitSetLock  &#x3D; 0 ;</span><br><span class="line">    _Responsible  &#x3D; NULL ;</span><br><span class="line">    _succ         &#x3D; NULL ;</span><br><span class="line">    _cxq          &#x3D; NULL ;</span><br><span class="line">    FreeNext      &#x3D; NULL ;</span><br><span class="line">    _EntryList    &#x3D; NULL ; &#x2F;&#x2F;处于等待锁block状态的线程，会被加入到该列表</span><br><span class="line">    _SpinFreq     &#x3D; 0 ;</span><br><span class="line">    _SpinClock    &#x3D; 0 ;</span><br><span class="line">    OwnerIsThread &#x3D; 0 ;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure><br>由于monitor对象地址是直接保存在各个对象中的，所以<strong>在Java中任意对象都可以作为锁去使用</strong>。这也是为什么wait()、notify()、notifyAll()这些方法都是在Object()类中定义的原因。</p>
+<h4 id="synchronized操作的发展"><a href="#synchronized操作的发展" class="headerlink" title="synchronized操作的发展"></a>synchronized操作的发展</h4><p>在 Java 6 之前，Monitor 的实现完全是依靠操作系统内部的互斥锁，因为需要进行用户态到内核态的切换，所以<strong>同步操作是一个无差别的重量级操作</strong>。但是在java1.5之前，它是同步操作的唯一选择。</p>
+<p>不过在Java 6之后，JVM针对Monitor进行全方位的改造和优化。</p>
+<p>从一开始的只有一种很重的互斥锁，变为现在支持三种不同的monitor：分别为：</p>
+<ul>
+<li>偏斜锁</li>
+<li>轻量锁</li>
+<li>重量级锁</li>
+</ul>
+<p>并且JVM还提供了<strong>锁升级、降级</strong>的操作以根据竞争场景来动态进行monitor对象的选择。</p>
+<p>比如，当在无竞争的环境下，JVM就会选择偏斜锁来。此时JVM会利用CAS（Compare And Swap）操作来在对象Header的Mark Word中保存线程id。以说明当前对象是偏向于当前线程的。<br>在这种情况下，该线程可以直接获取锁，就不用再去进行一些申请的操作了。<strong>从而达到了优化效率的效果</strong>。但是这种操作只限于没有其他线程对锁进行竞争的时候。也就是没什么并发的场景，如果出现了其他线程来争抢这个锁，此时<strong>JVM就会把锁升级为轻量锁</strong>。<br>线程通过CAS操作对对象头的Mark Word部分来获取轻量锁，如果获取失败就会升级为重量级锁。</p>
+<p>我们可以通过设置JVM参数<strong>-XX:-UseBiasedLocking</strong>来控制JVM是否提供偏斜锁。因为在竞争比较多的场景中，使用偏斜锁会影响性能。<br>在sharedRuntime.cpp这个文件中，我们可以看到这个参数的应用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Handle h_obj(THREAD, obj);</span><br><span class="line">if (UseBiasedLocking) &#123;</span><br><span class="line">&#x2F;&#x2F; Retry fast entry if bias is revoked to avoid unnecessary inflation</span><br><span class="line">ObjectSynchronizer::fast_enter(h_obj, lock, true, CHECK);</span><br><span class="line">&#125; else &#123;</span><br><span class="line">ObjectSynchronizer::slow_enter(h_obj, lock, CHECK);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>其中，<strong>fast_enter是标准的锁操作过程，slow_enter是去掉了偏斜锁之后的锁操作过程。</strong></p>
+<p>除了锁升降级的操作外，JVM还针对synchronized关键字做了其他的一些优化，比如：</p>
+<ul>
+<li>自适应自旋</li>
+<li>锁粗化</li>
+<li>锁消除</li>
+</ul>
+<h5 id="自适应自旋"><a href="#自适应自旋" class="headerlink" title="自适应自旋"></a>自适应自旋</h5><p>所谓自适应自旋，就是一种能够自己判断是否进行自旋操作的自旋锁。如果是非自适应自旋锁，也就是标准的自旋锁的话，会一直占用时间片直到完成了操作。<br>但是<strong>自适应自旋锁会根据各种因素判断自旋时间或者是需不需要进行自旋操作。</strong></p>
+<h5 id="锁粗化"><a href="#锁粗化" class="headerlink" title="锁粗化"></a>锁粗化</h5><p>所谓锁粗化，就是JVM会通过分析具体操作，然后把可以合并的synchronized代码块合并成一个，以减少锁申请及释放操作的消耗。比如下面这个代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public void lockCoarsening() &#123;</span><br><span class="line">   synchronized (this) &#123;</span><br><span class="line">      &#x2F;&#x2F;do something</span><br><span class="line">   &#125;</span><br><span class="line">   synchronized (this) &#123;</span><br><span class="line">       &#x2F;&#x2F;do something</span><br><span class="line">   &#125;</span><br><span class="line">   synchronized (this) &#123;</span><br><span class="line">       &#x2F;&#x2F;do something</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>但是锁粗化功能如果被应用在了循环上，就可能会导致循环知道循环完成锁才会被释放，比如下面这个代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for (int i &#x3D; 0; i &lt; 1000; i++) &#123;</span><br><span class="line">    synchronized (this) &#123;</span><br><span class="line">        &#x2F;&#x2F;do something</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>可以看到锁粗化不是所有场景都适合，当我们不想用的时候可以通过<strong>-XX:-EliminateLocks</strong>关闭该功能。</p>
+<h5 id="锁消除"><a href="#锁消除" class="headerlink" title="锁消除"></a>锁消除</h5><p>锁消除指的是JVM会根据代码实际运行情况判断同步代码块是否会被多个线程操作。如果不是的话JVM就会把代码块操作的数据当成是栈中的。<br><strong>这样就会把代码块中的synchronized标识去掉。从而省去锁相关操作。</strong></p>
 
       
 
@@ -463,7 +503,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">java基础</a>
+                <a href="javascript:void(0)" class="js-tag color2">数据库中间件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">shardingSphere</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -471,11 +519,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color2">java基础</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -511,10 +559,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">shell</a>
               </li>
              
@@ -523,11 +567,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">数据库中间件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">shardingSphere</a>
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -535,11 +575,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">网络通信</a>
+                <a href="javascript:void(0)" class="js-tag color3">索引</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -547,11 +583,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ioc</a>
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Ioc</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ioc</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -560,6 +600,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">idea</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">网络通信</a>
               </li>
             
             <div class="clearfix"></div>
