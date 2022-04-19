@@ -8,16 +8,16 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>java并发编程之线程生命周期及start方法解析 | Ricardo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="线程生命周期主要有以下几种状态：  New Runnable Blocked Running Terminated">
+  <meta name="description" content="线程生命周期有以下六种状态：  New（新创建） Runnable（可运行） Blocked（被阻塞） Waiting（等待） Timed Waiting（计时等待） Terminated（被终止）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java并发编程之线程生命周期及start方法解析">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;04&#x2F;01&#x2F;java-concurrency-thread-02&#x2F;index.html">
 <meta property="og:site_name" content="Ricardo">
-<meta property="og:description" content="线程生命周期主要有以下几种状态：  New Runnable Blocked Running Terminated">
+<meta property="og:description" content="线程生命周期有以下六种状态：  New（新创建） Runnable（可运行） Blocked（被阻塞） Waiting（等待） Timed Waiting（计时等待） Terminated（被终止）">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;04&#x2F;01&#x2F;java-concurrency-thread-02&#x2F;thread-flow.png">
 <meta property="article:published_time" content="2020-04-01T13:17:59.000Z">
-<meta property="article:modified_time" content="2020-04-06T04:05:00.095Z">
+<meta property="article:modified_time" content="2022-04-19T14:28:19.728Z">
 <meta property="article:author" content="Ricardo">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="并发编程">
@@ -183,13 +183,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>线程生命周期主要有以下几种状态：</p>
+        <p>线程生命周期有以下六种状态：</p>
 <ul>
-<li>New</li>
-<li>Runnable</li>
-<li>Blocked</li>
-<li>Running</li>
-<li>Terminated<a id="more"></a>
+<li>New（新创建）</li>
+<li>Runnable（可运行）</li>
+<li>Blocked（被阻塞）</li>
+<li>Waiting（等待）</li>
+<li>Timed Waiting（计时等待）</li>
+<li>Terminated（被终止）<a id="more"></a>
 </li>
 </ul>
 <h4 id="生命周期分析"><a href="#生命周期分析" class="headerlink" title="生命周期分析"></a>生命周期分析</h4><p>New：线程刚被创建时的状态。java中线程刚被new出来，就是这个状态。<br>Runnable：可以被cpu调度的线程就处于这个状态。java中，调用了start方法的线程就是处于这个状态。<br>Blocked：简单来说就是被阻塞的线程的状态。但是这个状态包含很多种情况，常见的有：</p>
@@ -354,7 +355,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2021 Ricardo
+    		&copy; 2022 Ricardo
     	</div>
     </div>
   </div>
@@ -463,6 +464,14 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
@@ -472,14 +481,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -499,11 +500,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">java基础</a>
+                <a href="javascript:void(0)" class="js-tag color5">并发编程</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">并发编程</a>
+                <a href="javascript:void(0)" class="js-tag color2">java基础</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -571,11 +572,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ioc</a>
+                <a href="javascript:void(0)" class="js-tag color4">Ioc</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ioc</a>
+                <a href="javascript:void(0)" class="js-tag color4">ioc</a>
               </li>
              
               <li class="article-tag-list-item">
