@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>data-structure-base-34 | Ricardo</title>
+  <title>链表实践 | Ricardo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="之前我们讲到了如何创建单链表，循环链表和双向链表。今天我们来搞点进阶的，也就是链表的一些实践。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="data-structure-base-34">
+<meta property="og:title" content="链表实践">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2022&#x2F;06&#x2F;15&#x2F;data-structure-base-34&#x2F;index.html">
 <meta property="og:site_name" content="Ricardo">
 <meta property="og:description" content="之前我们讲到了如何创建单链表，循环链表和双向链表。今天我们来搞点进阶的，也就是链表的一些实践。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-06-15T13:08:50.000Z">
-<meta property="article:modified_time" content="2022-07-13T14:21:57.818Z">
+<meta property="article:modified_time" content="2023-04-11T15:09:27.483Z">
 <meta property="article:author" content="Ricardo">
 <meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
@@ -160,7 +160,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      data-structure-base-34
+      链表实践
     </h1>
   
 
@@ -330,7 +330,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2022 Ricardo
+    		&copy; 2023 Ricardo
     	</div>
     </div>
   </div>
@@ -439,14 +439,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
@@ -455,7 +447,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -467,19 +471,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">java基础</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">并发编程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">java基础</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -495,11 +495,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">stream</a>
+                <a href="javascript:void(0)" class="js-tag color3">foreach</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">foreach</a>
+                <a href="javascript:void(0)" class="js-tag color2">stream</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -515,11 +515,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">shell</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color1">shell</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -531,10 +531,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">索引</a>
               </li>
              
@@ -543,15 +539,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ioc</a>
+                <a href="javascript:void(0)" class="js-tag color4">Ioc</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Ioc</a>
+                <a href="javascript:void(0)" class="js-tag color4">ioc</a>
               </li>
              
               <li class="article-tag-list-item">
